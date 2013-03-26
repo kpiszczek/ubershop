@@ -1,0 +1,162 @@
+//colors
+$bg_color: #f2f2f2
+$bg_dark: #e5e5e5
+$sidepanel_color: #acacac
+$dark_green: #002f32
+$main_bg_color: #ebebeb
+
+$border_radius: 12px
+$border_small_radius: 6px
+
+$shadow: 4px 4px 10px #666666
+
+$width: 960px
+
+.empty
+  clear: both
+   
+body
+  background:
+    color: $bg_color
+  text:
+    align: center
+  margin: 0
+
+a
+  color: #FFFFFF
+  text:
+    decoration: none
+  &:hover
+    color: $dark_green
+    text:
+      decoration: none
+  &:visited
+    text:
+      decoration: none
+    color: #FFFFFF
+    
+#main
+  position: relative
+  top: 0
+  left: 0
+  margin: 0 auto
+  width: $width
+  text:
+    align: left
+  font:
+    family: Verdana, Geneva, Arial, Helvetica, sans-serif
+    size: 14px
+    
+#header
+  top: 0
+  position: relative
+  height: 80px
+  
+#logo
+  position: relative
+  top: 50px
+  width: 220px
+  height: 95px
+  float: left
+  border:
+    radius: $border_radius
+    style: solid
+    color: $sidepanel_color
+    width: 1px
+  text:
+    align: center
+  margin:
+    left: 10px
+    right: 10px
+  box:
+    shadow: $shadow
+    
+.top_button
+  position: relative
+  top: 50px
+  height: 25px
+  width: 120px
+  float: right
+  background:
+    color: $main_bg_color
+  text:
+    align: center
+  a
+    color: $dark_green
+    &:hover
+      color: #FFFFFF
+  border:
+    radius: $border_small_radius
+    style: solid
+    width: 1px
+    color: $dark_green
+  padding:
+    top: 7px
+  margin:
+    left: 5px
+    right: 5px
+  box:
+    shadow: $shadow
+  
+#menubar_top
+  position: relative
+  padding:
+    left: 20px
+    right: 20px
+  width: 700px
+  left: $width - 710px
+  height: 50px
+  top: -15px
+  background:
+    image: url("/static/img/menu_bg.png")
+  border:
+    radius: $border_radius
+  box:
+    shadow: $shadow
+    
+.menu_item_top
+  float: left
+  width: 110px
+  padding:
+    top: 15px   
+  text:
+    align: center
+  
+#content
+  position: relative
+  left: $width - 710px
+  width: 700px
+  
+#menubar_bottom
+  position: relative
+  padding:
+    left: 25px
+    right: 25px
+  width: $width - 20px
+  height: 50px
+  background:
+    image: url("/static/img/menu_bg.png")
+  border:
+    radius: $border_radius
+  box:
+    shadow: $shadow
+    
+#footer
+  float: right
+  font:
+    size: 85%
+  margin:
+    bottom: 20px
+  
+.menu_item_bottom
+  float: left
+  width: 130px
+  padding:
+    top: 15px
+  text:
+    align: center
+    
+.form_error
+  display: none
+  visibility: hidden
+  

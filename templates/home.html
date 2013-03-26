@@ -1,0 +1,50 @@
+{% extends "eshop_base.html" %}
+
+{% block title_suffix %}
+Strona główna
+{% endblock %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/home.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='advert_banner'>
+  <img src="{{ STATIC_PREFIX }}img/banner.png"/>
+</div>
+<div id='promotion' class="home_item">
+  <div id="promotion_title" class="home_title">
+    Oferty promowane
+  </div>
+  {% for item in promotion_items %}
+  <div class='promotion_item'>
+    <a href="/sklep/{{ item.id }}"><img src="/mymedia/{{ item.thumb }}"/></a>
+    <div class="promotion_item_name">
+      <a href="/sklep/{{ item.id }}">{{ item.name }}</a>
+    </div>
+    <div class="promotion_item_price">
+      Cena: {{ item.discount_price }} zł
+    </div>
+  </div>
+  {% endfor %}
+  <div class="empty">&nbsp;</div>
+</div>
+<div id='message_container' class="home_item">
+  <div id='news_title' class="home_title">
+    Nowości i komunikaty
+  </div>
+  <div id='message_wrapper'>
+    <div id="message_title">
+      {{ message.title }}
+    </div>
+    <div id="message_content">
+      <p>{{ message.content }}</p>
+    </div>
+    <div id="news_link">
+      <a href='/news/'>więcej ...</a>
+    </div>
+  </div>
+</div>
+{% endblock %}

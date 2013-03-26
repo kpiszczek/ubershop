@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title_suffix %} Rejestracja użytkownika {% endblock %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div id="registration_form_wrapper">
+  <form id='registration_form' name='registration_form' action='' method='post' accept-charset="utf-8">
+    {% csrf_token %}
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.username.errors }}</span>
+      <label for='id_username'>Login:</label>
+      {{ form.username }}
+    </div>
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.first_name.errors }}</span>
+      <label for='id_first_name'>Imię:</label>
+      {{ form.first_name }}
+    </div>
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.last_name.errors }}</span>
+      <label for='id_last_name'>Nazwisko:</label>
+      {{ form.last_name }}
+    </div>
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.email.errors }}</span>
+      <label for='id_email'>E-mail:</label>
+      {{ form.email }}
+    </div>
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.password.errors }}</span>
+      <label for='id_password'>Hasło:</label>
+      {{ form.password }}
+    </div>
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.organisation.errors }}</span>
+      <label for='id_organisation'>Firma:</label>
+      {{ form.organisation }}
+    </div>
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.address.errors }}</span>
+      <label for='id_address'>Adres:</label>
+      {{ form.address }}
+    </div>
+    <div class='registration_form_field'>
+      <span class='form_error'>{{ form.tax_id.errors }}</span>
+      <label for='id_tax_id'>NIP:</label>
+      {{ form.tax_id }}
+    </div>
+  </form>
+</div>
+{% endblock %}

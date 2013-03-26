@@ -1,0 +1,72 @@
+$bg_color: #f2f2f2
+$sidepanel_color: #acacac
+$dark_green: #002f32
+$main_bg_color: #ebebeb
+
+$border_radius: 12px
+
+$shadow: 4px 4px 10px #666666
+
+$width: 960px
+
+$side_panel_width: 220px
+
+.side_menu_container
+  text:
+    align: center
+  background:
+    color: $sidepanel_color
+  width: $side_panel_width
+  margin:
+    left: 10px
+    right: 10px
+  border:
+    radius: $border_radius
+  box:
+    shadow: $shadow
+
+#side_menu
+  position: absolute
+  top: 305px
+  padding:
+    bottom: 5px
+   
+#side_menu_title
+  width: 100%
+  background:
+    color: $dark_green
+  position: relative
+  top: 0
+  height: 50px
+  color: #ffffff
+  padding:
+    top: 17px
+  font:
+    size: 175%
+  border:
+    radius: $border_radius
+  margin:
+    bottom: 5px
+    
+#search_form
+  position: absolute
+  padding:
+    top: 20px
+  top: 165px
+  height: 100px
+  
+.side_menu_item
+  text:
+    align: left
+  a
+    color: $dark_green
+    &:hover
+      color: #FFFFFF
+  padding:
+    left: 25px
+    bottom: 3px
+  font:
+    size: 130%
+
+  
+  

@@ -1,0 +1,102 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_detail.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div id='eshop_item_page'>
+  <div id='eshop_title'>
+    {{ item.name }}
+  </div>
+  <div id='eshop_main_image'>
+    <!-- TODO -->
+  </div>
+  <div id='eshop_info_panel'>
+    <div id='eshop_availability'>
+      {{ item.availability_status.name }}
+    </div>
+    <div id='eshop_price'>
+      {{ item.price }}
+    </div>
+    <div id='eshop_cart_form_wrapper'>
+      <form id='cart_form' name='cart_form' action='' method='post' accept-charset="utf-8">{% csrf_token %}
+        <div id='cart_form_field'>
+          <span class='form_error'>{{ cart_form.errors }}</span>
+          <label for='id_num_items'>Ilość:</label>
+          {{ cart_form.num_items }}
+        </div>
+        <p id='cart_input_wrapper'>
+          <input value='Do koszyka' id='cart_input' type='submit'/>
+          <p id='cart_submit_info'>{{ cart_form.info }}</p>
+        </p>
+      </form>
+    </div>
+  </div>
+  <div id='eshop_mid_panel'>
+    <div id='eshop_mid_bids_subpanel'>
+      <div id='eshop_score'>
+        <div id='eshop_score_label'>
+          Ocena:
+        </div>
+        <div id='eshop_score_value'>
+          {{ item.mean_score }}
+        </div>
+         <div id='eshop_score_count_label'>
+          Ilość ocen:
+        </div>
+        <div id='eshop_score_count'>
+          {{ item.score_count }}
+        </div>   
+      </div>
+    </div>
+    <div id='eshop_mid_info_subpanel'>
+      <div id='eshop_shipment_methods'>
+        <!-- TODO -->
+      </div>
+      <div id='eshop_query'>
+        <!-- TODO -->
+      </div>
+    </div>
+  </div>
+  <div id='eshop_description_wrapper'>
+    <div id='action_description_label'>
+      Opis:
+    </div>  
+    <div id='eshop_description'>
+      {{ item.description }}
+    </div>
+    <div id='eshop_gallery'>
+      {% for image in item.images %}
+      <div class='eshop_gallery_entry'>
+        <img class='acution_gallery_image' src="{{ image.image }}"/>      
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id='eshop_comments'>
+    <div id='eshop_comments_label'>
+      Opinie:
+    </div>
+    <div id='eshop_comments_line'>
+      &nbsp;
+    </div>
+    {% for comment in comments %}
+    <div id='eshop_comment_wrapper'>
+      <div id='eshop_comment_user'>
+        {{ comment.submitted_by }}
+      </div>
+      <div id='eshop_comment_date'>
+        {{ comment.submission_date }}
+      </div>
+      <div id='eshop_comment_content'>
+        {{ comment.content }}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  <div id='eshop_print_page'>
+    <!-- TODO -->
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/auction_base.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block sidebar %}
+<div id="search_form">
+  <form name='search_form' action='' id='auction_search_form' method='post' accept-charset="utf-8">{% csrf_token %}
+    <div id='search_form_field'>
+      <span class='form_error'>{{ search_form.errors }}</span>
+      <label for='id_search'>Szukaj:</label>
+      {{ search_form.search }}
+    </div>
+    <p id='search_input'>
+      <input value='Szukaj' id='auction_search_input' type='submit'/>
+      <p id='search_auction_submit_info'>{{ search_form.info }}</p>
+    </p>
+  </form>
+</div>
+<div id="side_menu">
+  <div id='side_menu_title'>
+    Kategorie
+  </div>
+  {% for category in categories %}
+  <div class='side_menu_item'>
+    <a href='/aukcje/{{ category.name }}/'>{{ category.name }}</a>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

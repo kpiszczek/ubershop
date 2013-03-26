@@ -1,0 +1,12 @@
+<project basedir="." default="sass">
+    <target name="sass">
+        <apply dest="ubershop/static/css" executable="/home/kuba/.gem/ruby/1.9.1/bin/sass">
+            <srcfile/>
+            <targetfile/>
+            <arg value="--style=compressed"/>
+            <fileset dir="ubershop/static/css" includes="*.sass"/>
+            <mapper from="*.sass" to="*.css" type="glob"/>
+        </apply>
+    </target>
+</project>
+				
