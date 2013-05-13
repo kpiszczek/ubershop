@@ -14,7 +14,7 @@ Strona główna
 <div id='advert_banner'>
   <img src="{{ STATIC_PREFIX }}img/banner.png"/>
 </div>
-<div id='promotion' class="home_item">
+<section id='promotion' class="home_item">
   <div id="promotion_title" class="home_title">
     Oferty promowane
   </div>
@@ -30,8 +30,8 @@ Strona główna
   </div>
   {% endfor %}
   <div class="empty">&nbsp;</div>
-</div>
-<div id='message_container' class="home_item">
+</section>
+<section id='message_container' class="home_item">
   <div id='news_title' class="home_title">
     Nowości i komunikaty
   </div>
@@ -46,5 +46,5 @@ Strona główna
       <a href='/news/'>więcej ...</a>
     </div>
   </div>
-</div>
+</section>
 {% endblock %}

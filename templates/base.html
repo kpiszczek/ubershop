@@ -1,48 +1,49 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 {% load static %}
 {% get_static_prefix as STATIC_PREFIX %}
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta charset="utf-8" />
 		<title>Ubershop - {% block title_suffix %}{% endblock %}</title>
 		<meta name='description' content=''/>
 		<meta name='keywords' content=''/>
 		{% block head %} {% endblock %}
-		<link href="{{ STATIC_PREFIX }}css/base.css" rel="stylesheet" type="text/css"/>
+		<link href="{{ STATIC_PREFIX }}css/base.css" rel="stylesheet"/>
 		{% block css %} {% endblock %}
 	</head>
 	<body>
 		<div id='main' class='first'>
 			<div id='container'>
 			  <div id='logo'>Tu powinno być logo</div>
-				<div id='header'>			  
+		       <header>			  
 				  <div id='banner'> </div>
 				  <div id='cart_small' class="top_button"><a href="/koszyk/">Koszyk</a></div>	  
 				  <div id='register' class="top_button"><a href="/rejestracja/">Rejestracja</a></div>
 				  <div id='login' class="top_button"><a href="/login/">Logowanie</a></div>
 				  <div class="empty">&nbsp;</div>
-				  <div id='menubar_top'>
-  				  <div class='menu_item_top'>
-              <a href="/home/">Home</a>
-            </div>
-            <div class='menu_item_top'>
-              <a href="/aukcje/">Aukcje</a>
-            </div>
-            <div class='menu_item_top'>
-              <a href="/sklep/">Sklep</a>
-            </div>
-            <div class='menu_item_top'>
-              <a href="/grupowe/">Oferty grupowe</a>
-            </div>
-            <div class='menu_item_top'>
-              <a href="/panel_klienta/">Moje konto</a>
-            </div>
-            <div class='menu_item_top'>
-              <a href="/forum/">Forum</a>
-            </div>
-				  </div>
-				</div>
+				  <nav>
+    				<div id='menubar_top'>
+      		          <div class='menu_item_top'>
+                        <a href="/home/">Home</a>
+                      </div>
+                      <div class='menu_item_top'>
+                        <a href="/aukcje/">Aukcje</a>
+                      </div>
+                      <div class='menu_item_top'>
+                        <a href="/sklep/">Sklep</a>
+                      </div>
+                      <div class='menu_item_top'>
+                        <a href="/grupowe/">Oferty grupowe</a>
+                      </div>
+                      <div class='menu_item_top'>
+                        <a href="/panel_klienta/">Moje konto</a>
+                      </div>
+                      <div class='menu_item_top'>
+                        <a href="/forum/">Forum</a>
+                      </div>
+       			   </div>
+    			 </nav>
+				</header>
 				<div class='empty'>&nbsp;</div>
 				<div id='content'>					
 		      <div id='content_container'>
@@ -59,32 +60,34 @@
 					</div>
 				</div>
 				<div class='empty'>&nbsp;</div>
-				<div id='menubar_bottom'>
-				  <div class='menu_item_bottom'>
-				    <a href="/home/">Home</a>
-				  </div>
-				  <div class='menu_item_bottom'>
-            <a href="/aukcje/">Aukcje</a>
-          </div>
-          <div class='menu_item_bottom'>
-            <a href="/sklep/">Sklep</a>
-          </div>
-          <div class='menu_item_bottom'>
-            <a href="/grupowe/">Oferty grupowe</a>
-          </div>
-          <div class='menu_item_bottom'>
-            <a href="/panel_klienta/">Moje konto</a>
-          </div>
-          <div class='menu_item_bottom'>
-            <a href="/forum/">Forum</a>
-          </div>
-          <div class='menu_item_bottom'>
-            <a href="/kontakt/">Kontakt</a>
-          </div>
-				</div>
+				<nav>
+    				<div id='menubar_bottom'>
+    				  <div class='menu_item_bottom'>
+    				    <a href="/home/">Home</a>
+    				  </div>
+    				  <div class='menu_item_bottom'>
+                        <a href="/aukcje/">Aukcje</a>
+                      </div>
+                      <div class='menu_item_bottom'>
+                        <a href="/sklep/">Sklep</a>
+                      </div>
+                      <div class='menu_item_bottom'>
+                        <a href="/grupowe/">Oferty grupowe</a>
+                      </div>
+                      <div class='menu_item_bottom'>
+                        <a href="/panel_klienta/">Moje konto</a>
+                      </div>
+                      <div class='menu_item_bottom'>
+                        <a href="/forum/">Forum</a>
+                      </div>
+                      <div class='menu_item_bottom'>
+                        <a href="/kontakt/">Kontakt</a>
+                      </div>
+    				</div>
+    		    </nav>
 				<div class="empty">&nbsp;</div>
-				<div id='footer'>No Rights Reserved @ Grupa PROjektowa 2012-2013</div>
-				<div clss="empty">&nbsp;</div>
+				<footer>No Rights Reserved @ Grupa PROjektowa 2012-2013</footer>
+				<div class="empty">&nbsp;</div>
 				<div id='scripts'>
 				  {% block scripts %}
 				  {% endblock %}

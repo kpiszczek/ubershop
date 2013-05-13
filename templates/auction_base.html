@@ -18,14 +18,16 @@
     </p>
   </form>
 </div>
-<div id="side_menu">
+<aside id="side_menu">
   <div id='side_menu_title'>
     Kategorie
   </div>
-  {% for category in categories %}
-  <div class='side_menu_item'>
-    <a href='/aukcje/{{ category.name }}/'>{{ category.name }}</a>
-  </div>
-  {% endfor %}
-</div>
+  <nav>
+      {% for category in categories %}
+      <div class='side_menu_item'>
+        <a href='/aukcje/{{ category.name }}/'>{{ category.name }}</a>
+      </div>
+      {% endfor %}
+  </nav>
+</aside>
 {% endblock %}

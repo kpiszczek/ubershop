@@ -19,14 +19,16 @@
     </p>
   </form>
 </div>
-<div id="side_menu" class="side_menu_container">
+<aside id="side_menu" class="side_menu_container">
   <div id='side_menu_title'>
     Kategorie
   </div>
-  {% for category in categories %}
-  <div class='side_menu_item'>
-    <a href='/sklep/{{ category.name }}/'>{{ category.name }}</a>
-  </div>
-  {% endfor %}
-</div>
+  <nav>
+      {% for category in categories %}
+      <div class='side_menu_item'>
+        <a href='/sklep/{{ category.name }}/'>{{ category.name }}</a>
+      </div>
+      {% endfor %}
+  </nav>
+</aside>
 {% endblock %}
