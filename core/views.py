@@ -5,6 +5,8 @@ from core.models import Category
 from eshop.models import EShopItem
 from board.models import Message
 
+from django.contrib.auth.models import User
+
 def home_page(request):
     if request.method == "POST":
         form = SearchForm(request.POST)       

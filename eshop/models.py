@@ -2,12 +2,13 @@ from django.db import models
 from base.models import BaseItem
 from django.contrib import admin
 
-class EShopItem(BaseItem):
+class EShopItem(models.Model):
     price = models.DecimalField(max_digits=15,decimal_places=2)
     is_on_sale = models.BooleanField()
     discount_price = models.DecimalField(max_digits=15,decimal_places=2)
     availiability_status = models.ForeignKey('core.AvailiabilityStatus')
     current_stock = models.IntegerField()
+    base = models.OneToOneField(BaseItem)
 
 class ProductWatcher(models.Model):
     user = models.ForeignKey('core.ShopUser')

@@ -20,7 +20,7 @@ Strona główna
   </div>
   {% for item in promotion_items %}
   <div class='promotion_item'>
-    <a href="/sklep/{{ item.id }}"><img src="/mymedia/{{ item.thumb }}"/></a>
+    <a href="/sklep/{{ item.id }}"><img src="/mymedia/{{ item.base.thumb }}"/></a>
     <div class="promotion_item_name">
       <a href="/sklep/{{ item.id }}">{{ item.name }}</a>
     </div>

@@ -9,7 +9,7 @@ class Bid(models.Model):
     date = models.DateTimeField()
     price = models.DecimalField(max_digits=15,decimal_places=2)
     
-class AuctionItem(BaseItem):
+class AuctionItem(models.Model):
     created_by = models.ForeignKey('core.ShopUser')
     start_date = models.DateTimeField()
     close_date = models.DateTimeField(blank=True,null=True)
@@ -19,6 +19,7 @@ class AuctionItem(BaseItem):
                                         blank=True,null=True)
     bids = models.ManyToManyField('Bid',blank=True,null=True)
     payment_date = models.DateTimeField(blank=True,null=True)
+    base = models.OneToOneField(BaseItem)
     
 class BidAdmin(admin.ModelAdmin):
     pass
