@@ -1,19 +1,29 @@
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
 from base.views import BaseView
 from eshop.models import EShopItem
 
 class EShopView(BaseView):
     meta = EShopItem
     
-    @staticmethod
-    def onsale_products(request):
+    @classmethod
+    def onsale_products(cls, request):
         raise NotImplemented
     
-    @staticmethod
-    def add_to_cart(request):
+    @classmethod
+    def add_to_cart(cls, request):
         raise NotImplemented
     
-    @staticmethod
-    def compare_items(request):
-        raise NotImplemented
+    @classmethod
+    def compare_items(cls, request, id1, id2):
+        item1 = cls.meta.objects.get(pk=id1)
+        item2 = cls.meta.objects.get(pk=id2)
+        
+        keys = set(item1.base.properties.keys()) & set(item2.base.properties.keys())
+        table = [[key, item1.base.properties[key], item2.base.properties[key]] for key in keys]
+        
+        return render_to_response("eshop_compare.html", {'item1': item1, 'item2': item2, 'table': table},
+                              context_instance=RequestContext(request))
     
     
