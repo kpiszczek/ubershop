@@ -4,16 +4,16 @@ from pdfgenerator.generator import PdfGenerator
 class BaseView():
     meta = BaseItem
      
-    @staticmethod
-    def items_list(request):
+    @classmethod
+    def items_list(cls, request):
         raise NotImplemented
     
-    @staticmethod
-    def search_item(request):
+    @classmethod
+    def search_item(cls, request):
         raise NotImplemented
     
-    @staticmethod
-    def show_item(request):
+    @classmethod
+    def show_item(cls, request):
         raise NotImplemented
     
     @classmethod
@@ -21,10 +21,10 @@ class BaseView():
         generator = PdfGenerator(cls.meta, id)
         return generator.item_page()
     
-    @staticmethod
-    def newest_items(request):
+    @classmethod
+    def newest_items(cls, request):
         raise NotImplemented
     
-    @staticmethod
-    def popular_items(request):
+    @classmethod
+    def popular_items(cls, request):
         raise NotImplemented
