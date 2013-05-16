@@ -16,9 +16,10 @@ class BaseView():
     def show_item(request):
         raise NotImplemented
     
-    @staticmethod
-    def get_item_pdf(request):
-        raise NotImplemented
+    @classmethod
+    def get_item_pdf(cls, request, id):
+        generator = PdfGenerator(cls.meta, id)
+        return generator.item_page()
     
     @staticmethod
     def newest_items(request):

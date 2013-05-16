@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
+from eshop.views import EShopView
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -11,6 +12,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'ubershop.views.home', name='home'),
     # url(r'^ubershop/', include('ubershop.foo.urls')),
     url(r'^home/$','core.views.home_page'),
+    url(r'^eshop/(?P<id>\d+)/get_pdf', EShopView.get_item_pdf),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
