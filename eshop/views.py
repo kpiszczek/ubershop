@@ -9,7 +9,11 @@ class EShopView(BaseView):
     
     @classmethod
     def onsale_products(cls, request):
-        raise NotImplemented
+        #raise NotImplemented
+        products_on_sale = EShopItem.objects.filter(is_on_sale=True)
+        products_on_sale = products_on_sale.filter(current_stock__gte=1)
+        return render_to_response("eshop_list.html",{'products': products_on_sale},context_instance=RequestContext(request))
+    
     
     @classmethod
     def add_to_cart(cls, request):
