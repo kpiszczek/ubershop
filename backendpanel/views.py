@@ -29,4 +29,6 @@ class BackendPanel:
     @login_required
     @classmethod
     def logout(cls,request):
-        raise NotImplemented
+        #raise NotImplemented
+        logout(request)
+        return HttpResponseRedirect('/home/')
