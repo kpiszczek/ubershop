@@ -8,16 +8,27 @@ class CustomerPanel:
     @login_required
     @classmethod
     def order_history(cls,request):
-        raise NotImplemented
+        list=Order.objects.all()
+        list=list.objects.filter(user=request.user)
+        return render_to_response("order_history.html",{'products': list},context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @login_required
     @classmethod
     def order_details(cls,request):
-        raise NotImplemented    
+        list=Order.objects.all()
+        list=list.objects.filter(user=request.user)
+        list=list.objects.filter(pk=order_id)
+        return render_to_response("order_details.html",{'products': list},context_instance=RequestContext(request))
+        #raise NotImplemented     
 
     @classmethod
     def auction_history(cls,request):
-        raise NotImplemented
+        #te w ktorych bral udzial
+        list=Bid.objects.all()
+        list=list.objects.filter(user=request.user)
+        return render_to_response("auction_list.html",{'products': list},context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @login_required
     @classmethod
@@ -31,12 +42,18 @@ class CustomerPanel:
     
     @classmethod
     def shopping_cart(cls,request):
-        raise NotImplemented
+        list=ShoppingCart.objects.all()
+        list=list.objects.filter(user=request.user)
+        return render_to_response("shopping_cart.html",{'products': list},context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @login_required
     @classmethod
     def watched_products(cls,request):
-        raise NotImplemented
+        list=ProductWatcher.objects.all()
+        list=list.objects.filter(user=request.user)
+        return render_to_response("watched_products.html",{'products': list},context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @classmethod
     def shopping_cart_small(cls,request):
