@@ -18,5 +18,7 @@ class AuctionView(BaseView):
         raise NotImplemented
     
     @staticmethod
-    def bid_item(request):
-        raise NotImplemented
+    def bid_item(request, id):
+        item = BidItem.objects.get(pk=id)
+        return render_to_response("bid_item.html", {item: item})
+        #raise NotImplemented
