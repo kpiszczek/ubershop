@@ -67,7 +67,9 @@ class CustomerPanel:
     
     @classmethod
     def logout(cls,request):
-        raise NotImplemented
+        #raise NotImplemented
+        logout(request)
+        return HttpResponseRedirect('/home/')
     
     @classmethod
     def register(cls,request):
