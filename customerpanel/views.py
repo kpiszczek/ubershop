@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 
 from auction.forms import AuctionForm
 from eshop.models import ShoppingCart, ProductWatcher
@@ -63,13 +64,22 @@ class CustomerPanel:
     
     @classmethod
     def login(cls,request):
-        raise NotImplemented
-    
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            HttpResponseRedirect('/home/')
+        else:
+            message='Nieprawidłowy login lub hasło'
+            return render_to_response("login.html", {'message': message}, context_instance=RequestContext(request))
+                
+                
     @classmethod
     def logout(cls,request):
         #raise NotImplemented
         logout(request)
-        return HttpResponseRedirect('/home/')
+        return render_to_response("logout.html",context_instance=RequestContext(request))
     
     @classmethod
     def register(cls,request):
