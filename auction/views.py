@@ -1,5 +1,5 @@
 from base.views import BaseView
-from auction.models import AuctionItem
+from auction.models import AuctionItem, Bid
 from auction.forms import AuctionForm
 
 class AuctionView(BaseView):
