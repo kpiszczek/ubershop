@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 
 from auction.forms import AuctionForm
 from eshop.models import ShoppingCart, ProductWatcher
+from ordermanager import Order
+from auction import Bid
 
 class CustomerPanel:
     @login_required
@@ -15,7 +17,7 @@ class CustomerPanel:
     
     @login_required
     @classmethod
-    def order_details(cls,request):
+    def order_details(cls,request, order_id):
         list=Order.objects.all()
         list=list.objects.filter(user=request.user)
         list=list.objects.filter(pk=order_id)
