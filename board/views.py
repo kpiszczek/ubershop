@@ -2,7 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from board.forms import TopicForm, MessageForm, BoardForm
-from board.models import Board
+from board.models import Board, Message, Topic
 
 class BoardView():
     @classmethod
@@ -10,8 +10,11 @@ class BoardView():
         raise NotImplemented
     
     @classmethod
-    def show_topic(cls,request):
-        raise NotImplemented
+    def show_topic(cls,request, id):
+        messages=Message.objects.filter(topic=id)
+        title=Topic.objects.filter(pk=id)
+        return render_to_response("topic_detail.html", {'messages':messages, 'title':title},context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @classmethod
     def show_message(cls,request):
