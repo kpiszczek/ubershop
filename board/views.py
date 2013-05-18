@@ -1,4 +1,6 @@
+from django.shortcuts import render_to_response
 from board.forms import TopicForm, MessageForm, BoardForm
+from board.models import Board
 
 class BoardView():
     @classmethod

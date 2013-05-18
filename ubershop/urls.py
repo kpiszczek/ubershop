@@ -3,6 +3,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
 from eshop.views import EShopView
+from board.views import BoardView
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -17,7 +18,8 @@ urlpatterns = patterns('',
     url(r'^eshop/kategorie/(?P<category>.+)/$', EShopView.items_list),
     url(r'^eshop/szukaj/(?P<term>.+)/$', EShopView.search_item),
     url(r'^eshop/nowe/$', EShopView.newest_items),
-    url(r'^eshop/popoularne/$', EShopView.popular_items),
+    url(r'^eshop/popularne/$', EShopView.popular_items),
+    url(r'^forum/$', BoardView.show_available_board),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

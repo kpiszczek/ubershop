@@ -1,0 +1,12 @@
+<div id="list">
+
+
+    {% for forum in boards %}
+        
+        <div class="title"> <a href="{% url board.views.show_board forum.pk %}">{{ forum.title }}</a>
+            </div>
+        
+            <a class="button" href="{% url board.views.show_board forum.pk %}">VIEW</a>
+
+    {% endfor %}
+</div>

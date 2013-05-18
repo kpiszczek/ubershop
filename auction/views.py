@@ -1,3 +1,4 @@
+from django.shortcuts import render_to_response
 from base.views import BaseView
 from auction.models import AuctionItem, Bid
 from auction.forms import AuctionForm
