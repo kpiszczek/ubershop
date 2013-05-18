@@ -15,7 +15,9 @@ class BoardView():
 
     @classmethod
     def show_available_board(cls,request):
-        raise NotImplemented
+        forums = Board.objects.all()
+        return render_to_response("board_list.html",{'boards': forums},context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @classmethod
     def create_topic(cls,request):
