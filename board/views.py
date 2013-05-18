@@ -7,7 +7,7 @@ from board.models import Board, Message, Topic
 class BoardView():
     @classmethod
     def show_board(cls,request, id):
-        board=Board.objects.filter(pk=id)
+        board=Board.objects.get(pk=id)
         topics=Topic.objects.filter(board=id)
         return render_to_response("board_detail.html", {'board':board, 'topics': topics },context_instance=RequestContext(request))
         #raise NotImplemented
@@ -22,7 +22,7 @@ class BoardView():
     
     @classmethod
     def show_message(cls,request, id):
-        message=Message.objects.filter(pk=id)
+        message=Message.objects.get(pk=id)
         return render_to_response("message_detail.html", {'message':message},context_instance=RequestContext(request))
 
     @classmethod

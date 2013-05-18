@@ -1,0 +1,11 @@
+<div id="list">
+
+Board: {{ board.name }}, Topics:
+    {% for topic in topics %}
+        
+        <div class="message"><a href="topic/{{ topic.pk }}">link</a>{{ topic.title }}
+            </div>
+        
+       
+    {% endfor %}
+</div>
