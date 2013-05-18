@@ -9,7 +9,7 @@ class BoardView():
     def show_board(cls,request, id):
         board=Board.objects.get(pk=id)
         topics=Topic.objects.filter(board=id)
-        return render_to_response("board_detail.html", {'board':board, 'topics': topics },context_instance=RequestContext(request))
+        return render_to_response("topic_list.html", {'board':board, 'topics': topics },context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
@@ -45,4 +45,7 @@ class BoardView():
     
     @classmethod
     def show_news_board(cls,request):
-        raise NotImplemented
+        board=Board.objects.get(name="news")
+        id=board.pk
+        topics=Topic.objects.filter(board=id)
+        return render_to_response("board_detail.html", {'board':board, 'topics': topics },context_instance=RequestContext(request))
