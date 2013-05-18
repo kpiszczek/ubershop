@@ -1,9 +1,9 @@
 <div id="list">
 
-{{ title }}
+Topic: {{ topic }}
     {% for message in messages %}
         
-        <div class="message">{{ message.content }}
+        <div class="message"><a href="message/{{ message.pk }}">link</a>{{ message.content }}
             </div>
         
        

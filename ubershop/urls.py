@@ -21,6 +21,8 @@ urlpatterns = patterns('',
     url(r'^eshop/popularne/$', EShopView.popular_items),
     url(r'^forum/$', BoardView.show_available_board),
     url(r'^forum/topic/(?P<id>\d+)$', BoardView.show_topic),
+    url(r'^forum/message/(?P<id>\d+)$', BoardView.show_message),
+    url(r'^forum/board/(?P<id>\d+)$', BoardView.show_board),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
