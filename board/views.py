@@ -79,15 +79,15 @@ class BoardView():
             
             topic=Topic.objects.get(pk=id)
             submission_date=datetime.now()
-            new_message=Message(topic=topic.pk, submission_date=submission_date, content=content)
+            new_message=Message(topic=topic, submission_date=submission_date, content=content)
             
             new_message.save()
             
             #redirect_url = reverse('topic', kwargs={'id': new_message.topic})
-            return HttpResponseRedirect("/forum/board/topic/"+str(topic.pk))
+            return HttpResponseRedirect("/forum/board/topic/"+str(id))
             #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
         else:
-            topic_form=TopicForm()
+            message_form=MessageForm()
         return render_to_response('new_message.html', {'message_form': message_form}, context_instance=RequestContext(request))
         #raise NotImplemented
     
