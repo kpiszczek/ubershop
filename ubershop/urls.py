@@ -24,6 +24,7 @@ urlpatterns = patterns('',
     url(r'^forum/board/topic/message/(?P<id>\d+)$', BoardView.show_message),
     url(r'^forum/board/(?P<id>\d+)$', BoardView.show_board),
     url(r'^forum/board/new_board/$', BoardView.create_board),
+    url(r'^forum/board/new_topic/(?P<id>\d+)$', BoardView.create_topic),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 

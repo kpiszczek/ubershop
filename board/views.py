@@ -37,15 +37,18 @@ class BoardView():
     
 
     @classmethod
-    def create_topic(cls,request, board_id):
+    def create_topic(cls,request,id):
         if request.method=='POST':
             topic_form=TopicForm(request.POST)
-            new_topic=topic_form.save()
-            redirect_url = reverse('topic', kwargs={'id': new_topic.pk})
-            return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
+            new_topic=topic_form
+            new_topic.board=id
+            new_topic.save()
+            #redirect_url = reverse('topic', kwargs={'id': new_topic.pk})
+            #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
+            return HttpResponseRedirect("/forum/board/topic/"+str(new_topic.pk))
         else:
             topic_form=TopicForm()
-        return render_to_response('new_topic.html', {'form': topic_form}, context_instance=RequestContext(request))
+        return render_to_response('new_topic.html', {'topic_form': topic_form}, context_instance=RequestContext(request))
         #raise NotImplemented
     
     
@@ -54,12 +57,11 @@ class BoardView():
         if request.method=='POST':
             board_form=BoardForm(request.POST)
             new_board=board_form.save()
-            #redirect_url = reverse('board.views.show_board', args={'id': new_board.pk, })
-            #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
-            return BoardView.show_board( request, new_board.pk)
+            url="/forum/board/"+str(new_board.pk)
+            return HttpResponseRedirect("/forum/board/"+str(new_board.pk))
         else:
             board_form=BoardForm()
-        return render_to_response('new_board.html', {'board': board_form}, context_instance=RequestContext(request))
+        return render_to_response('new_board.html', {'board_form': board_form}, context_instance=RequestContext(request))
         #raise NotImplemented  
   
 
@@ -68,11 +70,12 @@ class BoardView():
         if request.method=='POST':
             message_form=MessageForm(request.POST)
             new_message=message_form.save()
-            redirect_url = reverse('topic', kwargs={'id': new_message.topic})
-            return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
+            #redirect_url = reverse('topic', kwargs={'id': new_message.topic})
+            return HttpResponseRedirect("/forum/board/topic/"+str(new_message.topic))
+            #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
         else:
             topic_form=TopicForm()
-        return render_to_response('new_message.html', {'form': message_form}, context_instance=RequestContext(request))
+        return render_to_response('new_message.html', {'message_form': message_form}, context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
