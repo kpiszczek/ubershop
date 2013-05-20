@@ -1,5 +1,8 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+from django.http import Http404
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 
 from base.models import BaseItem
 from core.models import Category
@@ -13,6 +16,8 @@ class BaseView():
      
     @classmethod
     def items_list(cls, request, page=0):
+        if cls.model == BaseItem:
+            raise Http404
         items = cls.model.objects.filter(base__is_active=True).order_by("-created_at")[page:(page+1)*15]
         
         # sprawdzamy czy istnieje następna/poprzednia strona
