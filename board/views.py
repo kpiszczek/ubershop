@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from datetime import datetime
 
 #from django.views.decorators.csrf import csrf_exempt
 
@@ -20,8 +21,9 @@ class BoardView():
     def show_topic(cls,request, id):
         messages=Message.objects.filter(topic=id)
         topic=Topic.objects.get(pk=id).title
+        topic_id=Topic.objects.get(pk=id).pk
         #topic=topic.title
-        return render_to_response("topic_detail.html", {'messages':messages, 'topic':topic},context_instance=RequestContext(request))
+        return render_to_response("topic_detail.html", {'messages':messages, 'topic':topic, 'topic_id': topic_id},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
@@ -37,14 +39,17 @@ class BoardView():
     
 
     @classmethod
+    #@login_required
     def create_topic(cls,request,id):
         if request.method=='POST':
             topic_form=TopicForm(request.POST)
-            new_topic=topic_form
-            new_topic.board=id
+            title=request.POST['title']
+            board=Board.objects.get(pk=id)
+            date=datetime.now()
+            new_topic=Topic(title=title, board=board, date=date, is_active=True)
+            
             new_topic.save()
-            #redirect_url = reverse('topic', kwargs={'id': new_topic.pk})
-            #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
+            
             return HttpResponseRedirect("/forum/board/topic/"+str(new_topic.pk))
         else:
             topic_form=TopicForm()
@@ -66,12 +71,20 @@ class BoardView():
   
 
     @classmethod
-    def submit_message(cls,request):
+    def submit_message(cls,request, id):
         if request.method=='POST':
             message_form=MessageForm(request.POST)
-            new_message=message_form.save()
+            
+            content=request.POST['content']
+            
+            topic=Topic.objects.get(pk=id)
+            submission_date=datetime.now()
+            new_message=Message(topic=topic.pk, submission_date=submission_date, content=content)
+            
+            new_message.save()
+            
             #redirect_url = reverse('topic', kwargs={'id': new_message.topic})
-            return HttpResponseRedirect("/forum/board/topic/"+str(new_message.topic))
+            return HttpResponseRedirect("/forum/board/topic/"+str(topic.pk))
             #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
         else:
             topic_form=TopicForm()
