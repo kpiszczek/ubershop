@@ -58,10 +58,7 @@ class BoardView():
             new_topic = Topic(title=title, board=board, date=date, is_active=True)
             #new_topic=Topic(title=title, board=board, created_by=created_by, date=date, is_active=True)            
             new_topic.save()
-            try:
-                return HttpResponseRedirect("/forum/%d/%d/" % (int(board_id), int(new_topic.pk)))
-            except ValueError:
-                raise Http404
+            return HttpResponseRedirect("/forum/%s/%s/" % (board_id, new_topic.pk))
         else:
             topic_form = TopicForm()
         return render_to_response('new_topic.html', 
@@ -96,7 +93,7 @@ class BoardView():
             #new_message=Message(topic=topic, submitted_by=submitted_by, submission_date=submission_date, content=content)
             new_message.save()
 
-            return HttpResponseRedirect("/forum/%d/%d/%d/" % (int(board_id), int(topic_id), int(new_message.pk)))
+            return HttpResponseRedirect("/forum/%s/%s/%s/" % (board_id, topic_id, new_message.pk))
         else:
             message_form = MessageForm()
         return render_to_response('new_message.html', 
