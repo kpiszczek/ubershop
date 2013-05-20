@@ -1,5 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 
 from board.forms import TopicForm, MessageForm, BoardForm
 from board.models import Board, Message, Topic
@@ -32,16 +34,40 @@ class BoardView():
         #raise NotImplemented
     
     @classmethod
-    def create_topic(cls,request):
-        raise NotImplemented
+    def create_topic(cls,request, board_id):
+        if request.method=='POST':
+            topic_form=TopicForm(request.POST)
+            new_topic=topic_form.save()
+            redirect_url = reverse('topic', kwargs={'id': new_topic.pk})
+            return HttpResponseRedirect(redirect_url)
+        else:
+            topic_form=TopicForm()
+        return render_to_response('new_topic.html', {'form': topic_form})
+        #raise NotImplemented
     
     @classmethod
     def create_board(cls,request):
-        raise NotImplemented  
+        if request.method=='POST':
+            board_form=BoardForm(request.POST)
+            new_board=board_form.save()
+            redirect_url = reverse('board', kwargs={'id': new_board.pk})
+            return HttpResponseRedirect(redirect_url)
+        else:
+            board_form=BoardForm()
+        return render_to_response('new_board.html', {'board': board_form})
+        #raise NotImplemented  
   
     @classmethod
     def submit_message(cls,request):
-        raise NotImplemented
+        if request.method=='POST':
+            message_form=MessageForm(request.POST)
+            new_message=message_form.save()
+            redirect_url = reverse('topic', kwargs={'id': new_message.topic})
+            return HttpResponseRedirect(redirect_url)
+        else:
+            topic_form=TopicForm()
+        return render_to_response('new_message.html', {'form': message_form})
+        #raise NotImplemented
     
     @classmethod
     def show_news_board(cls,request):
