@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
 
 #from django.views.decorators.csrf import csrf_exempt
 
@@ -46,8 +47,9 @@ class BoardView():
             title=request.POST['title']
             board=Board.objects.get(pk=id)
             date=datetime.now()
+            #created_by=request.user
             new_topic=Topic(title=title, board=board, date=date, is_active=True)
-            
+            #new_topic=Topic(title=title, board=board, created_by=created_by, date=date, is_active=True)            
             new_topic.save()
             
             return HttpResponseRedirect("/forum/board/topic/"+str(new_topic.pk))
@@ -58,6 +60,7 @@ class BoardView():
     
     
     @classmethod
+    #@login_required
     def create_board(cls,request):
         if request.method=='POST':
             board_form=BoardForm(request.POST)
@@ -71,21 +74,20 @@ class BoardView():
   
 
     @classmethod
+    #@login_required
     def submit_message(cls,request, id):
         if request.method=='POST':
             message_form=MessageForm(request.POST)
             
             content=request.POST['content']
-            
+            submitted_by=request.user
             topic=Topic.objects.get(pk=id)
             submission_date=datetime.now()
             new_message=Message(topic=topic, submission_date=submission_date, content=content)
-            
+            #new_message=Message(topic=topic, submitted_by=submitted_by, submission_date=submission_date, content=content)
             new_message.save()
-            
-            #redirect_url = reverse('topic', kwargs={'id': new_message.topic})
+
             return HttpResponseRedirect("/forum/board/topic/"+str(id))
-            #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
         else:
             message_form=MessageForm()
         return render_to_response('new_message.html', {'message_form': message_form}, context_instance=RequestContext(request))
