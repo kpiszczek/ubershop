@@ -2,6 +2,9 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
+from django.core.context_processors import csrf
+from django.views.decorators.csrf import csrf_protect
+#from django.views.decorators.csrf import csrf_exempt
 
 from board.forms import TopicForm, MessageForm, BoardForm
 from board.models import Board, Message, Topic
@@ -33,6 +36,7 @@ class BoardView():
         return render_to_response("board_list.html",{'boards': forums},context_instance=RequestContext(request))
         #raise NotImplemented
     
+    #@csrf_exempt
     @classmethod
     def create_topic(cls,request, board_id):
         if request.method=='POST':
@@ -45,6 +49,7 @@ class BoardView():
         return render_to_response('new_topic.html', {'form': topic_form})
         #raise NotImplemented
     
+    @csrf_protect
     @classmethod
     def create_board(cls,request):
         if request.method=='POST':
@@ -57,6 +62,7 @@ class BoardView():
         return render_to_response('new_board.html', {'board': board_form})
         #raise NotImplemented  
   
+    #@csrf_exempt
     @classmethod
     def submit_message(cls,request):
         if request.method=='POST':
