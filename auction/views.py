@@ -4,7 +4,7 @@ from auction.models import AuctionItem, Bid
 from auction.forms import AuctionForm
 
 class AuctionView(BaseView):
-    meta = AuctionItem
+    model = AuctionItem
     
     @staticmethod
     def bid_history(request, auction_id):

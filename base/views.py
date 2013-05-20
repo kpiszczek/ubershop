@@ -1,3 +1,6 @@
+#!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 from base.models import BaseItem
 from core.models import Category
 from eshop.models import EShopItem
@@ -6,30 +9,19 @@ from groupbuy.models import GroupOffer
 from pdfgenerator.generator import PdfGenerator
 
 class BaseView():
-    meta = BaseItem
+    model = BaseItem
      
     @classmethod
-    def items_list(cls, request):
-        #raise NotImplemented
+    def items_list(cls, request, page=0):
+        items = cls.model.objects.filter(base__is_active=True).order_by("-created_at")[page:(page+1)*15]
         
-        if(section=='auction'):
-            auctions = AuctionItem.objects.all
-            auctions = auctions.filter(close_date>datetime.now())
-            auctions = auctions.filter(start_date<datetime.now())
-            auctions = auctions[:page*15]
-            return render_to_response("auction_list.html",{'auctions': auctions, 'next_page': page+1}, context_instance=RequestContext(request))       
-        if(section=='eshop'):
-            categories = Category.objects.all()
-            products_query = EShopItem.objects.all
-            products_query = products_query.filter(availiability_status='available')      
-            products = products_query[:page*15]
-            return render_to_response("eshop_list.html",{'categories': categories, 'promotion_items': products, 'next_page': page+1}, context_instance=RequestContext(request))            
-        if(section=='groupbuy'):
-            offers = GroupOffer.objects.all()
-            offers = offers.filter(availiability_status='available')
-            offers = offers[:page*15]
-            return render_to_response("groupbuy_list.html",{'offers': offers, 'next_page': page+1}, context_instance=RequestContext(request))
-    
+        # sprawdzamy czy istnieje następna/poprzednia strona
+        next_page = page+1 if len(items) == 15 else None
+        prev_page = page-1 if page > 0 else None
+        
+        return render_to_response("%s_list.html" % cls.model.__name__.lower(),
+                                  {"items": items, "prev_page": prev_page, "next_page": next_page},
+                                  context_instance=RequestContext(request))   
     
     @classmethod
     def search_item(cls, request):
@@ -37,23 +29,17 @@ class BaseView():
     
     @classmethod
     def show_item(cls, request, id):
-        if(section=='auction'):
-            auction = AuctionItem.objects.all
-            auction=auction.filter(pk=id)
-            return render_to_response("auction_detail.html",{'auction': auction}, context_instance=RequestContext(request))       
-        if(section=='eshop'):
-            product = EShopItem.objects.all
-            product = product.filter(pk=id) 
-            return render_to_response("eshop_detail.html",{'product': product}, context_instance=RequestContext(request))            
-        if(section=='groupbuy'):
-            offer = GroupOffer.objects.all()
-            offer = offers.filter(pk=id)
-            return render_to_response("groupbuy_detail.html",{'offer': offer}, context_instance=RequestContext(request))
-        #raise NotImplemented
+        # cls.model w każdej klasie podklasie CośtamView jest podmieniany na odpowiednią klasę modelu.
+        # cls.model odpowiada EShopItem, AuctionItem, GroupOffer w zależnosci od klasy, z której zostanie wywołane.
+        item = cls.model.objects.get(pk=id)
+        # podmieniamy początek nazwy szablony na nazwę klasy modelu (pisanej małymi literami)
+        return render_to_response("%s_detail.html" % cls.model.__name__.lower(),
+                                  {"item": item},
+                                  context_instanance=RequestContext(request))
     
     @classmethod
     def get_item_pdf(cls, request, id):
-        generator = PdfGenerator(cls.meta, id)
+        generator = PdfGenerator(cls.model, id)
         return generator.item_page()
     
     @classmethod

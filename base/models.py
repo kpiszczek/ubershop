@@ -13,6 +13,7 @@ class BaseItem(models.Model):
     description = models.TextField()
     thumb = models.ImageField(upload_to=get_path)
     images = models.ManyToManyField('core.Image',blank=True,null=True)
+    is_active = models.BooleanField(default=False)
     
     def __unicode__(self):
         return str(self.name)

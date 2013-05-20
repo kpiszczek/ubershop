@@ -1,0 +1,81 @@
+{% extends "auction_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/auction_detail.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<section id='auction_item_page'>
+  <div id='auction_title'>
+    {{ auction.name }}
+  </div>
+  <div id='auction_main_image'>
+    <!-- TODO -->
+  </div>
+  <div id='auction_info_panel'>
+    <div id='auction_created_by'>
+      {{ auction.created_by }}
+    </div>
+    <div id='auction_current_price'>
+      {{ auction.current_price }}
+    </div>
+    <div id='auction_bid_form_wrapper'>
+      <form id='bid_form' name='bid_form' action='' method='post' accept-charset="utf-8">{% csrf_token %}
+        <div id='bid_form_field'>
+          <span class='form_error'>{{ bid_form.errors }}</span>
+          <label for='id_bid'>Twoja oferta:</label>
+          {{ bid_form.bid }}
+        </div>
+        <p id='bid_input_wrapper'>
+          <input value='Licytuj' id='bid_input' type='submit'/>
+          <p id='bid_submit_info'>{{ bid_form.info }}</p>
+        </p>
+      </form>
+    </div>
+  </div>
+  <div id='auction_mid_panel'>
+    <div id='auction_mid_bids_subpanel'>
+      <div id='auction_winner'>
+        <div id='auction_winner_label'>
+          Wygrywa:
+        </div>
+        <div id='auction_winner_name'>
+          {{ auction.bids[0].name }}
+        </div>
+         <div id='auction_bids_count_label'>
+          Ilość ofert:
+        </div>
+        <div id='auction_bids_count'>
+          {{ auction.bids_count }}
+        </div>   
+      </div>
+    </div>
+    <div id='auction_mid_info_subpanel'>
+      <div id='auction_shipment_methods'>
+        <!-- TODO -->
+      </div>
+      <div id='auction_query'>
+        <!-- TODO -->
+      </div>
+    </div>
+  </div>
+  <div id='auction_description_wrapper'>
+    <div id='action_description_label'>
+      Opis:
+    </div>  
+    <div id='auction_description'>
+      {{ auction.description }}
+    </div>
+    <div id='auction_gallery'>
+      {% for image in auction.images %}
+      <div class='auction_gallery_entry'>
+        <img class='acution_gallery_image' src="{{ image.image }}"/>      
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <div id='auction_print_page'>
+    <!-- TODO -->
+  </div>
+</section>
+{% endblock %}

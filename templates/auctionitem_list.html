@@ -1,0 +1,22 @@
+{% extends "auction_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/auction_list.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='auction_list_control_panel'>
+  <!-- TODO -->
+</div>
+<section id='auctions_list'>
+  {% for item in auctions %}
+  <div class='auction_item_entry'>
+    <img class='thumb' src='{{ item.thumb }}'/>
+    <a href='/aukcje/{{ item.id }}/'>{{ item.name }}</a>
+    <span class='current_price'>{{ item.current_price }}</span>
+    <span class='time_till_end'>{{ item.time_till_end }}</span>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}
