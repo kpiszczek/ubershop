@@ -54,8 +54,9 @@ class BoardView():
         if request.method=='POST':
             board_form=BoardForm(request.POST)
             new_board=board_form.save()
-            redirect_url = reverse('board', kwargs={'id': new_board.pk})
-            return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
+            #redirect_url = reverse('board.views.show_board', args={'id': new_board.pk, })
+            #return HttpResponseRedirect(redirect_url, context_instance=RequestContext(request))
+            return BoardView.show_board( request, new_board.pk)
         else:
             board_form=BoardForm()
         return render_to_response('new_board.html', {'board': board_form}, context_instance=RequestContext(request))
