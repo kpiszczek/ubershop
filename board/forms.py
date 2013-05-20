@@ -4,7 +4,7 @@ from board.models import Message, Board, Topic
 class TopicForm(ModelForm):
     class Meta:
         model = Topic
-        #fields = ('name',)
+        fields = ('title',)
         
 class BoardForm(ModelForm):
     class Meta:
