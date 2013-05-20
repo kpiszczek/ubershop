@@ -37,6 +37,7 @@ class BaseView():
         # cls.model w każdej klasie podklasie CośtamView jest podmieniany na odpowiednią klasę modelu.
         # cls.model odpowiada EShopItem, AuctionItem, GroupOffer w zależnosci od klasy, z której zostanie wywołane.
         item = cls.model.objects.get(pk=id)
+        # raise Http404(item.base.name)
         # podmieniamy początek nazwy szablony na nazwę klasy modelu (pisanej małymi literami)
         return render_to_response("%s_detail.html" % cls.model.__name__.lower(),
                                   {"item": item},
