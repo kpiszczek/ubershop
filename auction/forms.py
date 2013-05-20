@@ -1,8 +1,10 @@
 from django.forms import ModelForm
-from auction.models import AuctionItem
+# from django.db import models
 
-class AuctionForm(forms.Form):
-    base = models.OneToOneField(BaseForm)
+from auction.models import AuctionItem
+#from base.forms import BaseForm
+
+class AuctionForm(ModelForm):
     class Meta:
         model = AuctionItem
         exclude = ('created_at','close_date','bids',

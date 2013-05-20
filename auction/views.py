@@ -21,7 +21,7 @@ class AuctionView(BaseView):
     
     @classmethod
     @method_decorator(login_required)
-    def aution_panel(cls, request):
+    def auction_panel(cls, request):
         raise NotImplemented
     
     @classmethod

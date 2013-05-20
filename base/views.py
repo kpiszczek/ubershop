@@ -40,7 +40,7 @@ class BaseView():
         # podmieniamy początek nazwy szablony na nazwę klasy modelu (pisanej małymi literami)
         return render_to_response("%s_detail.html" % cls.model.__name__.lower(),
                                   {"item": item},
-                                  context_instanance=RequestContext(request))
+                                  context_instance=RequestContext(request))
     
     @classmethod
     def get_item_pdf(cls, request, id):

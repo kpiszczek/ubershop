@@ -3,7 +3,11 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
 from eshop.views import EShopView
+from auction.views import AuctionView
+from groupbuy.views import GroupBuyView
+
 from board.views import BoardView
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
