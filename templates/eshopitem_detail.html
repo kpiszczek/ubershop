@@ -20,7 +20,7 @@
       {{ item.price }}
     </div>
     <div id='eshop_cart_form_wrapper'>
-      <form id='cart_form' name='cart_form' action='' method='post' accept-charset="utf-8">{% csrf_token %}
+      <form id='cart_form' name='cart_form' method='post' accept-charset="utf-8">{% csrf_token %}
         <div id='cart_form_field'>
           <span class='form_error'>{{ cart_form.errors }}</span>
           <label for='id_num_items'>Ilość:</label>

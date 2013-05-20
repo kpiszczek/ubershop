@@ -1,4 +1,7 @@
 from django.shortcuts import render_to_response
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 from base.views import BaseView
 from auction.models import AuctionItem, Bid
 from auction.forms import AuctionForm
@@ -6,19 +9,28 @@ from auction.forms import AuctionForm
 class AuctionView(BaseView):
     model = AuctionItem
     
-    @staticmethod
-    def bid_history(request, auction_id):
-        auction=AuctionItem.objects.get(pk=auction_id)
-        bid_history=auction.bids
-        return render_to_response("bid_history.html",{'bid_history': bid_history, 'auction':auction},context_instance=RequestContext(request))
+    @classmethod
+    def bid_history(cls, request, auction_id):
+        auction = AuctionItem.objects.get(pk=auction_id)
+        bid_history = auction.bids
+        return render_to_response("bid_history.html",
+                                  {'bid_history': bid_history, 'auction': auction},
+                                  context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @staticmethod
-    def aution_panel(request):
+    
+    @classmethod
+    @method_decorator(login_required)
+    def aution_panel(cls, request):
         raise NotImplemented
     
-    @staticmethod
-    def bid_item(request, id):
+    @classmethod
+    def bid_item(cls, request, id):
         item = BidItem.objects.get(pk=id)
         return render_to_response("bid_item.html", {item: item})
         #raise NotImplemented
+    
+    @classmethod
+    @method_decorator(login_required)   
+    def bid(cls, request, auction_id):
+        raise NotImplemented
