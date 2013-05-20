@@ -3,10 +3,10 @@
 Board: {{ board.name }}, Topics:
     {% for topic in topics %}
         
-        <div class="message"><a href="topic/{{ topic.pk }}">link</a>{{ topic.title }}
+        <div class="message"><a href="{{ topic.pk }}">link</a>{{ topic.title }}
             </div>
         
        
     {% endfor %}
-    <a href="new_topic/{{ board.pk }}">Nowy Temat</a>
+    <a href="nowy_temat">Nowy Temat</a>
 </div>

@@ -3,10 +3,10 @@
 
     {% for board in boards %}
         
-        <div class="title"><a href="board/{{ board.pk }}">{{ board.name }}</a>
+        <div class="title"><a href="{{ board.pk }}">{{ board.name }}</a>
             </div>
         
        
     {% endfor %}
-    <a href="board/new_board/">Nowy dział</a>
+    <a href="nowe_forum/">Nowy dział</a>
 </div>

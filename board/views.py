@@ -1,9 +1,11 @@
+from datetime import datetime
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
-from datetime import datetime
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 #from django.views.decorators.csrf import csrf_exempt
 
@@ -43,10 +45,9 @@ class BoardView():
         return render_to_response("board_list.html",
                                   {'boards': forums},
                                   context_instance=RequestContext(request))
-
-    
-    @login_required
+  
     @classmethod
+    @method_decorator(login_required)
     def create_topic(cls, request, board_id):
         if request.method == 'POST':
             topic_form = TopicForm(request.POST)
@@ -57,16 +58,18 @@ class BoardView():
             new_topic = Topic(title=title, board=board, date=date, is_active=True)
             #new_topic=Topic(title=title, board=board, created_by=created_by, date=date, is_active=True)            
             new_topic.save()
-            
-            return HttpResponseRedirect("/forum/%d/%d" % (board_id, new_topic.pk))
+            try:
+                return HttpResponseRedirect("/forum/%d/%d/" % (int(board_id), int(new_topic.pk)))
+            except ValueError:
+                raise Http404
         else:
             topic_form = TopicForm()
         return render_to_response('new_topic.html', 
                                   {'topic_form': topic_form}, 
                                   context_instance=RequestContext(request))
-
-    @login_required  
+   
     @classmethod
+    @method_decorator(login_required)
     def create_board(cls, request):
         if request.method == 'POST':
             board_form = BoardForm(request.POST)
@@ -77,8 +80,10 @@ class BoardView():
         return render_to_response('new_board.html', 
                                   {'board_form': board_form}, 
                                   context_instance=RequestContext(request)) 
-    @login_required  
+        
+    
     @classmethod
+    @method_decorator(login_required)  
     def submit_message(cls, request, board_id, topic_id):
         if request.method=='POST':
             message_form = MessageForm(request.POST)
@@ -91,7 +96,7 @@ class BoardView():
             #new_message=Message(topic=topic, submitted_by=submitted_by, submission_date=submission_date, content=content)
             new_message.save()
 
-            return HttpResponseRedirect("/forum/board/topic/"+str(id))
+            return HttpResponseRedirect("/forum/%d/%d/%d/" % (int(board_id), int(topic_id), int(new_message.pk)))
         else:
             message_form = MessageForm()
         return render_to_response('new_message.html', 

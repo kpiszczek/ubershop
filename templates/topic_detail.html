@@ -3,10 +3,10 @@
 Topic: {{ topic }}
     {% for message in messages %}
         
-        <div class="message"><a href="message/{{ message.pk }}">single post link </a>{{ message.content }}
+        <div class="message"><a href="{{ message.pk }}">single post link </a>{{ message.content }}
             </div>
         
        
     {% endfor %}
-    <a href="new_message/{{ topic_id }}">Nowy POST</a>
+    <a href="nowy_post/">Nowy POST</a>
 </div>

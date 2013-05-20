@@ -35,7 +35,7 @@ urlpatterns = patterns('',
     url(r'^forum/(?P<board_id>\d+)/$', BoardView.show_board),
     url(r'^forum/(?P<board_id>\d+)/nowy_temat/$', BoardView.create_topic),
     url(r'^forum/(?P<board_id>\d+)/(?P<topic_id>\d+)/$', BoardView.show_topic),
-    url(r'^forum/(?P<board_id>\d+)/(?P<topic_id>\d+)/nowy_post/$', BoardView.create_message),
+    url(r'^forum/(?P<board_id>\d+)/(?P<topic_id>\d+)/nowy_post/$', BoardView.submit_message),
     url(r'^forum/(?P<board_id>\d+)/(?P<topic_id>\d+)/(?P<message_id>\d+)/$', BoardView.show_message),  
     
     # Uncomment the admin/doc line below to enable admin documentation:
