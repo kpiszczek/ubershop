@@ -8,8 +8,7 @@ class AuctionView(BaseView):
     
     @staticmethod
     def bid_history(request, auction_id):
-        auction=AuctionItem.objects.all()
-        auction=AuctionItem.objects.filter(pk=auction_id)
+        auction=AuctionItem.objects.get(pk=auction_id)
         bid_history=auction.bids
         return render_to_response("bid_history.html",{'bid_history': bid_history, 'auction':auction},context_instance=RequestContext(request))
         #raise NotImplemented

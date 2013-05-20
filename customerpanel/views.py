@@ -14,16 +14,15 @@ class CustomerPanel:
     def order_history(cls,request):
         list=Order.objects.all()
         list=list.objects.filter(user=request.user)
-        return render_to_response("order_history.html",{'products': list},context_instance=RequestContext(request))
+        return render_to_response("order_history.html",{'orders': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @login_required
     @classmethod
     def order_details(cls,request, order_id):
-        list=Order.objects.all()
-        list=list.objects.filter(user=request.user)
-        list=list.objects.filter(pk=order_id)
-        return render_to_response("order_details.html",{'products': list},context_instance=RequestContext(request))
+        order=Order.objects.get(pk=order_id)
+        
+        return render_to_response("order_details.html",{'order': order},context_instance=RequestContext(request))
         #raise NotImplemented     
 
     @classmethod
@@ -31,7 +30,7 @@ class CustomerPanel:
         #te w ktorych bral udzial
         list=Bid.objects.all()
         list=list.objects.filter(user=request.user)
-        return render_to_response("auction_list.html",{'products': list},context_instance=RequestContext(request))
+        return render_to_response("auction_list.html",{'auctions': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @login_required
@@ -46,9 +45,8 @@ class CustomerPanel:
     
     @classmethod
     def shopping_cart(cls,request):
-        list=ShoppingCart.objects.all()
-        list=list.objects.filter(user=request.user)
-        return render_to_response("shopping_cart.html",{'products': list},context_instance=RequestContext(request))
+        cart=ShoppingCart.objects.get(user=request.user)
+        return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @login_required
