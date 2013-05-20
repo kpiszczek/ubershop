@@ -49,7 +49,7 @@ class BoardView():
         return render_to_response('new_topic.html', {'form': topic_form})
         #raise NotImplemented
     
-    @csrf_protect
+    
     @classmethod
     def create_board(cls,request):
         if request.method=='POST':
