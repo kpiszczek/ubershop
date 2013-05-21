@@ -50,28 +50,7 @@ class BaseView():
     
     @classmethod
     def newest_items(cls, request):
-        #raise NotImplemented
-        if(section=='auction'):
-            auctions = AuctionItem.objects.all
-            auctions = auctions.filter(close_date>datetime.now())
-            auctions = auctions.filter(start_date<datetime.now())
-            auctions = auctions.order_by('start_date')
-            auctions = auctions[:10]
-            return render_to_response("auction_list.html",{'auctions': auctions, 'next_page': page+1}, context_instance=RequestContext(request))       
-        if(section=='eshop'):
-            categories = Category.objects.all()
-            products_query = EShopItem.objects.all
-            products_query = products_query.filter(availiability_status='available') 
-            products_query = products.order_by('created_at')     
-            products = products_query[:20]
-            return render_to_response("eshop_list.html",{'categories': categories, 'promotion_items': products, 'next_page': page+1}, context_instance=RequestContext(request))            
-        if(section=='groupbuy'):
-            offers = GroupOffer.objects.all()
-            offers = offers.filter(availiability_status='available')
-            offers = offers.order_by('created_at')
-            offers = offers[:10]
-            return render_to_response("groupbuy_list.html",{'offers': offers, 'next_page': page+1}, context_instance=RequestContext(request))
-    
+        return cls.items_list(request, page=0)
     
     @classmethod
     def popular_items(cls, request):
