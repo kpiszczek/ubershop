@@ -8,6 +8,7 @@ from auction.forms import AuctionForm
 from eshop.models import ShoppingCart, ProductWatcher
 from ordermanager.models import Order
 from auction.models import Bid
+from core.models import ShopUser
 
 class CustomerPanel:
     @classmethod
@@ -48,8 +49,14 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required)
     def shopping_cart(cls,request):
-        cart=ShoppingCart.objects.get(user=request.user)
+        current_username=request.user.username
+        current_user=ShopUser.objects.get(user__username=current_username)
+        #if ShoppingCart.objects.get(user=current_user):
+        cart=ShoppingCart.objects.get_or_create(user=current_user)
         return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
+        #else:
+        #    cart=ShoppingCart(user=current_user)
+        #    return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
