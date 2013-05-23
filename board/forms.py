@@ -9,7 +9,7 @@ class TopicForm(ModelForm):
 class BoardForm(ModelForm):
     class Meta:
         model = Board
-        fields = ('name','description')
+        fields = ('name','description',)
         
 class MessageForm(ModelForm):
     class Meta:

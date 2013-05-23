@@ -5,8 +5,8 @@ from django.http import HttpResponseRedirect
 
 from auction.forms import AuctionForm
 from eshop.models import ShoppingCart, ProductWatcher
-from ordermanager import Order
-from auction import Bid
+from ordermanager.models import Order
+from auction.models import Bid
 
 class CustomerPanel:
     @login_required
@@ -43,6 +43,7 @@ class CustomerPanel:
     def show_panel(cls,request):
         raise NotImplemented
     
+    @login_required
     @classmethod
     def shopping_cart(cls,request):
         cart=ShoppingCart.objects.get(user=request.user)
@@ -70,7 +71,7 @@ class CustomerPanel:
             login(request, user)
             HttpResponseRedirect('/home/')
         else:
-            message='Nieprawidłowy login lub hasło'
+            message='Nieprawidlowy login lub haslo'
             return render_to_response("login.html", {'message': message}, context_instance=RequestContext(request))
                 
                 

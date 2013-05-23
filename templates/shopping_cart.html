@@ -1,0 +1,12 @@
+<div id="list">
+
+
+    {% for item in cart.items %}
+        
+        <div class="title"><a href="/sklep/{{ item.id }}">{{ item.name }}</a>
+            </div>
+        
+       
+    {% endfor %}
+    
+</div>

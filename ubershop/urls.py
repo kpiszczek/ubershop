@@ -7,6 +7,7 @@ from auction.views import AuctionView
 from groupbuy.views import GroupBuyView
 
 from board.views import BoardView
+from customerpanel.views import CustomerPanel
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -56,6 +57,9 @@ urlpatterns = patterns('',
     url(r'^forum/(?P<board_id>\d+)/(?P<topic_id>\d+)/$', BoardView.show_topic),
     url(r'^forum/(?P<board_id>\d+)/(?P<topic_id>\d+)/nowy_post/$', BoardView.submit_message),
     url(r'^forum/(?P<board_id>\d+)/(?P<topic_id>\d+)/(?P<message_id>\d+)/$', BoardView.show_message),  
+    
+    # url dla customerpanel
+    url(r'^koszyk/$', CustomerPanel.shopping_cart),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
