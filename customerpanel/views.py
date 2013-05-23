@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect
+from django.utils.decorators import method_decorator
 
 from auction.forms import AuctionForm
 from eshop.models import ShoppingCart, ProductWatcher
@@ -9,24 +10,24 @@ from ordermanager.models import Order
 from auction.models import Bid
 
 class CustomerPanel:
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def order_history(cls,request):
         list=Order.objects.all()
         list=list.objects.filter(user=request.user)
         return render_to_response("order_history.html",{'orders': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def order_details(cls,request, order_id):
         order=Order.objects.get(pk=order_id)
         
         return render_to_response("order_details.html",{'order': order},context_instance=RequestContext(request))
         #raise NotImplemented     
 
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def auction_history(cls,request):
         #te w ktorych bral udzial
         list=Bid.objects.all()
@@ -34,25 +35,25 @@ class CustomerPanel:
         return render_to_response("auction_list.html",{'auctions': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def add_auction(cls,request):
         raise NotImplemented
     
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def show_panel(cls,request):
         raise NotImplemented
     
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def shopping_cart(cls,request):
         cart=ShoppingCart.objects.get(user=request.user)
         return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def watched_products(cls,request):
         list=ProductWatcher.objects.all()
         list=list.objects.filter(user=request.user)

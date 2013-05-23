@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 from base.views import BaseView
 from eshop.models import EShopItem
@@ -16,8 +17,8 @@ class EShopView(BaseView):
         return render_to_response("eshop_list.html",{'products': products_on_sale},
                                   context_instance=RequestContext(request))
     
-    @method_decorator(login_required)
     @classmethod
+    @method_decorator(login_required)
     def add_to_cart(cls, request, id):
         cart=ShoppingCart.objects.get(user=request.user)
         item = cls.model.objects.get(pk=id)
