@@ -6,6 +6,7 @@ from django.template import RequestContext
 
 from base.models import BaseItem
 from core.models import Category
+from base.models import BaseItem
 from eshop.models import EShopItem
 from auction.models import AuctionItem
 from groupbuy.models import GroupOffer
@@ -18,7 +19,7 @@ class BaseView():
     def items_list(cls, request, page=0):
         if cls.model == BaseItem:
             raise Http404
-        items = cls.model.objects.filter(base__is_active=True).order_by("-created_at")[page:(page+1)*15]
+        items = cls.model.objects.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
         
         # sprawdzamy czy istnieje następna/poprzednia strona
         next_page = page+1 if len(items) == 15 else None

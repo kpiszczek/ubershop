@@ -3,7 +3,7 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-PROJECT_PATH = '/home/kuba/workspace/aptana/ubershop-master/'
+PROJECT_PATH = 'C:/projects/ubershop/'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
