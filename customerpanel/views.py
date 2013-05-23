@@ -9,7 +9,7 @@ from ordermanager.models import Order
 from auction.models import Bid
 
 class CustomerPanel:
-    @login_required
+    @method_decorator(login_required)
     @classmethod
     def order_history(cls,request):
         list=Order.objects.all()
@@ -17,7 +17,7 @@ class CustomerPanel:
         return render_to_response("order_history.html",{'orders': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @login_required
+    @method_decorator(login_required)
     @classmethod
     def order_details(cls,request, order_id):
         order=Order.objects.get(pk=order_id)
@@ -25,6 +25,7 @@ class CustomerPanel:
         return render_to_response("order_details.html",{'order': order},context_instance=RequestContext(request))
         #raise NotImplemented     
 
+    @method_decorator(login_required)
     @classmethod
     def auction_history(cls,request):
         #te w ktorych bral udzial
@@ -33,24 +34,24 @@ class CustomerPanel:
         return render_to_response("auction_list.html",{'auctions': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @login_required
+    @method_decorator(login_required)
     @classmethod
     def add_auction(cls,request):
         raise NotImplemented
     
-    @login_required
+    @method_decorator(login_required)
     @classmethod
     def show_panel(cls,request):
         raise NotImplemented
     
-    @login_required
+    @method_decorator(login_required)
     @classmethod
     def shopping_cart(cls,request):
         cart=ShoppingCart.objects.get(user=request.user)
         return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @login_required
+    @method_decorator(login_required)
     @classmethod
     def watched_products(cls,request):
         list=ProductWatcher.objects.all()
