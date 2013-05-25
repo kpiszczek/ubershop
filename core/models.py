@@ -10,6 +10,9 @@ def get_path(name):
 class Permission(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    
+    def __unicode__(self):
+        return str(self.name)
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -35,10 +38,10 @@ class ShipmentMethod(models.Model):
 class ShopUser(models.Model):
     user = models.OneToOneField(User)
     permissions = models.ManyToManyField('Permission')
-    organisation = models.TextField()
+    organisation = models.TextField(null=True, blank=True)
     address = models.TextField()
     tax_id = models.CharField(max_length=40)
-    watched_products = models.ManyToManyField('eshop.ProductWatcher')
+    watched_products = models.ManyToManyField('eshop.ProductWatcher', null=True, blank=True)
     discount = models.DecimalField(max_digits=4,decimal_places=2)
     total_spendings = models.DecimalField(max_digits=15,decimal_places=2)
     

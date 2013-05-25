@@ -1,8 +1,9 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.utils.decorators import method_decorator
+from django.template import RequestContext
 
 from auction.forms import AuctionForm
 from eshop.models import ShoppingCart, ProductWatcher
@@ -49,10 +50,12 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def shopping_cart(cls,request):
-        current_username=request.user.username
-        current_user=ShopUser.objects.get(user__username=current_username)
+        current_user = request.user.username
+        #raise Http404(current_user)
+        current_user = ShopUser.objects.get(user__username=current_user)
         #if ShoppingCart.objects.get(user=current_user):
-        cart=ShoppingCart.objects.get_or_create(user=current_user)
+        cart = ShoppingCart.objects.get_or_create(user=current_user)
+        raise Http404(cart.items)
         return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
         #else:
         #    cart=ShoppingCart(user=current_user)
