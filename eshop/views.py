@@ -18,7 +18,7 @@ class EShopView(BaseView):
                                   context_instance=RequestContext(request))
     
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def add_to_cart(cls, request, id):
         cart=ShoppingCart.objects.get(user=request.user)
         item = cls.model.objects.get(pk=id)

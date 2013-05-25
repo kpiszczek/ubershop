@@ -20,7 +20,7 @@ class AuctionView(BaseView):
     
     
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def auction_panel(cls, request):
         raise NotImplemented
     
@@ -31,6 +31,6 @@ class AuctionView(BaseView):
         #raise NotImplemented
     
     @classmethod
-    @method_decorator(login_required)   
+    @method_decorator(login_required(login_url='/accounts/login/'))   
     def bid(cls, request, auction_id):
         raise NotImplemented

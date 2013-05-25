@@ -47,7 +47,7 @@ class BoardView():
                                   context_instance=RequestContext(request))
   
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def create_topic(cls, request, board_id):
         if request.method == 'POST':
             topic_form = TopicForm(request.POST)
@@ -68,7 +68,7 @@ class BoardView():
                                   context_instance=RequestContext(request))
    
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def create_board(cls, request):
         if request.method == 'POST':
             board_form = BoardForm(request.POST)
@@ -83,7 +83,7 @@ class BoardView():
         
     
     @classmethod
-    @method_decorator(login_required)  
+    @method_decorator(login_required(login_url='/accounts/login/'))  
     def submit_message(cls, request, board_id, topic_id):
         if request.method=='POST':
             message_form = MessageForm(request.POST)

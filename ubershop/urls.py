@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     # url(r'^ubershop/', include('ubershop.foo.urls')),
     
     url(r'^home/$','core.views.home_page'),
+   
     
     # url dla Auction
     url(r'^aukcje/nowe/$', AuctionView.newest_items),
@@ -60,6 +61,7 @@ urlpatterns = patterns('',
     
     # url dla customerpanel
     url(r'^koszyk/$', CustomerPanel.shopping_cart),
+    url(r'^accounts/login/$',CustomerPanel.login),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

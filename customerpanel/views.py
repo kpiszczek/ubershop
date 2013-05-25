@@ -12,7 +12,7 @@ from core.models import ShopUser
 
 class CustomerPanel:
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def order_history(cls,request):
         list=Order.objects.all()
         list=list.objects.filter(user=request.user)
@@ -20,7 +20,7 @@ class CustomerPanel:
         #raise NotImplemented
     
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def order_details(cls,request, order_id):
         order=Order.objects.get(pk=order_id)
         
@@ -28,7 +28,7 @@ class CustomerPanel:
         #raise NotImplemented     
 
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def auction_history(cls,request):
         #te w ktorych bral udzial
         list=Bid.objects.all()
@@ -37,17 +37,17 @@ class CustomerPanel:
         #raise NotImplemented
     
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def add_auction(cls,request):
         raise NotImplemented
     
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def show_panel(cls,request):
         raise NotImplemented
     
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def shopping_cart(cls,request):
         current_username=request.user.username
         current_user=ShopUser.objects.get(user__username=current_username)
@@ -60,7 +60,7 @@ class CustomerPanel:
         #raise NotImplemented
     
     @classmethod
-    @method_decorator(login_required)
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def watched_products(cls,request):
         list=ProductWatcher.objects.all()
         list=list.objects.filter(user=request.user)
@@ -73,15 +73,19 @@ class CustomerPanel:
     
     @classmethod
     def login(cls,request):
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            login(request, user)
-            HttpResponseRedirect('/home/')
+        if request.POST:
+            username = request.POST['username']
+            password = request.POST['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                HttpResponseRedirect('/home/')
+            else:
+                message='Nieprawidlowy login lub haslo'
+                return render_to_response("login.html", {'message': message}, context_instance=RequestContext(request))
         else:
-            message='Nieprawidlowy login lub haslo'
-            return render_to_response("login.html", {'message': message}, context_instance=RequestContext(request))
+            form=login_form()
+            return render_to_response("login.html", {'form': form}, context_instance=RequestContext(request))
                 
                 
     @classmethod
