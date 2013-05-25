@@ -62,8 +62,7 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def watched_products(cls,request):
-        list=ProductWatcher.objects.all()
-        list=list.objects.filter(user=request.user)
+        list=ProductWatcher.objects.get_or_create(user=request.user)
         return render_to_response("watched_products.html",{'products': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
