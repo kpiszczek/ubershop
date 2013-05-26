@@ -16,7 +16,7 @@ class CustomerPanel:
     @method_decorator(login_required(login_url='/accounts/login/'))
     def order_history(cls,request):
         list=Order.objects.all()
-        list=list.objects.filter(user=request.user)
+        list=list.objects.filter(user__username=request.user.username)
         return render_to_response("order_history.html",{'orders': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
@@ -33,7 +33,7 @@ class CustomerPanel:
     def auction_history(cls,request):
         #te w ktorych bral udzial
         list=Bid.objects.all()
-        list=list.objects.filter(user=request.user)
+        list=list.objects.filter(user__username=request.user.username)
         return render_to_response("auction_list.html",{'auctions': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
@@ -64,7 +64,7 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def watched_products(cls,request):
-        list=ProductWatcher.objects.get_or_create(user=request.user)
+        list=ProductWatcher.objects.get_or_create(user__username=request.user.username)
         return render_to_response("watched_products.html",{'products': list},context_instance=RequestContext(request))
         #raise NotImplemented
     

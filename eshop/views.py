@@ -20,9 +20,10 @@ class EShopView(BaseView):
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def add_to_cart(cls, request, id):
-        cart=ShoppingCart.objects.get(user=request.user)
+        cart=ShoppingCart.objects.get(user__username=request.user.username)
         item = cls.model.objects.get(pk=id)
         cart.items.add(item)
+        HttpResponseRedirect('/koszyk/')
         #raise NotImplemented
     
     @classmethod
