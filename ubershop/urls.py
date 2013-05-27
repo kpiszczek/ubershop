@@ -62,7 +62,7 @@ urlpatterns = patterns('',
     
     # url dla customerpanel
     url(r'^koszyk/$', CustomerPanel.shopping_cart),
-    url(r'^accounts/login/$',CustomerPanel.login),
+    url(r'^accounts/login/$','django.contrib.auth.views.login'),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
