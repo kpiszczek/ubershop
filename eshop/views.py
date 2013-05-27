@@ -2,9 +2,13 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import Http404, HttpResponseRedirect
 
 from base.views import BaseView
-from eshop.models import EShopItem
+from base.models import BaseItem
+from eshop.models import EShopItem, ShoppingCart
+from ordermanager.models import OrderItem, Order
+from core.models import ShopUser
 
 class EShopView(BaseView):
     model = EShopItem
@@ -20,10 +24,33 @@ class EShopView(BaseView):
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def add_to_cart(cls, request, id):
-        cart=ShoppingCart.objects.get(user__username=request.user.username)
-        item = cls.model.objects.get(pk=id)
-        cart.items.add(item)
-        HttpResponseRedirect('/koszyk/')
+        #raise Http404(request.user.username)
+        
+        cart = ShoppingCart.objects.filter(user__pk=request.user.pk)
+        if len(cart) == 0:
+            cart = ShoppingCart()
+            cart.user = ShopUser.objects.get(user__pk=request.user.pk)
+            cart.save()
+        else:
+            cart = cart[0]
+        
+        item = EShopItem.objects.get(pk=id)
+        
+        order_items = OrderItem.objects.filter(belongs_to__user__pk=request.user.pk, item__pk=item.base.pk)
+        
+        if len(order_items) == 0:
+            order_item = OrderItem()
+            order_item.belongs_to = cart.user
+            order_item.item = BaseItem.objects.get(pk=item.base.pk)
+        else:
+            order_item = order_items[0]
+        
+        order_item.quantity += 1
+        order_item.save()
+        
+        cart.items.add(order_item)
+        cart.save()
+        return HttpResponseRedirect('/koszyk/')
         #raise NotImplemented
     
     @classmethod

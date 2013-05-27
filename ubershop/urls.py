@@ -39,6 +39,7 @@ urlpatterns = patterns('',
     url(r'^sklep/kategorie/(?P<category>.+)/$', EShopView.items_list),
     url(r'^sklep/szukaj/(?P<term>.+)/$', EShopView.search_item),  
     url(r'^sklep/(?P<id>\d+)/$', EShopView.show_item),
+    url(r'^sklep/(?P<id>\d+)/dodaj/$', EShopView.add_to_cart),
     url(r'^sklep/(?P<id>\d+)/get_pdf/$', EShopView.get_item_pdf),
     
     # url dla GroupBuy

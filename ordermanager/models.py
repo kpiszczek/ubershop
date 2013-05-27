@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 class ShipmentMethod(models.Model):
     name = models.CharField(max_length=100)
@@ -11,15 +12,33 @@ class OrderStatus(models.Model):
     
 class OrderItem(models.Model):
     item = models.ForeignKey('base.BaseItem')
+    belongs_to = models.ForeignKey('core.ShopUser')
     order = models.ForeignKey('Order',blank=True,null=True,related_name='order')
-    quantity = models.IntegerField()
+    quantity = models.IntegerField(default=0)
     
 class Order(models.Model):
-    items = models.ForeignKey('OrderItem',related_name='items')
+    items = models.ForeignKey('OrderItem',related_name='items', blank=True, null=True)
     placed_by = models.ForeignKey('core.ShopUser')
     status = models.ForeignKey('OrderStatus')
     shipment_method = models.ForeignKey('ShipmentMethod')
-    date = models.DateTimeField()
-    details = models.TextField()
+    date = models.DateTimeField(auto_now_add=True)
+    details = models.TextField(blank=True,null=True)
     payment_date = models.DateTimeField(blank=True,null=True)
+    
+class OrderStatusAdmin(admin.ModelAdmin):
+    pass
+
+class OrderItemAdmin(admin.ModelAdmin):
+    pass
+
+class OrderAdmin(admin.ModelAdmin):
+    pass
+
+class ShipmentMethodAdmin(admin.ModelAdmin):
+    pass
+
+admin.site.register(OrderStatus, OrderStatusAdmin)
+admin.site.register(OrderItem, OrderItemAdmin)
+admin.site.register(Order, OrderAdmin)
+admin.site.register(ShipmentMethod, ShipmentMethodAdmin)
     
