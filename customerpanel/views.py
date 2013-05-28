@@ -10,6 +10,7 @@ from eshop.models import ShoppingCart, ProductWatcher
 from ordermanager.models import Order
 from auction.models import Bid
 from core.models import ShopUser
+from customerpanel.forms import RegisterForm
 
 class CustomerPanel:
     @classmethod
@@ -97,7 +98,15 @@ class CustomerPanel:
     
     @classmethod
     def register(cls,request):
-        raise NotImplemented
+        if request.method == 'POST':
+            form = RegisterForm(request.POST)
+            if form.is_valid():
+                new_user = form.save()
+                return HttpResponseRedirect("/accounts/login/")
+        else:
+            form = RegisterForm()
+            return render_to_response("registration.html", {'form': form}, context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @login_required
     @classmethod
