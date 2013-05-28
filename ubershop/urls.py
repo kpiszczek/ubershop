@@ -19,6 +19,7 @@ urlpatterns = patterns('',
     # url(r'^ubershop/', include('ubershop.foo.urls')),
     
     url(r'^home/$','core.views.home_page'),
+    url(r'^home/kontakt/$','core.views.contact'),
    
     
     # url dla Auction
