@@ -10,7 +10,7 @@
     {{ auction.name }}
   </div>
   <div id='auction_main_image'>
-    <!-- TODO -->
+    <img src="{{ STATIC_PREFIX }}img/product1.png"/>
   </div>
   <div id='auction_info_panel'>
     <div id='auction_created_by'>
@@ -75,7 +75,7 @@
     </div>
   </div>
   <div id='auction_print_page'>
-    <!-- TODO -->
+    {{auction.item.page}}
   </div>
 </section>
 {% endblock %}

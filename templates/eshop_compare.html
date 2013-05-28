@@ -10,32 +10,32 @@ Porównywarka
 {% endblock %}
 
 {% block content %}
-<section id='eshop_compare_item_page'>
+<section id='eshop_compare_items_page'>
 	<div id='eshop_compare_wrapper'>
     <div id='compare_title'>
       Porównywarka
     </div>  
-  	<div class='compare_item'>
+  	<div class='compare_items'>
     <a href="/sklep/{{ item.id }}"><img src="/mymedia/{{ item.base.thumb }}"/></a>
-    <div class="compare_item_name">
+    <div class="compare_items_name">
     <a href="/sklep/{{ item.id }}">{{ item.name }}</a>
     </div>
-      <div id='compare_details_line'>
+      <div id='compare_properties_line'>
       	&nbsp;
       </div>  
-      <div id='compare_details_wrapper'>
+      <div id='compare_properties_wrapper'>
         <div id='compare_price_label'>
           Cena:
         </div>
         <div id='compare_price'>
         	{{ item.price }}
         </div> 
-        {% for detail in details %}
+        {% for property in properties %}
         <div id='compare_detail1_label'>
-          {{detail.name}}
+          {{property.name}}
         </div>
         <div id='compare_detail1'>
-        	{{ detail.content }}
+        	{{ property.content }}
         </div> 
         {% endfor %}             
     </div>

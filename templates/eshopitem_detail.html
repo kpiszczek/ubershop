@@ -10,7 +10,7 @@
     {{ item.name }}
   </div>
   <div id='eshop_main_image'>
-    <!-- TODO -->
+    <img src="/static/img/telefon.png"/>
   </div>
   <div id='eshop_info_panel'>
     <div id='eshop_availability'>
@@ -20,7 +20,7 @@
       {{ item.price }}
     </div>
     <div id='eshop_cart_form_wrapper'>
-      <form id='cart_form' action="dodaj/" name='cart_form' method='post' accept-charset="utf-8">{% csrf_token %}
+      <form id='cart_form' name='cart_form' method='post' accept-charset="utf-8">{% csrf_token %}
         <div id='cart_form_field'>
           <span class='form_error'>{{ cart_form.errors }}</span>
           <label for='id_num_items'>Ilość:</label>
@@ -96,7 +96,7 @@
     {% endfor %}
   </div>
   <div id='eshop_print_page'>
-    <!-- TODO -->
+    {{item.page}}
   </div>
 </section>
 {% endblock %}

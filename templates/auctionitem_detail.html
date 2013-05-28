@@ -10,7 +10,7 @@
     {{ auction.name }}
   </div>
   <div id='auction_main_image'>
-    <!-- TODO -->
+   <img src="/static/img/czajnik_agd.png"/>
   </div>
   <div id='auction_info_panel'>
     <div id='auction_created_by'>
@@ -51,8 +51,8 @@
       </div>
     </div>
     <div id='auction_mid_info_subpanel'>
-      <div id='auction_shipment_methods'>
-        <!-- TODO -->
+      <div id='auction_delivery_options'>
+        <!--TODO-->
       </div>
       <div id='auction_query'>
         <!-- TODO -->
@@ -75,7 +75,7 @@
     </div>
   </div>
   <div id='auction_print_page'>
-    <!-- TODO -->
+    {{auction.item.page}}
   </div>
 </section>
 {% endblock %}
