@@ -34,14 +34,17 @@ class BaseView():
         raise NotImplemented
     
     @classmethod
-    def show_item(cls, request, id):
+    def show_item(cls, request, id, injected=None):
         # cls.model w każdej klasie podklasie CośtamView jest podmieniany na odpowiednią klasę modelu.
         # cls.model odpowiada EShopItem, AuctionItem, GroupOffer w zależnosci od klasy, z której zostanie wywołane.
         item = cls.model.objects.get(pk=id)
+        data = {"item": item}
+        if injected is not None:
+            data.update(injected)
         # raise Http404(item.base.name)
         # podmieniamy początek nazwy szablony na nazwę klasy modelu (pisanej małymi literami)
         return render_to_response("%s_detail.html" % cls.model.__name__.lower(),
-                                  {"item": item},
+                                  data,
                                   context_instance=RequestContext(request))
     
     @classmethod

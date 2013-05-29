@@ -3,7 +3,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
 from eshop.views import EShopView
-from auction.views import AuctionView
+from auction.views import AuctionView, inject_bid_form
 from groupbuy.views import GroupBuyView
 
 from board.views import BoardView
@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^aukcje/kategorie/(?P<category>.+)/$', AuctionView.items_list),
     url(r'^aukcje/szukaj/(?P<term>.+)/$', AuctionView.search_item), 
     url(r'^aukcje/oferta/(?P<id>\d+)/$', AuctionView.bid_item), 
-    url(r'^aukcje/(?P<id>\d+)/$', AuctionView.show_item),
+    url(r'^aukcje/(?P<id>\d+)/$', inject_bid_form(AuctionView.show_item)),
     url(r'^aukcje/(?P<id>\d+)/get_pdf/$', AuctionView.get_item_pdf),
     url(r'^aukcje/(?P<id>\d+)/historia/$', AuctionView.bid_history),
     url(r'^aukcje/(?P<auction_id>\d+)/licytuj/$', AuctionView.bid),

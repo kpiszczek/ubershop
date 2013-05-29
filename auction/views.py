@@ -4,7 +4,13 @@ from django.utils.decorators import method_decorator
 
 from base.views import BaseView
 from auction.models import AuctionItem, Bid
-from auction.forms import AuctionForm
+from auction.forms import AuctionForm, BidForm
+
+def inject_bid_form(view):
+    def inner(request, id):
+        bid_form = BidForm()
+        return view(request, id, {"bid_form": bid_form})
+    return inner
 
 class AuctionView(BaseView):
     model = AuctionItem
@@ -16,8 +22,7 @@ class AuctionView(BaseView):
         return render_to_response("bid_history.html",
                                   {'bid_history': bid_history, 'auction': auction},
                                   context_instance=RequestContext(request))
-        #raise NotImplemented
-    
+        #raise NotImplemented       
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
