@@ -68,9 +68,9 @@
       {{ item.base.description }}
     </div>
     <div id='auction_gallery'>
-      {% for image in auction.base.images %}
+      {% for image in item.base.images %}
       <div class='auction_gallery_entry'>
-        <img class='acution_gallery_image' src="{{ image.image }}"/>      
+        <img class='auction_gallery_image' src="{{ image.image }}"/>      
       </div>
       {% endfor %}
     </div>
