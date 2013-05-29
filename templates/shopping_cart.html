@@ -1,9 +1,9 @@
 <div id="list">
 
 
-    {% for item in cart.items %}
+    {% for item in cart.items.all %}
         
-        <div class="title"><a href="/sklep/{{ item.id }}">{{ item.name }}</a>
+        <div class="title"><a href="/sklep/{{ item.id }}">{{ item.item.name }}</a>
             </div>
         
        

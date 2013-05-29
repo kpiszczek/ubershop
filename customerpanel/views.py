@@ -55,7 +55,7 @@ class CustomerPanel:
         #raise Http404(current_user)
         current_user = ShopUser.objects.get(user__username=current_user)
         #if ShoppingCart.objects.get(user=current_user):
-        cart = ShoppingCart.objects.get_or_create(user=current_user)
+        cart = ShoppingCart.objects.get_or_create(user__pk=current_user.pk)[0]
         return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
         #else:
         #    cart=ShoppingCart(user=current_user)
