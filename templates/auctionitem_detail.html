@@ -7,17 +7,18 @@
 {% block content %}
 <section id='auction_item_page'>
   <div id='auction_title'>
-    {{ auction.name }}
+    {{ item.base.name }}
   </div>
   <div id='auction_main_image'>
-   <img src="/static/img/czajnik_agd.png"/>
+   <!-- nie możemy nic wpisywać 'na sztywno' - wszystkie dane są pobierana z przesłanego obiektu -->
+   <img src="{{ item.base.images[0].image }}"/>
   </div>
   <div id='auction_info_panel'>
     <div id='auction_created_by'>
-      {{ auction.created_by }}
+      {{ item.created_by }}
     </div>
     <div id='auction_current_price'>
-      {{ auction.current_price }}
+      {{ item.current_price }}
     </div>
     <div id='auction_bid_form_wrapper'>
       <form id='bid_form' name='bid_form' action='' method='post' accept-charset="utf-8">{% csrf_token %}
@@ -40,13 +41,13 @@
           Wygrywa:
         </div>
         <div id='auction_winner_name'>
-          {{ auction.bids[0].name }}
+          {{ item.bids[0].name }}
         </div>
          <div id='auction_bids_count_label'>
           Ilość ofert:
         </div>
         <div id='auction_bids_count'>
-          {{ auction.bids_count }}
+          {{ item.bids_count }}
         </div>   
       </div>
     </div>
@@ -64,10 +65,10 @@
       Opis:
     </div>  
     <div id='auction_description'>
-      {{ auction.description }}
+      {{ item.base.description }}
     </div>
     <div id='auction_gallery'>
-      {% for image in auction.images %}
+      {% for image in auction.base.images %}
       <div class='auction_gallery_entry'>
         <img class='acution_gallery_image' src="{{ image.image }}"/>      
       </div>
@@ -75,7 +76,7 @@
     </div>
   </div>
   <div id='auction_print_page'>
-    {{auction.item.page}}
+    <a href="get_pdf">Drukuj stronę</a>
   </div>
 </section>
 {% endblock %}
