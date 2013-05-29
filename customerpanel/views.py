@@ -1,6 +1,7 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
+from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404
 from django.utils.decorators import method_decorator
 from django.template import RequestContext
@@ -101,7 +102,26 @@ class CustomerPanel:
         if request.method == 'POST':
             form = RegisterForm(request.POST)
             if form.is_valid():
-                new_user = form.save()
+                username = form.cleaned_data["username"]
+                first_name = form.cleaned_data["first_name"]
+                last_name = form.cleaned_data["last_name"]
+                email = form.cleaned_data["email"]
+                password = form.cleaned_data["password"]
+                
+                user = User.objects.create_user(username, email, password)
+                user.first_name = first_name
+                user.last_name = last_name
+                user.save()
+                
+                shop_user = ShopUser()
+                shop_user.user = user
+                shop_user.address = form.cleaned_data["address"]
+                shop_user.organisation = form.cleaned_data["organisation"]
+                shop_user.tax_id = form.cleaned_data["tax_id"]
+                shop_user.discount = 0
+                shop_user.total_spendings = 0
+                shop_user.save()
+                
                 return HttpResponseRedirect("/accounts/login/")
         else:
             form = RegisterForm()

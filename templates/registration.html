@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block content %}
-<div id="registration_form_wrapper">
+<div id="registration_form_wrapper" style="margin-top: 50px">
   <form id='registration_form' name='registration_form' method='post' accept-charset="utf-8">
     {% csrf_token %}
     <div class='registration_form_field'>
@@ -50,6 +50,10 @@
       <label for='id_tax_id'>NIP:</label>
       {{ form.tax_id }}
     </div>
+    <p id='form_input_wrapper'>
+       <input value='Rejestruj' id='register' type='submit'/>
+       <p id='form_submit_info'>{{ form.info }}</p>
+    </p>
   </form>
 </div>
 {% endblock %}
