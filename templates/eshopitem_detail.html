@@ -20,12 +20,7 @@
       {{ item.price }}
     </div>
     <div id='eshop_cart_form_wrapper'>
-      <form id='cart_form' name='cart_form' method='post' accept-charset="utf-8">{% csrf_token %}
-        <div id='cart_form_field'>
-          <span class='form_error'>{{ cart_form.errors }}</span>
-          <label for='id_num_items'>Ilość:</label>
-          {{ cart_form.num_items }}
-        </div>
+      <form id='cart_form' name='cart_form' action="dodaj/" method='post' accept-charset="utf-8">{% csrf_token %}
         <p id='cart_input_wrapper'>
           <input value='Do koszyka' id='cart_input' type='submit'/>
           <p id='cart_submit_info'>{{ cart_form.info }}</p>

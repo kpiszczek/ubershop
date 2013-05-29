@@ -20,7 +20,7 @@ class EShopView(BaseView):
         products_on_sale = products_on_sale.filter(current_stock__gte=1)
         return render_to_response("eshop_list.html",{'products': products_on_sale},
                                   context_instance=RequestContext(request))
-    
+           
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def add_to_cart(cls, request, id):
