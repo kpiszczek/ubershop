@@ -4,8 +4,8 @@ from django.contrib import admin
 
 from django.contrib.auth.models import User
 
-def get_path(name):
-    raise NotImplemented
+def get_path(instance, name):
+    return "files/images/%s" % name
 
 class Permission(models.Model):
     name = models.CharField(max_length=100)
@@ -45,6 +45,9 @@ class ShopUser(models.Model):
     discount = models.DecimalField(max_digits=4,decimal_places=2)
     total_spendings = models.DecimalField(max_digits=15,decimal_places=2)
     
+    def __str__(self):
+        return self.user.username
+    
 class PermissionAdmin(admin.ModelAdmin):
     pass
 
@@ -60,8 +63,12 @@ class ShipmentMethodAdmin(admin.ModelAdmin):
 class ShopUserAdmin(admin.ModelAdmin):
     pass
 
+class ImageAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Permission,PermissionAdmin)
 admin.site.register(Category,CategoryAdmin)
 admin.site.register(AvailiabilityStatus,AvailiabilityStatusAdmin)
 admin.site.register(ShopUser, ShopUserAdmin)
+admin.site.register(Image, ImageAdmin)
     

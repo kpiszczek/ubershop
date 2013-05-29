@@ -11,7 +11,7 @@
   </div>
   <div id='auction_main_image'>
    <!-- nie możemy nic wpisywać 'na sztywno' - wszystkie dane są pobierana z przesłanego obiektu -->
-   <img src="{{ item.base.images[0].image }}"/>
+   <img src="/mymedia/{{ item.base.images.all.0.image }}"/>
   </div>
   <div id='auction_info_panel'>
     <div id='auction_created_by'>
@@ -41,7 +41,7 @@
           Wygrywa:
         </div>
         <div id='auction_winner_name'>
-          {{ item.bids[0].name }}
+          {{ item.bids.0.name }}
         </div>
          <div id='auction_bids_count_label'>
           Ilość ofert:
@@ -68,9 +68,9 @@
       {{ item.base.description }}
     </div>
     <div id='auction_gallery'>
-      {% for image in item.base.images %}
+      {% for image in item.base.images.all %}
       <div class='auction_gallery_entry'>
-        <img class='auction_gallery_image' src="{{ image.image }}"/>      
+        <img class='auction_gallery_image' src="/mymedia/{{ image.image }}"/>      
       </div>
       {% endfor %}
     </div>
