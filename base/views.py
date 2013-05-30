@@ -56,7 +56,7 @@ class BaseView():
     
     @classmethod
     def newest_items(cls, request):
-        # NIE DZIALA - brak przedmiotow na liscie
+        # DZIALA
         return cls.items_list(request, page=0)
     
     @classmethod
