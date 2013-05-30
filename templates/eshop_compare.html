@@ -16,29 +16,21 @@ Porównywarka
       Porównywarka
     </div>  
   	<div class='compare_items'>
-    <a href="/sklep/{{ item.id }}"><img src="/mymedia/{{ item.base.thumb }}"/></a>
-    <div class="compare_items_name">
-    <a href="/sklep/{{ item.id }}">{{ item.name }}</a>
-    </div>
       <div id='compare_properties_line'>
       	&nbsp;
       </div>  
       <div id='compare_properties_wrapper'>
-        <div id='compare_price_label'>
-          Cena:
-        </div>
-        <div id='compare_price'>
-        	{{ item.price }}
-        </div> 
-        {% for property in properties %}
-        <div id='compare_detail1_label'>
-          {{property.name}}
-        </div>
-        <div id='compare_detail1'>
-        	{{ property.content }}
-        </div> 
-        {% endfor %}             
+        <ul>
+            {% for row in table %}
+            <tr>
+                {% for value in row %}
+                <td> {{ value }} </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </ul>    
     </div>
    </div>  
   	</div>
 </section>
+{% endblock %}

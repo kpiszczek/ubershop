@@ -1,3 +1,5 @@
+import json
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
@@ -57,11 +59,14 @@ class EShopView(BaseView):
     @classmethod
     def compare_items(cls, request, id1, id2):
         # NIE DZIALA - onsale_products() got an unexpected keyword argument 'id2' . co ma do rzeczy onsale_products()?
-        item1 = cls.model.objects.get(pk=id1)
-        item2 = cls.model.objects.get(pk=id2)
+        item1 = EShopItem.objects.get(pk=id1)
+        item2 = EShopItem.objects.get(pk=id2)
         
-        keys = set(item1.base.properties.keys()) & set(item2.base.properties.keys())
-        table = [[key, item1.base.properties[key], item2.base.properties[key]] for key in keys]
+        prop1 = json.loads(item1.base.properties)
+        prop2 = json.loads(item2.base.properties)
+        
+        keys = set(prop1.keys()) & set(prop2.keys())
+        table = [[key, prop1[key], prop2[key]] for key in keys]
         
         return render_to_response("eshop_compare.html", 
                                   {'item1': item1, 'item2': item2, 'table': table},
