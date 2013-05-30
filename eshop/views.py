@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+
 import json
 
 from django.shortcuts import render_to_response
@@ -20,7 +23,7 @@ class EShopView(BaseView):
         # NIE DZIALA - NIE WYSWIETLA PRODUKTOW OZNACZONYCH W BAZIE 'IS ON SALE'
         products_on_sale = EShopItem.objects.filter(is_on_sale=True)
         products_on_sale = products_on_sale.filter(current_stock__gte=1)
-        return render_to_response("eshop_list.html",{'products': products_on_sale},
+        return render_to_response("eshopitem_list.html",{'items': products_on_sale},
                                   context_instance=RequestContext(request))
            
     @classmethod

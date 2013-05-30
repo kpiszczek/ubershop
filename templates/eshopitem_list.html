@@ -9,11 +9,11 @@
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
 </div>
-<section id='eshop_list'>
-  {% for item in products %}
+<section id='eshop_list' style="margin-top: 50px">
+  {% for item in items %}
   <div class='eshop_item_entry'>
     <img class='thumb' src='{{ item.thumb }}'/>
-    <a href='/sklep/{{ item.id }}/'>{{ item.name }}</a>
+    <a href='/sklep/{{ item.id }}/'>{{ item.base.name }}</a>
     <span class='price'>{{ item.price }}</span>
     <span class='item_name'>{{ item.name }}</span>
   </div>
