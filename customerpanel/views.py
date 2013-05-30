@@ -9,12 +9,13 @@ from django.http import HttpResponseRedirect, Http404
 from django.utils.decorators import method_decorator
 from django.template import RequestContext
 
+from base.models import BaseItem
 from auction.forms import AuctionForm
 from auction.models import AuctionItem
 from eshop.models import ShoppingCart, ProductWatcher
 from ordermanager.models import Order
 from auction.models import Bid
-from core.models import ShopUser
+from core.models import ShopUser, Image
 from customerpanel.forms import RegisterForm
 
 class CustomerPanel:
@@ -37,7 +38,7 @@ class CustomerPanel:
 
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
-    def auction_history(cls,request):
+    def auction_history(cls, request):
         # DZIALA - aukcje które założył użyszkodnik
         current_user = ShopUser.objects.get(user__pk=request.user.pk)
         list = AuctionItem.objects.filter(created_by__pk=current_user.pk)
@@ -46,8 +47,46 @@ class CustomerPanel:
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
-    def add_auction(cls,request):
-        raise NotImplemented
+    def add_auction(cls, request):
+        if request.method == "POST":
+            form = AuctionForm(request.POST, request.FILES)
+            if form.is_valid():
+                base_item = BaseItem()
+                base_item.name = form.cleaned_data["name"]
+                base_item.save()
+                base_item.categories = form.cleaned_data["categories"]
+                base_item.description = form.cleaned_data["description"]
+                base_item.thumb = form.cleaned_data["thumb"]
+                
+                image = Image()
+                image.image = form.cleaned_data["image"]
+                image.save()
+                
+                base_item.images.add(Image.objects.get(pk=image.pk))
+                base_item.save()
+                
+                auction = AuctionItem()
+                auction.base = base_item
+                auction.start_date = form.cleaned_data["start_date"]
+                auction.planned_close_date = form.cleaned_data["planned_close_date"]
+                auction.start_price = form.cleaned_data["start_price"]
+                auction.current_price = auction.start_price
+                auction.reserve_price = form.cleaned_data["reserve_price"]
+                
+                current_user = ShopUser.objects.get(user__pk=request.user.pk)
+                auction.created_by = current_user
+                
+                auction.save()
+                
+                return HttpResponseRedirect("/aukcje/%s/" % str(auction.pk))
+            else:
+                raise Http404(form._errors)
+                return render_to_response("auction_add.html", {'form': form},
+                                      context_instance=RequestContext(request))
+        else:
+            form = AuctionForm()
+            return render_to_response("auction_add.html", {'form': form},
+                                      context_instance=RequestContext(request))
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))

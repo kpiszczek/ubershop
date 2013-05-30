@@ -72,6 +72,7 @@ urlpatterns = patterns('',
     url(r'^zamowienia/(?P<order_id>\d+)/$', CustomerPanel.order_details),
     url(r'^aukcje_historia/$', CustomerPanel.auction_history),
     url(r'^obserwowane/$', CustomerPanel.watched_products),
+    url(r'^aukcje/dodaj/$', CustomerPanel.add_auction),
     
     
     # Uncomment the admin/doc line below to enable admin documentation:
