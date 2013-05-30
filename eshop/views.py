@@ -15,7 +15,7 @@ class EShopView(BaseView):
     
     @classmethod
     def onsale_products(cls, request):
-        #raise NotImplemented
+        # NIE DZIALA - NIE WYSWIETLA PRODUKTOW OZNACZONYCH W BAZIE 'IS ON SALE'
         products_on_sale = EShopItem.objects.filter(is_on_sale=True)
         products_on_sale = products_on_sale.filter(current_stock__gte=1)
         return render_to_response("eshop_list.html",{'products': products_on_sale},
@@ -26,6 +26,7 @@ class EShopView(BaseView):
     def add_to_cart(cls, request, id):
         #raise Http404(request.user.username)
         
+        # DZIALA
         cart = ShoppingCart.objects.filter(user__pk=request.user.pk)
         if len(cart) == 0:
             cart = ShoppingCart()
@@ -55,6 +56,7 @@ class EShopView(BaseView):
     
     @classmethod
     def compare_items(cls, request, id1, id2):
+        # NIE DZIALA - onsale_products() got an unexpected keyword argument 'id2' . co ma do rzeczy onsale_products()?
         item1 = cls.model.objects.get(pk=id1)
         item2 = cls.model.objects.get(pk=id2)
         

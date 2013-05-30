@@ -9,6 +9,7 @@ from groupbuy.views import GroupBuyView
 from board.views import BoardView
 from customerpanel.views import CustomerPanel
 
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -37,6 +38,8 @@ urlpatterns = patterns('',
     # url dla EShop
     url(r'^sklep/nowe/$', EShopView.newest_items),
     url(r'^sklep/popularne/$', EShopView.popular_items),
+    url(r'^sklep/wyprzedaz/$', EShopView.onsale_products),
+    url(r'^sklep/porownaj/(?P<id1>\d+)/(?P<id2>\d+)/$', EShopView.onsale_products),
     url(r'^sklep/kategorie/(?P<category>.+)/$', EShopView.items_list),
     url(r'^sklep/szukaj/(?P<term>.+)/$', EShopView.search_item),  
     url(r'^sklep/(?P<id>\d+)/$', EShopView.show_item),
@@ -49,7 +52,7 @@ urlpatterns = patterns('',
     url(r'^grupowe/kategorie/(?P<category>.+)/$', GroupBuyView.items_list),
     url(r'^grupowe/szukaj/(?P<term>.+)/$', GroupBuyView.search_item),  
     url(r'^grupowe/(?P<id>\d+)/$', GroupBuyView.show_item),
-    url(r'^grupowe/(?P<id>\d+)/kupujacy/$', GroupBuyView.buyers_list),
+    url(r'^grupowe/(?P<offer_id>\d+)/kupujacy/$', GroupBuyView.buyers_list),
     url(r'^grupowe/(?P<id>\d+)/get_pdf/$', GroupBuyView.get_item_pdf),
     
     # url dla forum
