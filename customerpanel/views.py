@@ -139,7 +139,7 @@ class CustomerPanel:
             return render_to_response("registration.html", {'form': form}, context_instance=RequestContext(request))
         #raise NotImplemented
     
-    @login_required
     @classmethod
+    @method_decorator(login_required(login_url='/accounts/login/'))
     def checkout(cls,request):
         raise NotImplemented
