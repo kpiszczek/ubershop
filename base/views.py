@@ -17,7 +17,7 @@ class BaseView():
      
     @classmethod
     def items_list(cls, request, page=0):
-        # NIE DZIALA - brak przedmiotow na liscie
+        # DZIALA
         if cls.model == BaseItem:
             raise Http404
         items = cls.model.objects.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
