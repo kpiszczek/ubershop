@@ -58,7 +58,7 @@ class EShopView(BaseView):
     
     @classmethod
     def compare_items(cls, request, id1, id2):
-        # NIE DZIALA - onsale_products() got an unexpected keyword argument 'id2' . co ma do rzeczy onsale_products()?
+        # DZIAŁA
         item1 = EShopItem.objects.get(pk=id1)
         item2 = EShopItem.objects.get(pk=id2)
         
