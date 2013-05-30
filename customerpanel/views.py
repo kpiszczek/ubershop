@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -35,10 +38,10 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def auction_history(cls,request):
-        # NIE DZIALA - Cannot resolve keyword 'user' into field.
-        #te w ktorych bral udzial
-        list=AuctionItem.objects.get(bids__user__username=request.user.username)
-        return render_to_response("auction_list.html",{'auctions': list},context_instance=RequestContext(request))
+        # DZIALA - aukcje które założył użyszkodnik
+        current_user = ShopUser.objects.get(user__pk=request.user.pk)
+        list = AuctionItem.objects.filter(created_by__pk=current_user.pk)
+        return render_to_response("auctionitem_list.html",{'items': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
