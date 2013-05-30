@@ -1,0 +1,12 @@
+<div id="list">
+
+	<P>aukcja: {{ auction.pk }}</P>
+    {% for bid in bid_history.all %}
+        
+        <p>{{ bid.price }}, pk: {{ bid.pk }}</p>
+           
+        
+       
+    {% endfor %}
+   
+</div>

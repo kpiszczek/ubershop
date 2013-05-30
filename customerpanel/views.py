@@ -7,6 +7,7 @@ from django.utils.decorators import method_decorator
 from django.template import RequestContext
 
 from auction.forms import AuctionForm
+from auction.models import AuctionItem
 from eshop.models import ShoppingCart, ProductWatcher
 from ordermanager.models import Order
 from auction.models import Bid
@@ -17,25 +18,27 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def order_history(cls,request):
-        list=Order.objects.all()
-        list=list.objects.filter(user__username=request.user.username)
+        # NIE DZIALA - Cannot resolve keyword 'user' into field.
+        current_username=request.user.username
+        current_user=ShopUser.objects.get(user__username=current_username)
+        list=Order.objects.get(user__pk=current_user.pk)
         return render_to_response("order_history.html",{'orders': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def order_details(cls,request, order_id):
+        # DZIALA
         order=Order.objects.get(pk=order_id)
-        
         return render_to_response("order_details.html",{'order': order},context_instance=RequestContext(request))
         #raise NotImplemented     
 
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def auction_history(cls,request):
+        # NIE DZIALA - Cannot resolve keyword 'user' into field.
         #te w ktorych bral udzial
-        list=Bid.objects.all()
-        list=list.objects.filter(user__username=request.user.username)
+        list=AuctionItem.objects.get(bids__user__username=request.user.username)
         return render_to_response("auction_list.html",{'auctions': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
@@ -52,6 +55,7 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def shopping_cart(cls,request):
+        # DZIALA
         current_user = request.user.username
         #raise Http404(current_user)
         current_user = ShopUser.objects.get(user__username=current_user)
@@ -66,7 +70,11 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def watched_products(cls,request):
-        list=ProductWatcher.objects.get_or_create(user__username=request.user.username)
+        # NIE DZIALA - NIE WYSWIETLA LISTY PRODUCT WATCHEROW DLA DANEGO USERA
+        current_user = request.user.username
+        #raise Http404(current_user)
+        current_user = ShopUser.objects.get(user__username=current_user)
+        list=ProductWatcher.objects.get_or_create(user__pk=current_user.pk)[0]
         return render_to_response("watched_products.html",{'products': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
@@ -76,6 +84,7 @@ class CustomerPanel:
     
     @classmethod
     def login(cls,request):
+        # DZIALA (chyba bo nie mam jeszcze strony profilu usera)
         if request.POST:
             username = request.POST['username']
             password = request.POST['password']
@@ -93,12 +102,14 @@ class CustomerPanel:
                 
     @classmethod
     def logout(cls,request):
+        # ZAKALDAM ZE DZIALA BO TO STANDARD
         #raise NotImplemented
         logout(request)
         return render_to_response("logout.html",context_instance=RequestContext(request))
     
     @classmethod
     def register(cls,request):
+        # DZIALA
         if request.method == 'POST':
             form = RegisterForm(request.POST)
             if form.is_valid():

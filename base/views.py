@@ -17,6 +17,7 @@ class BaseView():
      
     @classmethod
     def items_list(cls, request, page=0):
+        # NIE DZIALA - brak przedmiotow na liscie
         if cls.model == BaseItem:
             raise Http404
         items = cls.model.objects.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
@@ -35,6 +36,9 @@ class BaseView():
     
     @classmethod
     def show_item(cls, request, id, injected=None):
+        # NIE DZIALA - nie wyswietla zawartosci bazy (brak danych produktu, brak danych o tym kto dał nawyższa oferte
+        # nie zmienia sie to po dodaniu recznie bid_itema dla tej aukcji do bazy
+        
         # cls.model w każdej klasie podklasie CośtamView jest podmieniany na odpowiednią klasę modelu.
         # cls.model odpowiada EShopItem, AuctionItem, GroupOffer w zależnosci od klasy, z której zostanie wywołane.
         item = cls.model.objects.get(pk=id)
@@ -54,6 +58,7 @@ class BaseView():
     
     @classmethod
     def newest_items(cls, request):
+        # NIE DZIALA - brak przedmiotow na liscie
         return cls.items_list(request, page=0)
     
     @classmethod

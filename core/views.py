@@ -9,6 +9,7 @@ from board.models import Message
 from django.contrib.auth.models import User
 
 def home_page(request):
+    # DZIALA
     if request.method == "POST":
         form = SearchForm(request.POST)       
     else:      
@@ -24,4 +25,5 @@ def home_page(request):
                                            'promotion_items': products, "message": message},
                               context_instance=RequestContext(request))
 def contact(request):
+    # NIE DZIALA - WYSWIETLA PUSTA STRONE ZAMIAST POJEDYNCZEGO ZDANIA KTORE TAM TESTOWO WPISALEM
     return render_to_response("contact.html", context_instance=RequestContext(request))

@@ -15,6 +15,7 @@ from board.models import Board, Message, Topic
 class BoardView():
     @classmethod
     def show_board(cls, request, board_id):
+        # DZIALA
         board = Board.objects.get(pk=board_id)
         topics = Topic.objects.filter(board__pk=board_id)
         return render_to_response("topic_list.html", 
@@ -23,6 +24,7 @@ class BoardView():
     
     @classmethod
     def show_topic(cls, request, board_id, topic_id):
+        # DZIALA
         messages = Message.objects.filter(topic__pk=topic_id)
         topic_item = Topic.objects.get(pk=topic_id)
         topic = topic_item.title
@@ -34,6 +36,7 @@ class BoardView():
     
     @classmethod
     def show_message(cls, request, board_id, topic_id, message_id):
+        # DZIALA
         message = Message.objects.get(pk=message_id)
         return render_to_response("message_detail.html", 
                                   {'message':message},
@@ -41,6 +44,7 @@ class BoardView():
 
     @classmethod
     def show_available_board(cls,request):
+        # DZIALA
         forums = Board.objects.all()
         return render_to_response("board_list.html",
                                   {'boards': forums},
@@ -49,6 +53,7 @@ class BoardView():
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def create_topic(cls, request, board_id):
+        # DZIALA
         if request.method == 'POST':
             topic_form = TopicForm(request.POST)
             if topic_form.is_valid():
@@ -70,6 +75,7 @@ class BoardView():
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def create_board(cls, request):
+        # DZIALA
         if request.method == 'POST':
             board_form = BoardForm(request.POST)
             if board_form.is_valid():
@@ -85,6 +91,7 @@ class BoardView():
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))  
     def submit_message(cls, request, board_id, topic_id):
+        # DZIALA
         if request.method=='POST':
             message_form = MessageForm(request.POST)
             if message_form.is_valid():
@@ -106,6 +113,7 @@ class BoardView():
     
     @classmethod
     def show_news_board(cls, request):
+        # DZIALA
         board = Board.objects.get(name="news")
         id = board.pk
         topics = Topic.objects.filter(board=id)

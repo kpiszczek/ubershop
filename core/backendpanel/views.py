@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 
 class BackendPanel:
+    # PO CO NAM 2 BACKEDNPANEL?
     @login_required
     @classmethod
     def items_list(cls,request):

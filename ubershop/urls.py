@@ -31,7 +31,7 @@ urlpatterns = patterns('',
     url(r'^aukcje/oferta/(?P<id>\d+)/$', AuctionView.bid_item), 
     url(r'^aukcje/(?P<id>\d+)/$', inject_bid_form(AuctionView.show_item)),
     url(r'^aukcje/(?P<id>\d+)/get_pdf/$', AuctionView.get_item_pdf),
-    url(r'^aukcje/(?P<id>\d+)/historia/$', AuctionView.bid_history),
+    url(r'^aukcje/(?P<auction_id>\d+)/historia/$', AuctionView.bid_history),
     url(r'^aukcje/(?P<auction_id>\d+)/licytuj/$', AuctionView.bid),
     
     # url dla EShop
@@ -65,6 +65,10 @@ urlpatterns = patterns('',
     url(r'^koszyk/$', CustomerPanel.shopping_cart),
     url(r'^accounts/login/$','django.contrib.auth.views.login'),
     url(r'^rejestracja/$', CustomerPanel.register),
+    url(r'^zamowienia/$', CustomerPanel.order_history),
+    url(r'^zamowienia/(?P<order_id>\d+)/$', CustomerPanel.order_details),
+    url(r'^aukcje_historia/$', CustomerPanel.auction_history),
+    url(r'^obserwowane/$', CustomerPanel.watched_products),
     
     
     # Uncomment the admin/doc line below to enable admin documentation:

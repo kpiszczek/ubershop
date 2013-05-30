@@ -17,11 +17,11 @@ class AuctionView(BaseView):
     
     @classmethod
     def bid_history(cls, request, auction_id):
+        # DZIALA
         auction = AuctionItem.objects.get(pk=auction_id)
         bid_history = auction.bids
         return render_to_response("bid_history.html",
-                                  {'bid_history': bid_history, 'auction': auction},
-                                  context_instance=RequestContext(request))
+                                  {'bid_history': bid_history, 'auction': auction})
         #raise NotImplemented       
     
     @classmethod
@@ -31,7 +31,8 @@ class AuctionView(BaseView):
     
     @classmethod
     def bid_item(cls, request, id):
-        item = BidItem.objects.get(pk=id)
+        # NIE DZIALA - nie wyswietla danych z bazy
+        item = Bid.objects.get(pk=id)
         return render_to_response("bid_item.html", {item: item})
         #raise NotImplemented
     
