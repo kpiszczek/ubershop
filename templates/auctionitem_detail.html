@@ -41,7 +41,9 @@
           Wygrywa:
         </div>
         <div id='auction_winner_name'>
-          {{ item.bids.0.name }}
+          {% with bid=item.bids.all.0 %}
+          {{ bid.user.username }}
+          {% endwith %}
         </div>
          <div id='auction_bids_count_label'>
           Ilość ofert:

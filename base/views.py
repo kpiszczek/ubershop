@@ -36,9 +36,7 @@ class BaseView():
     
     @classmethod
     def show_item(cls, request, id, injected=None):
-        # NIE DZIALA - nie wyswietla zawartosci bazy (brak danych produktu, brak danych o tym kto dał nawyższa oferte
-        # nie zmienia sie to po dodaniu recznie bid_itema dla tej aukcji do bazy
-        
+        # DZIALA
         # cls.model w każdej klasie podklasie CośtamView jest podmieniany na odpowiednią klasę modelu.
         # cls.model odpowiada EShopItem, AuctionItem, GroupOffer w zależnosci od klasy, z której zostanie wywołane.
         item = cls.model.objects.get(pk=id)

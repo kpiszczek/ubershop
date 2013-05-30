@@ -5,12 +5,12 @@
 {% endblock %}
 
 {% block content %}
-<section id='eshop_item_page'>
+<section id='eshop_item_page' style="margin-top: 50px">
   <div id='eshop_title'>
-    {{ item.name }}
+    {{ item.base.name }}
   </div>
   <div id='eshop_main_image'>
-    <img src="/static/img/telefon.png"/>
+    <img src="/mymedia/{{ item.base.images.all.0.image }}"/>
   </div>
   <div id='eshop_info_panel'>
     <div id='eshop_availability'>
@@ -64,7 +64,7 @@
     <div id='eshop_gallery'>
       {% for image in item.images %}
       <div class='eshop_gallery_entry'>
-        <img class='acution_gallery_image' src="{{ image.image }}"/>      
+        <img class='eshop_gallery_image' src="/mymedia/{{ image.image }}"/>      
       </div>
       {% endfor %}
     </div>
