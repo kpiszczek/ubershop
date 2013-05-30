@@ -1,6 +1,8 @@
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.http import Http404
+from django.template import RequestContext
 
 from base.views import BaseView
 from auction.models import AuctionItem, Bid
@@ -31,9 +33,10 @@ class AuctionView(BaseView):
     
     @classmethod
     def bid_item(cls, request, id):
-        # NIE DZIALA - nie wyswietla danych z bazy
+        # DZIALA
         item = Bid.objects.get(pk=id)
-        return render_to_response("bid_item.html", {item: item})
+        return render_to_response("bid_item.html", {'item': item},
+                                  context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
