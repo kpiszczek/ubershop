@@ -18,10 +18,9 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def order_history(cls,request):
-        # NIE DZIALA - Cannot resolve keyword 'user' into field.
-        current_username=request.user.username
-        current_user=ShopUser.objects.get(user__username=current_username)
-        list=Order.objects.get(user__pk=current_user.pk)
+        # DZIALA
+        current_user = ShopUser.objects.get(user__pk=request.user.pk)
+        list = Order.objects.filter(placed_by__pk=current_user.pk)
         return render_to_response("order_history.html",{'orders': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
