@@ -72,12 +72,10 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def watched_products(cls,request):
-        # NIE DZIALA - NIE WYSWIETLA LISTY PRODUCT WATCHEROW DLA DANEGO USERA
-        current_user = request.user.username
-        #raise Http404(current_user)
-        current_user = ShopUser.objects.get(user__username=current_user)
-        list=ProductWatcher.objects.get_or_create(user__pk=current_user.pk)[0]
-        return render_to_response("watched_products.html",{'products': list},context_instance=RequestContext(request))
+        # DZIALA
+        current_user = ShopUser.objects.get(user__pk=request.user.pk)
+        list = ProductWatcher.objects.filter(user__pk=current_user.pk)
+        return render_to_response("watched_products.html",{'list': list},context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
