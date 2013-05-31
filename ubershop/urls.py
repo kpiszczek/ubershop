@@ -70,6 +70,7 @@ urlpatterns = patterns('',
     
     # url dla customerpanel
     url(r'^koszyk/$', CustomerPanel.shopping_cart),
+    url(r'^kasa/$', CustomerPanel.checkout),
     url(r'^accounts/login/$','django.contrib.auth.views.login'),
     url(r'^rejestracja/$', CustomerPanel.register),
     url(r'^zamowienia/$', CustomerPanel.order_history),

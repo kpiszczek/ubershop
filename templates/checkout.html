@@ -1,0 +1,17 @@
+<form id='checout_form' name='checkout_form' method='post' accept-charset="utf-8" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class='checkout_form_field'>
+      <span class='form_error'>{{ order_form.shipment_method.errors }}</span>
+      <label for='id_shipment_method'>Metoda wysyłki:</label>
+      {{ order_form.shipment_method }}
+    </div>
+    <div class='checkout_form_field'>
+      <span class='form_error'>{{ order_form.details.errors }}</span>
+      <label for='id_details'>Szczegóły:</label>
+      {{ order_form.details }}
+    </div>
+    <p id='form_input_wrapper'>
+       <input value='Zamów' id='place' type='submit'/>
+       <p id='form_submit_info'>{{ order_form.info }}</p>
+    </p>
+</form>

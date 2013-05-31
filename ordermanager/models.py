@@ -17,7 +17,7 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0)
     
 class Order(models.Model):
-    items = models.ForeignKey('OrderItem',related_name='items', blank=True, null=True)
+    items = models.ManyToManyField('OrderItem',related_name='items', blank=True)
     placed_by = models.ForeignKey('core.ShopUser')
     status = models.ForeignKey('OrderStatus')
     shipment_method = models.ForeignKey('ShipmentMethod')

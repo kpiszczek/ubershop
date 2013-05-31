@@ -13,10 +13,11 @@ from base.models import BaseItem
 from auction.forms import AuctionForm
 from auction.models import AuctionItem
 from eshop.models import ShoppingCart, ProductWatcher
-from ordermanager.models import Order
+from ordermanager.models import Order, OrderStatus, OrderItem
 from auction.models import Bid
 from core.models import ShopUser, Image
 from customerpanel.forms import RegisterForm
+from ordermanager.forms import OrderForm
 
 class CustomerPanel:
     @classmethod
@@ -181,4 +182,28 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def checkout(cls,request):
-        raise NotImplemented
+        cart = ShoppingCart.objects.get(user__user__pk=request.user.pk)
+        if request.method == "POST":
+            order_form = OrderForm(request.POST)
+            if order_form.is_valid():
+                order = Order()
+                         
+                order.placed_by = ShopUser.objects.get(user__pk=request.user.pk)
+                order.status = OrderStatus.objects.get(name="init")
+                order.shipment_method = order_form.cleaned_data["shipment_method"]
+                order.details = order_form.cleaned_data["details"]
+                order.save()
+                
+                for item in cart.items.all(): order.items.add(item)
+                cart.items.clear()
+                
+                cart.save()    
+                order.save()
+                
+                return render_to_response("thankyou.html", {},
+                                          context_instance=RequestContext(request))
+            return render_to_response("checkout.html",{"order_form": order_form},
+                                      context_instance=RequestContext(request))
+        else:
+            return render_to_response("checkout.html",{"order_form": OrderForm()},
+                                      context_instance=RequestContext(request))
