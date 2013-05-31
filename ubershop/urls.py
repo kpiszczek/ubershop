@@ -9,6 +9,7 @@ from groupbuy.views import GroupBuyView
 
 from board.views import BoardView
 from customerpanel.views import CustomerPanel
+from backendpanel.views import BackendPanel
 
 
 # Uncomment the next two lines to enable the admin:
@@ -72,6 +73,7 @@ urlpatterns = patterns('',
     url(r'^koszyk/$', CustomerPanel.shopping_cart),
     url(r'^kasa/$', CustomerPanel.checkout),
     url(r'^accounts/login/$','django.contrib.auth.views.login'),
+    url(r'^accounts/logout/$', BackendPanel.logout),    
     url(r'^rejestracja/$', CustomerPanel.register),
     url(r'^zamowienia/$', CustomerPanel.order_history),
     url(r'^zamowienia/(?P<order_id>\d+)/$', CustomerPanel.order_details),
