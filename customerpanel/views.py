@@ -189,7 +189,7 @@ class CustomerPanel:
                 order = Order()
                          
                 order.placed_by = ShopUser.objects.get(user__pk=request.user.pk)
-                order.status = OrderStatus.objects.get(name="init")
+                order.status = OrderStatus.objects.get(name="przyjete")
                 order.shipment_method = order_form.cleaned_data["shipment_method"]
                 order.details = order_form.cleaned_data["details"]
                 order.save()
