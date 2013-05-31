@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block sidebar %}
-<div id="search_form">
+<div id="search_form" class="side_menu_container">
   <form name='search_form' action='szukaj/' id='auction_search_form' method='post' accept-charset="utf-8">{% csrf_token %}
     <div id='search_form_field'>
       <span class='form_error'>{{ search_form.errors }}</span>
@@ -18,7 +18,7 @@
     </p>
   </form>
 </div>
-<aside id="side_menu">
+<aside id="side_menu" class="side_menu_container">
   <div id='side_menu_title'>
     Kategorie
   </div>
