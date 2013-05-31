@@ -1,7 +1,9 @@
 {% extends "auction_base.html" %}
 
 {% block css %}
-<link href="{{ STATIC_PREFIX }}css/auction_detail.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/auctionitem_detail.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/auction_base.css" rel="stylesheet" type="text/css"/>
+
 {% endblock %}
 
 {% block content %}
@@ -15,9 +17,11 @@
   </div>
   <div id='auction_info_panel'>
     <div id='auction_created_by'>
+    	<label >Sprzedający:</label> 
       {{ item.created_by }}
     </div>
     <div id='auction_current_price'>
+    	<label>Aktualna cena:</label> 
       {{ item.current_price }}
     </div>
     <div id='auction_bid_form_wrapper'>
@@ -45,6 +49,8 @@
           {{ bid.user.username }}
           {% endwith %}
         </div>
+         </div>
+        <div id='auction_bid'>
          <div id='auction_bids_count_label'>
           Ilość ofert:
         </div>
@@ -53,6 +59,7 @@
         </div>   
       </div>
     </div>
+
     <div id='auction_mid_info_subpanel'>
       <div id='auction_delivery_options'>
         <!--TODO-->
