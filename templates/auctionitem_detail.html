@@ -76,6 +76,7 @@
     <div id='auction_description'>
       {{ item.base.description }}
     </div>
+   </div>
     <div id='auction_gallery'>
       {% for image in item.base.images.all %}
       <div class='auction_gallery_entry'>
@@ -83,7 +84,7 @@
       </div>
       {% endfor %}
     </div>
-  </div>
+ 
   <div id='auction_print_page'>
     <a href="get_pdf">Drukuj stronę</a>
   </div>
