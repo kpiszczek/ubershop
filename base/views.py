@@ -49,6 +49,7 @@ class BaseView():
     
     @classmethod
     def search_item(cls, request):
+        # DZIALA
         if request.method == "POST":
             search_form = SearchForm(request.POST)
             if search_form.is_valid():
@@ -79,6 +80,7 @@ class BaseView():
     
     @classmethod
     def get_item_pdf(cls, request, id):
+        # DZIALA
         generator = PdfGenerator(cls.model, id)
         return generator.item_page()
     

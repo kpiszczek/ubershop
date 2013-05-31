@@ -45,6 +45,7 @@ class AuctionView(BaseView):
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))   
     def bid(cls, request, auction_id):
+        # DZIALA
         form = BidForm(request.POST)
         if form.is_valid():
             price = form.cleaned_data["bid"]

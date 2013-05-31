@@ -37,8 +37,9 @@ class PdfGenerator():
         item = self.model.objects.get(pk=self.obj_id)
         
         self.story.append(Paragraph(item.base.name, self.styles["Normal"]))
-        data = [[key, item.base.properties[key]] for key in item.base.properties.keys()]
-        self.story.append(Table(data))
+        if item.base.properties is not None:
+            data = [[key, item.base.properties[key]] for key in item.base.properties.keys()]
+            self.story.append(Table(data))
         
         return self.serve_file()
     
