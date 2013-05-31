@@ -6,12 +6,12 @@
 
 {% block sidebar %}
 <div id="search_form" class="side_menu_container">
-  <form name='search_form' id='eshop_search_form' method='post' accept-charset="utf-8">
+  <form name='search_form' action="szukaj/" id='eshop_search_form' method='post' accept-charset="utf-8">
     {% csrf_token %}
     <div id='search_form_field'>
       <span class='form_error'>{{ search_form.errors }}</span>
       <label for='id_search'>Szukaj produktów:</label>
-      {{ search_form.search }}
+      {{ search_form.phrase }}
     </div>
     <p id='search_input'>
       <input value='Szukaj' id='eshop_search_input' type='submit'/>

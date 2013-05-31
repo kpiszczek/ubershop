@@ -48,8 +48,7 @@ class AuctionView(BaseView):
         form = BidForm(request.POST)
         if form.is_valid():
             price = form.cleaned_data["bid"]
-            
-            
+                        
             current_user = ShopUser.objects.get(user__pk=request.user.pk)
             auction = AuctionItem.objects.get(pk=auction_id)
             

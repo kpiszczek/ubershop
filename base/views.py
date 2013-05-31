@@ -4,6 +4,7 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.db.models import Q
+from django.utils.decorators import method_decorator
 
 from base.models import BaseItem
 from core.models import Category
@@ -11,11 +12,25 @@ from base.models import BaseItem
 from eshop.models import EShopItem
 from auction.models import AuctionItem
 from groupbuy.models import GroupOffer
+from base.forms import SearchForm
 from pdfgenerator.generator import PdfGenerator
+
+def inject_search_form(view):
+    def inner(request, id, injected=None):
+        search_form = SearchForm()
+        data = {"search_form": search_form}
+        if injected is not None:
+            data.update(injected)
+        return view(request, id, data)
+    return inner
 
 class BaseView():
     model = BaseItem
      
+    @classmethod
+    def get_categories(cls):
+        return Category.objects.all()
+    
     @classmethod
     def items_list(cls, request, page=0):
         # DZIALA
@@ -28,7 +43,8 @@ class BaseView():
         prev_page = page-1 if page > 0 else None
         
         return render_to_response("%s_list.html" % cls.model.__name__.lower(),
-                                  {"items": items, "prev_page": prev_page, "next_page": next_page},
+                                  {"items": items, "prev_page": prev_page, "next_page": next_page,
+                                   "categories": cls.get_categories(), "search_form": SearchForm()},
                                   context_instance=RequestContext(request))   
     
     @classmethod
@@ -38,19 +54,21 @@ class BaseView():
             if search_form.is_valid():
                 phrase = search_form.cleaned_data["phrase"]
                 words = phrase.replace(';',' ').replace(',',' ').replace('.',' ').split(' ')
-                items = cls.models.objects.filter(reduce(
-                    lambda x, y: x | y, [Q(base__description__contains=word) for word in list]))
+                items = cls.model.objects.filter(reduce(
+                    lambda x, y: x | y, [Q(base__description__contains=word) for word in words]))  
                 return render_to_response("%s_list.html" % cls.model.__name__.lower(),
-                                  {"items": items},
+                                  {"items": items, "categories": cls.get_categories(),
+                                   'search_form': search_form},
                                   context_instance=RequestContext(request))
     
     @classmethod
+    @method_decorator(inject_search_form)   
     def show_item(cls, request, id, injected=None):
         # DZIALA
         # cls.model w każdej klasie podklasie CośtamView jest podmieniany na odpowiednią klasę modelu.
         # cls.model odpowiada EShopItem, AuctionItem, GroupOffer w zależnosci od klasy, z której zostanie wywołane.
         item = cls.model.objects.get(pk=id)
-        data = {"item": item}
+        data = {"item": item, "categories": cls.get_categories()}
         if injected is not None:
             data.update(injected)
         # raise Http404(item.base.name)
