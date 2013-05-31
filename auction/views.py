@@ -1,12 +1,15 @@
+from datetime import datetime
+
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.template import RequestContext
 
 from base.views import BaseView
 from auction.models import AuctionItem, Bid
 from auction.forms import AuctionForm, BidForm
+from core.models import ShopUser
 
 def inject_bid_form(view):
     def inner(request, id):
@@ -42,4 +45,25 @@ class AuctionView(BaseView):
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))   
     def bid(cls, request, auction_id):
-        raise NotImplemented
+        form = BidForm(request.POST)
+        if form.is_valid():
+            price = form.cleaned_data["bid"]
+            
+            
+            current_user = ShopUser.objects.get(user__pk=request.user.pk)
+            auction = AuctionItem.objects.get(pk=auction_id)
+            
+            if auction.current_price < price:
+                bid = Bid()
+                bid.user = current_user
+                bid.item = auction
+                bid.date = datetime.now()
+                bid.price = price
+                bid.save()    
+            
+                auction.bids.add(bid)
+                auction.current_price = price
+                auction.save()
+        return HttpResponseRedirect('/aukcje/%s/' % str(auction_id))
+            
+            

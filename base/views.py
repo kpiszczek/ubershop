@@ -3,6 +3,7 @@
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.db.models import Q
 
 from base.models import BaseItem
 from core.models import Category
@@ -32,7 +33,16 @@ class BaseView():
     
     @classmethod
     def search_item(cls, request):
-        raise NotImplemented
+        if request.method == "POST":
+            search_form = SearchForm(request.POST)
+            if search_form.is_valid():
+                phrase = search_form.cleaned_data["phrase"]
+                words = phrase.replace(';',' ').replace(',',' ').replace('.',' ').split(' ')
+                items = cls.models.objects.filter(reduce(
+                    lambda x, y: x | y, [Q(base__description__contains=word) for word in list]))
+                return render_to_response("%s_list.html" % cls.model.__name__.lower(),
+                                  {"items": items},
+                                  context_instance=RequestContext(request))
     
     @classmethod
     def show_item(cls, request, id, injected=None):

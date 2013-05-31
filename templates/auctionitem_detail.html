@@ -21,7 +21,7 @@
       {{ item.current_price }}
     </div>
     <div id='auction_bid_form_wrapper'>
-      <form id='bid_form' name='bid_form' action='' method='post' accept-charset="utf-8">{% csrf_token %}
+      <form id='bid_form' name='bid_form' action='licytuj/' method='post' accept-charset="utf-8">{% csrf_token %}
         <div id='bid_form_field'>
           <span class='form_error'>{{ bid_form.errors }}</span>
           <label for='id_bid'>Twoja oferta:</label>
