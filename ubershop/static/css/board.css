@@ -1,0 +1,26 @@
+#list{
+	background-color:#ece8e9;
+}
+.breadcrumbs
+{
+	border:1px;
+	background-color: blue;
+}
+.topic_title
+{
+	color: black;
+}
+.header
+{
+	background-color: green;	
+}
+.user
+{
+	color: red;	
+}
+.content{
+	color:red;
+}
+.message{
+	color:red;
+}

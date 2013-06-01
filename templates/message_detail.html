@@ -15,31 +15,18 @@
     		<tr class="header">				 	
        			<td width="100">Dodany przez</td>
         		<td></td>
-
-    		</tr>
-			
+    		</tr>		
     			<tr>
         			<td class="user">
         			{{ message.submitted_by.user.username }}
         			</td>
         			<td class="content">{{ message.content }}</td>    
-
-   				</tr>
-   		
+   				</tr>   		
     	</table>
-
 </div>
 {% endblock %}
-
-
-
-
 <div id="list">
-
 Message detail
-
         <div class="message">{{ message.content }}
             </div>
-        
-
 </div>
