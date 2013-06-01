@@ -1,20 +1,49 @@
+#content_container
+{
+	position:relative;
+	
+	width:740px;
+	min-height: 300px;
+	
+}
 #list{
 	background-color:#edecec;
+	
 }
 .breadcrumbs
 {
 	border:1px;
-	background-color: #d3d1d2;
-	height:20px;
+	background-color:#afa9a9;
+	height:28px;
 	color:black;
+	padding-top:12px;
+	padding-left:10px;
+	font-weight:bold;
+	
 }
+
+
 .topic_title
 {
 	color: black;
 }
 .header
 {
-	background-color:#e0dfdf;	
+	background-color:#cbc9c9;
+	height:35px;
+	color:black;
+	weight: 740;
+	font-weight:bold;
+	
+}
+.board_name
+{
+	background-color:#e0dfdf;
+	height:35px;
+	color:black;
+	padding-left:15px;	
+	weight: 740;
+	
 }
 .user
 {
@@ -32,6 +61,15 @@
 {
 	
 }
+.new_board
+{
+	background-color:#cbc9c9;
+	height:27px;
+	padding-left:15px;	
+	weight: 740;
+	font-weight:bold;
+	padding-top:8px;
+}
 .new_message_form{
 	
 }
@@ -48,6 +86,14 @@
 }
 .button
 {
-	background-color: blue;
+	background-color:#afa9a9;
+	height:25px;
+	color:black;
+	float:right;
+	margin-right:20px;	
+	padding-left:5px;
+	padding-right:5px;
+	padding-top:5px;
+	font-size:85%;
 }
-a{color:black;}
+

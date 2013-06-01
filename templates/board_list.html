@@ -10,17 +10,17 @@
 <div id="list">
 	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a></div>
 		
-		<table border="0" cellpadding="4" width="100%">
-    		<tr>				 	
+		<table   width="100%">
+    		<tr class="header">				 	
        			<td class="header">Dział</td>
         		<td></td>
     		</tr>
 			
     		{% for board in boards %}
-    			<tr>
-        			<td>
-        			<div class="board_name"> <a href="{{ board.pk }}">{{ board.name }}</a>
-        			</div></td>
+    			<tr class="board_name">
+        			<td
+        			 class="board_name"> <a href="{{ board.pk }}">{{ board.name }}</a>
+        			</td>
         
         			<td>
             		<a class="button" href="{{ board.pk }}">Wyświetl forum</a>
