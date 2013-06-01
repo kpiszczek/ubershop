@@ -12,3 +12,11 @@ class RegisterForm(forms.Form):
     tax_id = forms.CharField(required=False)
     
     
+class EditUserForm(forms.Form):
+    email = forms.EmailField()
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    address = forms.CharField(widget=forms.Textarea)
+    organisation = forms.CharField(required=False, widget=forms.Textarea)
+    tax_id = forms.CharField(required=False)
+    
