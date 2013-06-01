@@ -1,3 +1,12 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshopitem_detail.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div class="order_form">
 <form id='checout_form' name='checkout_form' method='post' accept-charset="utf-8" enctype="multipart/form-data">
     {% csrf_token %}
     <div class='checkout_form_field'>
@@ -15,3 +24,5 @@
        <p id='form_submit_info'>{{ order_form.info }}</p>
     </p>
 </form>
+</div>
+{% endblock %}
