@@ -194,4 +194,28 @@
 	float:left;
 	margin-top: 15px;
 }
-
+#eshop_comments_label{
+	font-size:130%;
+	margin-top:15px;
+	border-bottom-style: outset;
+	margin-left:19px;
+	margin-right:19px;
+	padding-left:5px;
+	height:25px;
+}
+#eshop_comments_line{
+	background-color:black;
+}
+#eshop_comment_wrapper
+{
+	background-color:blue;
+}
+#eshop_comment_user{
+	background-color:blue;
+}
+#eshop_comment_date{
+	background-color:blue;
+}
+#eshop_comment_content{
+	background-color:blue;
+}
