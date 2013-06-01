@@ -1,12 +1,24 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
 <div id="list">
 
-	<P>group offer: {{ offer.pk }}</P>
+	<P>Lista kupujących dla oferty nr: {{ offer.pk }}</P>
+	<ol>
     {% for item in buyers.all %}
         
-        <p> pk: {{ item.pk }}</p>
+        <p><li>{{ item.user.username }}</li></p>
            
-        
-       
+
     {% endfor %}
-   
+   </ol>
 </div>
+{% endblock %}
+
+

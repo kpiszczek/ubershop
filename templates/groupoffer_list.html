@@ -1,0 +1,24 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='eshop_list_control_panel'>
+  <!-- TODO -->
+</div>
+<section id='eshop_list' style="margin-top: 50px;min-height:250px;">
+  {% for item in items %}
+  <div class='eshop_item_entry'>
+    <img class='thumb' src='{{ item.thumb }}'/>
+    <a href='/grupowe/{{ item.id }}/'>{{ item.base.name }}</a>
+    <span class='price'>{{ item.price }}</span>
+    <span class='buyers'><a href="/grupowe/{{ item.pk }}/kupujacy/">Kupujący</a></span>
+    <span class='item_name'>{{ item.name }}</span>
+  </div>
+  {% endfor %}
+</section>
+{% endblock %}
