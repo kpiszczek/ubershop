@@ -29,7 +29,19 @@
 {% block content %}
 <div id="list"  style="margin-top: 50px; min-height:300px">
 	<p>Szczegóły zamówienia nr: {{ order.pk }}</p>
-	<P>PK {{ order.pk}}</P>
+	<p>Data zamówienia: {{ order.date }}</p>
+	<p>Przesyłka: {{ order.shipment_method }}</p>
+	<p>Status: {{order.status.name}}</p>
+	<p>Produkty:</p>
+	<ol>
+	{% for item in order.items.all %}
+	<li><a href="/sklep/{{ item.id }}">{{ item.item.name }}</a></li>
+	{% endfor %}
+	</ol>
+	
+	<p>Pozostałe informacje:</p>
+	<p>{{ order.details }}</p>
+	
 </div>
 {% endblock %}
 
