@@ -19,6 +19,7 @@
 	padding-top:12px;
 	padding-left:10px;
 	font-weight:bold;
+	background: -webkit-gradient(linear, left bottom, left top , from(#605f5f), to(#cbc9c9));
 	
 }
 
@@ -29,12 +30,12 @@
 }
 .header
 {
-	background-color:#cbc9c9;
+	
 	height:35px;
 	color:black;
 	weight: 740;
 	font-weight:bold;
-	
+	background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#dad7d7));
 }
 .board_name
 {
@@ -63,7 +64,7 @@
 }
 .new_board
 {
-	background-color:#cbc9c9;
+	background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#dad7d7));
 	height:27px;
 	padding-left:15px;	
 	weight: 740;
@@ -96,4 +97,4 @@
 	padding-top:5px;
 	font-size:85%;
 }
-
+a{color:#282828;}
