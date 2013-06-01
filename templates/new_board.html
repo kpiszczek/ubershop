@@ -1,4 +1,19 @@
-<form method="post">{% csrf_token %}
-{{ board_form.as_table }}
-<input type="submit" value="zapisz" />
-</form>
+{% extends "board_base.html" %}
+
+{% block title_suffix %} Forum - dodawanie nowego działu{% endblock %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/board.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div id="list">
+	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a>>Nowy dział</div>
+		<form method="post">{% csrf_token %}
+		{{ board_form.as_p }}
+		<input type="submit" value="Utwórz dział" />
+		</form>
+		
+</div>
+{% endblock %}
+
