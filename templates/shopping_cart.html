@@ -1,4 +1,13 @@
-<div id="list">
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshopitem_detail.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+
+<div id="list" >
 
 
     {% for item in cart.items.all %}
@@ -8,5 +17,7 @@
         
        
     {% endfor %}
-    
+<p><a href="/kasa/">Zamawiam</a>  </p>  
 </div>
+
+{%endblock%}
