@@ -25,7 +25,7 @@
   <nav>
       {% for category in categories %}
       <div class='side_menu_item'>
-        <a href='/aukcje/{{ category.name }}/'>{{ category.name }}</a>
+        <a href='/aukcje/kategorie/{{ category.pk }}/'>{{ category.name }}</a>
       </div>
       {% endfor %}
   </nav>
