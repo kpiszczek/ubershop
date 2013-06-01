@@ -14,16 +14,40 @@
 }
 .header
 {
-	background-color:#e6e4e5;	
+	background-color:#e0dfdf;	
 }
 .user
 {
-	color: red;	
+	
 }
 .content{
-	color:red;
+	
 }
 .message{
-	color:red;
+	
+}
+.new_board_form{
+}
+.fieldWrapper
+{
+	
+}
+.new_message_form{
+	
+}
+.new_topic_form
+{
+	
+}
+.footer{
+
+}
+.new_topic
+{
+
+}
+.button
+{
+	background-color: blue;
 }
 a{color:black;}
