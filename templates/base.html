@@ -18,8 +18,15 @@
 		       <header id="header">			  
 				  <div id='banner'> </div>
 				  <div id='cart_small' class="top_button"><a href="/koszyk/">Koszyk</a></div>	  
-				  <div id='register' class="top_button"><a href="/rejestracja/">Rejestracja</a></div>
-				  <div id='login' class="top_button"><a href="/accounts/login/">Logowanie</a></div>
+				  
+				{% if user.username %}
+        		
+        		<div id='logout' class="top_button"><a href="/accounts/logout/">Wyloguj</a></div>
+        		{% else %}
+        		<div id='register' class="top_button"><a href="/rejestracja/">Rejestracja</a></div>
+        		<div id='login' class="top_button"><a href="/accounts/login/">Logowanie</a></div>
+        		{% endif %}
+				  
 				  <div class="empty">&nbsp;</div>
 				  <nav>
     				<div id='menubar_top'>
