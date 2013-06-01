@@ -1,10 +1,12 @@
 #list{
-	background-color:#ece8e9;
+	background-color:#edecec;
 }
 .breadcrumbs
 {
 	border:1px;
-	background-color: blue;
+	background-color: #d3d1d2;
+	height:20px;
+	color:black;
 }
 .topic_title
 {
@@ -12,7 +14,7 @@
 }
 .header
 {
-	background-color: green;	
+	background-color:#e6e4e5;	
 }
 .user
 {
@@ -24,3 +26,4 @@
 .message{
 	color:red;
 }
+a{color:black;}
