@@ -16,7 +16,7 @@ from eshop.models import ShoppingCart, ProductWatcher
 from ordermanager.models import Order, OrderStatus, OrderItem
 from auction.models import Bid
 from core.models import ShopUser, Image
-from customerpanel.forms import RegisterForm
+from customerpanel.forms import RegisterForm, EditUserForm
 from ordermanager.forms import OrderForm
 
 class CustomerPanel:
@@ -92,7 +92,32 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def show_panel(cls,request):
-        raise NotImplemented
+        if request.method == "POST":
+            form = EditUserForm(request.POST)
+            if form.is_valid():
+                first_name = form.cleaned_data["first_name"]
+                last_name = form.cleaned_data["last_name"]
+                email = form.cleaned_data["email"]
+                
+                user = User.objects.get(pk=request.user.pk)
+                user.email = email
+                user.first_name = first_name
+                user.last_name = last_name
+                user.save()
+                
+                shop_user = ShopUser.objects.get(user__pk=user.pk)
+                shop_user.address = form.cleaned_data["address"]
+                shop_user.organisation = form.cleaned_data["organisation"]
+                shop_user.tax_id = form.cleaned_data["tax_id"]
+                shop_user.save()
+                
+                return HttpResponseRedirect("/accounts/logout/")
+            else:
+                return render_to_response("customerpanel.html", {'form': form}, context_instance=RequestContext(request))
+        else:
+            form = EditUserForm()
+            return render_to_response("customerpanel.html", {'form': form}, context_instance=RequestContext(request))
+            
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
