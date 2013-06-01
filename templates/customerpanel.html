@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshopitem_detail.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block sidebar %}
+<aside id="side_menu" class="side_menu_container">
+  <div id='side_menu_title'>
+    Moje konto
+  </div>
+  <nav>
+      
+      <div class='side_menu_item'>
+        <a href='/obserwowane/'>Obserwowane produkty</a>
+      </div>
+      <div class='side_menu_item'>
+        <a href='/obserwowane/'>Historia zamówień</a>
+      </div>
+      <div class='side_menu_item'>
+        <a href='/aukcje/dodaj/'>Wystaw aukcję</a>
+      </div>
+ 
+  </nav>
+</aside>
+{% endblock %}
+
+{% block content %}
+
+{% endblock %}
