@@ -219,3 +219,19 @@
 #eshop_comment_content{
 	background-color:blue;
 }
+
+#eshop_print_page
+{
+	width:130px;
+	height:30px;
+	float:right;
+	background-color:#62a28c;
+	box-shadow: 4px 4px 10px rgb(102, 102, 102);
+	border-radius: 12px 12px 12px 12px;
+	margin-right:20px;
+	margin-top:15px;
+	text-align:center;
+	padding-top:10px;
+	font-size:105%;
+	font-weight:bold;
+}
