@@ -7,7 +7,7 @@
 
 {% block content %}
 <div id="list">
-	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a>><a href="/forum/{{ board.pk }}">{{ board.name }}</a>>
+	<div class="breadcrumbs"><a href="/forum/" >Strona główna forum</a>><a href="/forum/{{ board.pk }}">{{ board.name }}</a>>
 		<a href="/forum/{{ board.pk }}/{{ topic.pk }}">{{ topic.title }}</a>>Widok pojednynczego posta</div>
 		
 		<p class="topic_title">{{ topic.title }}</p>
@@ -15,31 +15,18 @@
     		<tr class="header">				 	
        			<td width="100">Dodany przez</td>
         		<td></td>
-
-    		</tr>
-			
+    		</tr>		
     			<tr>
         			<td class="user">
         			{{ message.submitted_by.user.username }}
         			</td>
         			<td class="content">{{ message.content }}</td>    
-
-   				</tr>
-   		
+   				</tr>   		
     	</table>
-
 </div>
 {% endblock %}
-
-
-
-
 <div id="list">
-
 Message detail
-
         <div class="message">{{ message.content }}
             </div>
-        
-
 </div>

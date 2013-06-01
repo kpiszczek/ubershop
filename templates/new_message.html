@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a>><a href="/forum/{{ board.pk }}">{{ board.name }}</a>>
+	<div class="breadcrumbs"><a href="/forum/" style="color:black;">Strona główna forum</a>><a href="/forum/{{ board.pk }}">{{ board.name }}</a>>
 		<a href="/forum/{{ board.pk }}/{{ topic.pk }}">{{ topic.title }}</a></div>
 		
 		<p class="topic_title">Odpowiedź w temacie: {{ topic.title }}</p>

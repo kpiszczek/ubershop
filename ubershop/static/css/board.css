@@ -1,0 +1,53 @@
+#list{
+	background-color:#edecec;
+}
+.breadcrumbs
+{
+	border:1px;
+	background-color: #d3d1d2;
+	height:20px;
+	color:black;
+}
+.topic_title
+{
+	color: black;
+}
+.header
+{
+	background-color:#e0dfdf;	
+}
+.user
+{
+	
+}
+.content{
+	
+}
+.message{
+	
+}
+.new_board_form{
+}
+.fieldWrapper
+{
+	
+}
+.new_message_form{
+	
+}
+.new_topic_form
+{
+	
+}
+.footer{
+
+}
+.new_topic
+{
+
+}
+.button
+{
+	background-color: blue;
+}
+a{color:black;}
