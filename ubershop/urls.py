@@ -4,7 +4,7 @@ from django.conf import settings
 
 from eshop.views import EShopView
 from auction.views import AuctionView, inject_bid_form
-from base.views import inject_search_form
+from base.views import inject_search_form, BaseView
 from groupbuy.views import GroupBuyView
 
 from board.views import BoardView
@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     # url(r'^ubershop/', include('ubershop.foo.urls')),
     
     url(r'^home/$','core.views.home_page'),
+    url(r'^home/szukaj/$', BaseView.search_item),
     url(r'^home/kontakt/$','core.views.contact'),
    
     
@@ -80,6 +81,7 @@ urlpatterns = patterns('',
     url(r'^aukcje_historia/$', CustomerPanel.auction_history),
     url(r'^obserwowane/$', CustomerPanel.watched_products),
     url(r'^aukcje/dodaj/$', CustomerPanel.add_auction),
+    url(r'^panel_klienta/$', CustomerPanel.show_panel),
     
     
     # Uncomment the admin/doc line below to enable admin documentation:
