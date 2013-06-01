@@ -1,0 +1,12 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/login.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div class="login_message">
+<P>Zalogowano pomyślne. Wróć na <a href="/home/">stronę główną</a>, lub <a href="/panel_klienta/">wyświetl panel użytkownika</a></P>
+</div>
+{% endblock %}
