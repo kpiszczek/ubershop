@@ -169,7 +169,7 @@
 	position:relative;
 	margin-top:15px;
 	width:740px;
-	height:200px;
+	height:300px;
 	float:left;
 	background-color:#eaede7;
 	box-shadow: 4px 4px 10px rgb(102, 102, 102);
@@ -177,7 +177,7 @@
 .eshop_gallery_entry{
 	position:relative;
 	width:400px;
-	height:100px;
+	height:200px;
 	float:left;
 	margin-top:10px;
 	margin-left:10px;
@@ -185,12 +185,13 @@
 	margin-bottom: 10px;
 }
 #eshop_comments{
-	position:relative;
-	margin-top:15px;
-	width:740px;
-	height:50px;
+	background-color:#eaede7;
+    position: relative;  
+    width: 740px;
+    height: 258px;
+    border-radius: 12px 12px 12px 12px;
+    box-shadow: 4px 4px 10px rgb(102, 102, 102);
 	float:left;
-	background-color:black;
-	box-shadow: 4px 4px 10px rgb(102, 102, 102);
+	margin-top: 15px;
 }
 
