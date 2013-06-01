@@ -1,8 +1,8 @@
 .empty{clear:both}body{background-color:#f2f2f2;
 text-align:center;margin:0}
-a{color:#fff;text-decoration:none}
+a{color:#5f9281;text-decoration:none}
 a:hover{color:#002f32;text-decoration:none}
-a:visited{text-decoration:none;color:#fff}
+a:visited{text-decoration:none;color:#5f9281}
 #main{position:relative;top:0;left:0;margin:0 auto;width:960px;text-align:left;
 font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;font-size:14px}
 header{top:0;position:relative;height:80px;z-index:1}
