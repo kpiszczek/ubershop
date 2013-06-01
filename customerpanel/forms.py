@@ -14,6 +14,7 @@ class RegisterForm(forms.Form):
     
 class EditUserForm(forms.Form):
     email = forms.EmailField()
+    password = forms.CharField(widget=forms.PasswordInput)
     first_name = forms.CharField()
     last_name = forms.CharField()
     address = forms.CharField(widget=forms.Textarea)

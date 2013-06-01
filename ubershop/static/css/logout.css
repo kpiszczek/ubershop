@@ -1,0 +1,14 @@
+#content_container
+{
+	position:relative;
+	top:50px;
+	width:740px;
+	min-height: 300px;
+	
+}
+.logout_message
+{
+	margin-top:40px;
+	text-align:center;
+}
+

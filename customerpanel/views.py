@@ -98,8 +98,10 @@ class CustomerPanel:
                 first_name = form.cleaned_data["first_name"]
                 last_name = form.cleaned_data["last_name"]
                 email = form.cleaned_data["email"]
+                password = form.cleaned_data["password"]
                 
                 user = User.objects.get(pk=request.user.pk)
+                user.set_password(password)
                 user.email = email
                 user.first_name = first_name
                 user.last_name = last_name
