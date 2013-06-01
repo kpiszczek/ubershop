@@ -61,7 +61,18 @@ class BaseView():
                                   {"items": items, "categories": cls.get_categories(),
                                    'search_form': search_form},
                                   context_instance=RequestContext(request))
-    
+    @classmethod
+    def category(cls, request, id, page=0):
+        items = cls.model.objects.filter(base__categories__pk=id)
+        items = cls.model.objects.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
+        
+        next_page = page+1 if len(items) == 15 else None
+        prev_page = page-1 if page > 0 else None
+        
+        return render_to_response("%s_list.html" % cls.model.__name__.lower(),
+                                  {"items": items, "prev_page": prev_page, "next_page": next_page,
+                                   "categories": cls.get_categories(), "search_form": SearchForm()},
+                                  context_instance=RequestContext(request))  
     @classmethod
     @method_decorator(inject_search_form)   
     def show_item(cls, request, id, injected=None):
