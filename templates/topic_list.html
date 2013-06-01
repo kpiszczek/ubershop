@@ -1,12 +1,36 @@
-<div id="list">
+{% extends "board_base.html" %}
 
-Board: {{ board.name }}, Topics:
-    {% for topic in topics %}
+{% block title_suffix %} Forum - {{ board.name }}{% endblock %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/board.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div id="list">
+	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a>><a href="{{ board.pk }}">{{ board.name }}</a></div>
+		<table border="0" cellpadding="4" width="100%">
+    		<tr class="header">				 	
+       			<td>Temat</td>
+        		<td>Utworzony przez</td>
+        		<td>Data</td>
+    		</tr>
+			
+    		{% for topic in topics %}
+    			<tr>
+        			<td >
+        			<div class="topic_title"><a href="{{ topic.pk }}">{{ topic.title }}</a></div>
+        			</td>
+        			<td>{{ topic.created_by }}</td>
+        			<td>{{ topic.date }}</td>
         
-        <div class="message"><a href="{{ topic.pk }}">link</a>{{ topic.title }}
-            </div>
-        
-       
-    {% endfor %}
-    <a href="nowy_temat">Nowy Temat</a>
+        			<td>
+            		<a class="button" href="{{ topic.pk }}">Wyświetl temat</a>
+        			</td>
+   					</tr>
+
+    		{% endfor %}
+    	</table>
+    	<div class="new_topic"><a href="nowy_temat">Nowy temat</a></div>
 </div>
+{% endblock %}

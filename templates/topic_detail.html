@@ -1,12 +1,41 @@
-<div id="list">
+{% extends "board_base.html" %}
+{% block title_suffix %} Forum - {{ board.name }} - {{ topic.title }}{% endblock %}
 
-Topic: {{ topic }}
-    {% for message in messages %}
-        
-        <div class="message"><a href="{{ message.pk }}">single post link </a>{{ message.content }}
-            </div>
-        
-       
-    {% endfor %}
-    <a href="nowy_post/">Nowy POST</a>
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/board.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div id="list">
+	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a>><a href="{{ board.pk }}">{{ board.name }}</a>>
+		<a href="{{ topic.pk }}">{{ topic.title }}</a></div>
+		
+		<p class="topic_title">{{ topic.title }}</p>
+		<table border="0" cellpadding="4" width="100%">
+    		<tr class="header">				 	
+       			<td width="100">Dodany przez</td>
+        		<td></td>
+
+    		</tr>
+			
+    		{% for message in messages %}
+    			<tr>
+        			<td class="user">
+        			{{ message.submitted_by.user.username }}
+        			</td>
+        			<td class="content">{{ message.content }}</td>    
+
+   				</tr>
+   				
+			<tr class="footer">				 	
+       			<td></td>
+        		<td><a href="{{ message.pk }}">Widok pojedynczego postu</a></td>
+    		</tr>
+    		{% endfor %}
+    		
+    	</table>
+    	<div class="new_topic"><a href="nowy_post/">Nowy POST</a></div>
 </div>
+{% endblock %}
+
+

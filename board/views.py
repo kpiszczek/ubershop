@@ -11,6 +11,7 @@ from django.utils.decorators import method_decorator
 
 from board.forms import TopicForm, MessageForm, BoardForm
 from board.models import Board, Message, Topic
+from core.models import ShopUser
 
 class BoardView():
     @classmethod
@@ -26,11 +27,12 @@ class BoardView():
     def show_topic(cls, request, board_id, topic_id):
         # DZIALA
         messages = Message.objects.filter(topic__pk=topic_id)
-        topic_item = Topic.objects.get(pk=topic_id)
-        topic = topic_item.title
-        topic_id = topic_item.pk
+        topic = Topic.objects.get(pk=topic_id)
+        #topic = topic_item.title
+        topic_id = topic.pk
+        board=Board.objects.get(pk=board_id)
         return render_to_response("topic_detail.html", 
-                                  {'messages':messages, 'topic': topic, 'topic_id': topic_id},
+                                  {'messages':messages, 'topic': topic, 'topic_id': topic_id, 'board': board},
                                   context_instance=RequestContext(request))
 
     
@@ -38,8 +40,10 @@ class BoardView():
     def show_message(cls, request, board_id, topic_id, message_id):
         # DZIALA
         message = Message.objects.get(pk=message_id)
+        topic = Topic.objects.get(pk=topic_id)
+        board=Board.objects.get(pk=board_id)
         return render_to_response("message_detail.html", 
-                                  {'message':message},
+                                  {'message':message, 'topic': topic, 'board': board},
                                   context_instance=RequestContext(request))
 
     @classmethod
@@ -60,8 +64,9 @@ class BoardView():
                 title = request.POST['title']
                 board = Board.objects.get(pk=board_id)
                 date = datetime.now()
+                created_by = ShopUser.objects.get(user__pk=request.user.pk)
                 #created_by=request.user
-                new_topic = Topic(title=title, board=board, date=date, is_active=True)
+                new_topic = Topic(title=title, board=board, created_by=created_by, date=date, is_active=True)
                 #new_topic=Topic(title=title, board=board, created_by=created_by, date=date, is_active=True)            
                 new_topic.save()
                 return HttpResponseRedirect("/forum/%s/%s/" % (board_id, new_topic.pk))
@@ -99,7 +104,8 @@ class BoardView():
                 submitted_by = request.user
                 topic = Topic.objects.get(pk=topic_id)
                 submission_date = datetime.now()
-                new_message = Message(topic=topic, submission_date=submission_date, content=content)
+                submitted_by=ShopUser.objects.get(user__pk=request.user.pk)
+                new_message = Message(topic=topic, submitted_by=submitted_by, submission_date=submission_date, content=content)
                 #new_message=Message(topic=topic, submitted_by=submitted_by, submission_date=submission_date, content=content)
                 new_message.save()
 
