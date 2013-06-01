@@ -7,15 +7,13 @@
 
 {% block content %}
 
-<div id="list" >
+<div id="list" style="margin-top:50px">
 
 
     {% for item in cart.items.all %}
         
-        <div class="title"><a href="/sklep/{{ item.id }}">{{ item.item.name }}</a>
-            </div>
-        
-       
+       <p><a href="/sklep/{{ item.id }}">{{ item.item.name }}</a>, {{ item.item.price }}</p>
+
     {% endfor %}
 <p><a href="/kasa/">Zamawiam</a>  </p>  
 </div>
