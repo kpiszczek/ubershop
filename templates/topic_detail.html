@@ -19,8 +19,8 @@
     		</tr>
 			
     		{% for message in messages %}
-    			<tr>
-        			<td class="user">
+    			<tr class="user">
+        			<td >
         			{{ message.submitted_by.user.username }}
         			</td>
         			<td class="content">{{ message.content }}</td>    

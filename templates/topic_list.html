@@ -17,12 +17,12 @@
     		</tr>
 			
     		{% for topic in topics %}
-    			<tr>
-        			<td >
-        			<div class="topic_title"><a href="{{ topic.pk }}">{{ topic.title }}</a></div>
+    			<tr class="topic_title">
+        			<td class="topic_title"
+        			><a href="{{ topic.pk }}">{{ topic.title }}</a>
         			</td>
-        			<td>{{ topic.created_by }}</td>
-        			<td>{{ topic.date }}</td>
+        			<td class="topic_title">{{ topic.created_by }}</td>
+        			<td class="topic_title">{{ topic.date }}</td>
         
         			<td>
             		<a class="button" href="{{ topic.pk }}">Wyświetl temat</a>

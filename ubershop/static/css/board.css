@@ -12,25 +12,34 @@
 }
 .breadcrumbs
 {
+	background-color:red;
 	border:1px;
-	background-color:#afa9a9;
 	height:28px;
 	color:black;
 	padding-top:12px;
 	padding-left:10px;
 	font-weight:bold;
-	background: -webkit-gradient(linear, left bottom, left top , from(#605f5f), to(#cbc9c9));
+	background: -webkit-gradient(linear, left bottom, left top , from(#034a4f), to(#05767e));
 	
 }
 
 
 .topic_title
 {
-	color: black;
+	color:black;
+	background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#dad7d7));
+	height:27px;
+	padding-left:15px;	
+	weight: 740;
+	font-weight:bold;
+	padding-top:8px;
 }
 .header
 {
-	
+	padding-top:5px;
+	padding-left:5px;
+	padding-bottom:5px;
+	padding-right:5px;
 	height:35px;
 	color:black;
 	weight: 740;
@@ -46,11 +55,18 @@
 	weight: 740;
 	
 }
-.user
-{
-	
+.user{
+	background-color:#e0dfdf;	
+	padding-top:5px;
+	padding-left:5px;
+	padding-bottom:5px;
+	padding-right:5px;
 }
 .content{
+	padding-top:5px;
+	padding-left:5px;
+	padding-bottom:5px;
+	padding-right:5px;
 	
 }
 .message{
@@ -72,29 +88,43 @@
 	padding-top:8px;
 }
 .new_message_form{
-	
+	float:left;
 }
 .new_topic_form
 {
-	
+	margin-top:20px;
+	height:37px;
+	background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#dad7d7));
+	padding-top:13px;
+	padding-left: 15px;
+	font-weight: bold;
 }
 .footer{
-
+background-color:#e0dfdf;	
 }
 .new_topic
 {
+	height:27px;
+	padding-left:15px;	
 
+	font-weight:bold;
+	padding-top:8px;
+	color:#282828;
+	margin-top:5px;
+background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#dad7d7));
 }
 .button
 {
-	background-color:#afa9a9;
-	height:25px;
+	background-color:#028389;
+	height:23px;
 	color:black;
 	float:right;
 	margin-right:20px;	
 	padding-left:5px;
 	padding-right:5px;
-	padding-top:5px;
+	padding-top:7px;
 	font-size:85%;
+	font-weight:bold;
 }
 a{color:#282828;}
+
