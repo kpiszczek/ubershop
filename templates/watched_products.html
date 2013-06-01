@@ -21,6 +21,9 @@
       <div class='side_menu_item'>
         <a href='/aukcje/dodaj/'>Wystaw aukcję</a>
       </div>
+      <div class='side_menu_item'>
+        <a href='/aukcje_historia/'>Wystawione aukcje</a>
+      </div>
  
   </nav>
 </aside>
@@ -30,15 +33,14 @@
 
 <div id="list" style="margin-top: 50px; min-height: 300px">
 
-	<P>watched products</P>
+	<P>Obserwowane produkty</P>
+	<ol>
     {% for item in list %}
         
-        <p> pk: {{ item.pk }}</p>
-           
-        
-       
+        <li><a href="/sklep/{{ item.id }}">{{ item.product.base.name }}</a>. Cena: {{ item.product.price }} zł</li>
+
     {% endfor %}
-   
+   </ol>
 </div>
 
 {% endblock %}
