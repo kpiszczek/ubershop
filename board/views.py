@@ -73,8 +73,9 @@ class BoardView():
         
         else:
             topic_form = TopicForm()
+            board=Board.objects.get(pk=board_id)
         return render_to_response('new_topic.html', 
-                                  {'topic_form': topic_form}, 
+                                  {'topic_form': topic_form, 'board': board}, 
                                   context_instance=RequestContext(request))
    
     @classmethod
@@ -109,11 +110,13 @@ class BoardView():
                 #new_message=Message(topic=topic, submitted_by=submitted_by, submission_date=submission_date, content=content)
                 new_message.save()
 
-                return HttpResponseRedirect("/forum/%s/%s/%s/" % (board_id, topic_id, new_message.pk))
+                return HttpResponseRedirect("/forum/%s/%s/" % (board_id, topic_id))
         else:
             message_form = MessageForm()
+            topic = Topic.objects.get(pk=topic_id)
+            board=Board.objects.get(pk=board_id)
         return render_to_response('new_message.html', 
-                                  {'message_form': message_form}, 
+                                  {'message_form': message_form, 'board': board, 'topic': topic}, 
                                   context_instance=RequestContext(request))
         #raise NotImplemented
     

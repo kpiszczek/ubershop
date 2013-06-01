@@ -9,10 +9,20 @@
 {% block content %}
 <div id="list">
 	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a>>Nowy dział</div>
+		
+		<div class="new_board_form">
 		<form method="post">{% csrf_token %}
+			
+			{{ board_form.non_field_errors }}
+    		<div class="fieldWrapper">
+        	{{ board_form.title.errors }}
+        	<label for="id_subject">Nazwa działu:</label>
+        	{{ board_form.title }}
+    		</div>
 		{{ board_form.as_p }}
 		<input type="submit" value="Utwórz dział" />
 		</form>
+		</div>
 		
 </div>
 {% endblock %}
