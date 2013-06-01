@@ -1,4 +1,24 @@
-<form method="post">{% csrf_token %}
-{{ message_form.as_table }}
-<input type="submit" value="zapisz" />
-</form>
+{% extends "board_base.html" %}
+{% block title_suffix %} Forum - {{ board.name }} - {{ topic.title }} - nowy post{% endblock %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/board.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+	<div class="breadcrumbs"><a href="/forum/">Strona główna forum</a>><a href="/forum/{{ board.pk }}">{{ board.name }}</a>>
+		<a href="/forum/{{ board.pk }}/{{ topic.pk }}">{{ topic.title }}</a></div>
+		
+		<p class="topic_title">Odpowiedź w temacie: {{ topic.title }}</p>
+		<div class="new_message_form">
+		<form method="post">{% csrf_token %}
+			{{ message_form.as_table }}
+			<input type="submit" value="zapisz" />
+		</form>
+		</div>
+{% endblock %}
+
+
+
+
+
