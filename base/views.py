@@ -67,6 +67,11 @@ class BaseView():
                                   {"items": items, "categories": cls.get_categories(),
                                    'search_form': search_form},
                                   context_instance=RequestContext(request))
+            else: 
+                return render_to_response("%s_list.html" % cls.model.__name__.lower(),
+                                  {"items": [], "categories": cls.get_categories(),
+                                   'search_form': search_form},
+                                  context_instance=RequestContext(request))
     @classmethod
     def category(cls, request, id, page=0):
         items = cls.model.objects.filter(base__categories__pk=id)
