@@ -23,16 +23,16 @@
     	<label >Cena:</label>
       {{ item.price }}
     </div>
-    <div id='eshop_cart_form_wrapper'>
+    <div id='eshop_cart_form_wrapper' class="eshop_cart_form_wrapper">
       <form id='cart_form' name='cart_form' action="dodaj/" method='post' accept-charset="utf-8">{% csrf_token %}
-        <p id='cart_input_wrapper'>
-          <input value='Do koszyka' id='cart_input' type='submit'/>
+        <p id='cart_input_wrapper' class="cart_input_wrapper">
+          <input value='Do koszyka' id='cart_input' type='submit' class="cart_input"/>
           <p id='cart_submit_info'>{{ cart_form.info }}</p>
         </p>
       </form>
      <form id='compare_form' name='compare_form' action="porownaj/" method='post' accept-charset="utf-8">{% csrf_token %}
-        <p id='compare_input_wrapper'>
-          <input value='Dodaj do porównania' id='compare_input' type='submit'/>
+        <p id='compare_input_wrapper' class="cart_input_wrapper">
+          <input value='Dodaj do porównania' id='compare_input' type='submit' class="cart_input_compare"/>
           <p id='compare_submit_info'>{{ compare_form.info }}</p>
         </p>
       </form>
@@ -101,9 +101,9 @@
    
     {% endfor %}
     </table>
-    <form method="post" action="komentuj/" accept-charset="utf-8">{% csrf_token %}                  
+    <form method="post" action="komentuj/" accept-charset="utf-8" class="new_message_form">{% csrf_token %}                  
         {{ comment_form.as_p }}
-        <input type="submit" value="Komentuj" />
+        <input type="submit" value="Komentuj" class="comment_buton" />
     </form>
   </div>
   <div id='eshop_print_page'>
