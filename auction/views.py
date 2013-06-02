@@ -32,7 +32,7 @@ class AuctionView(BaseView):
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
-    def auction_panel(cls, request, id):
+    def auction_edit(cls, request, id):
         auction = AuctionItem.objects.get(pk=id)
         base = auction.base
         if request.method == "POST":
@@ -56,7 +56,7 @@ class AuctionView(BaseView):
                                     "planned_close_date": auction.planned_close_date,
                                     "reserve_price": auction.reserve_price
                                     })
-            return render_to_response("edit_auction.html", {"form": form},
+            return render_to_response("auction_edit.html", {"form": form},
                                       context_instance=RequestContext(request))
             
     
