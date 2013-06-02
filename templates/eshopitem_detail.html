@@ -3,6 +3,7 @@
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/eshopitem_detail.css" rel="stylesheet" type="text/css"/>
+
 {% endblock %}
 
 {% block content %}
@@ -85,22 +86,21 @@
     <div id='eshop_comments_label'>
       Opinie:
     </div>
-    <div id='eshop_comments_line'>
+    <!--<div id='eshop_comments_line'>
       &nbsp;
-    </div>
+    </div>-->
+    <table class="table_form">
     {% for comment in comments %}
-    <div id='eshop_comment_wrapper' class='eshop_comment_wrapper_class'>
-      <div id='eshop_comment_user'>
-        {{ comment.submitted_by }}
-      </div>
-      <div id='eshop_comment_date'>
-        {{ comment.submission_date }}
-      </div>
-      <div id='eshop_comment_content'>
-        {{ comment.content }}
-      </div>
-    </div>
+    <tr class="user">
+    	<td>{{ comment.submitted_by }}</td>
+        			<td >
+        			{{ comment.submission_date }}
+        			</td>
+        			<td class="content">{{ comment.content }}</td>    
+   	</tr>
+   
     {% endfor %}
+    </table>
     <form method="post" action="komentuj/" accept-charset="utf-8">{% csrf_token %}                  
         {{ comment_form.as_p }}
         <input type="submit" value="Komentuj" />
