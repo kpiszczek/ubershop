@@ -9,6 +9,9 @@ class EShopItem(models.Model):
     availiability_status = models.ForeignKey('core.AvailiabilityStatus')
     current_stock = models.IntegerField()
     base = models.OneToOneField(BaseItem)
+    
+    def __str__(self):
+        return str(self.base.name)
 
 class ProductWatcher(models.Model):
     user = models.ForeignKey('core.ShopUser')

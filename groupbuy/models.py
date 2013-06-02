@@ -12,6 +12,9 @@ class GroupOffer(models.Model):
     current_num_buyers = models.IntegerField()
     base = models.OneToOneField(BaseItem)
     
+    def __str__(self):
+        return str(self.base.name)
+    
 class GroupOfferAdmin(admin.ModelAdmin):
     pass
 
