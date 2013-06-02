@@ -31,7 +31,7 @@
       </form>
      <form id='compare_form' name='compare_form' action="porownaj/" method='post' accept-charset="utf-8">{% csrf_token %}
         <p id='compare_input_wrapper'>
-          <input value='Porównaj' id='compare_input' type='submit'/>
+          <input value='Dodaj do porównania' id='compare_input' type='submit'/>
           <p id='compare_submit_info'>{{ compare_form.info }}</p>
         </p>
       </form>
@@ -101,6 +101,10 @@
       </div>
     </div>
     {% endfor %}
+    <form method="post" action="komentuj/" accept-charset="utf-8">{% csrf_token %}                  
+        {{ comment_form.as_p }}
+        <input type="submit" value="Komentuj" />
+    </form>
   </div>
   <div id='eshop_print_page'>
    <a href="get_pdf">Drukuj stronę</a>
