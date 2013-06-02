@@ -29,6 +29,12 @@
           <p id='cart_submit_info'>{{ cart_form.info }}</p>
         </p>
       </form>
+     <form id='compare_form' name='compare_form' action="porownaj/" method='post' accept-charset="utf-8">{% csrf_token %}
+        <p id='compare_input_wrapper'>
+          <input value='Porównaj' id='compare_input' type='submit'/>
+          <p id='compare_submit_info'>{{ compare_form.info }}</p>
+        </p>
+      </form>
     </div>
   </div>
  <div id='eshop_mid_panel'>

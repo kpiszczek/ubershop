@@ -60,17 +60,51 @@ class EShopView(BaseView):
         #raise NotImplemented
     
     @classmethod
-    def compare_items(cls, request, id1, id2):
+    def add_to_compare(cls, request, id):
+        id1 = request.session.get("id1", None)
+        id2 = request.session.get("id2", None)
+        
+        if id1 is not None and id2 is not None:
+            request.session["id1"] = request.session["id2"]
+            request.session["id2"] = id
+            return cls.compare_items(request)
+        
+        if id1 is None and id2 is None:
+            request.session["id1"] = id
+            request.session["id2"] = id
+            return cls.compare_items(request)
+        
+        if id1 is None:
+            request.session["id1"] = id
+            return cls.compare_items(request)
+        
+        if id2 is None:
+            request.session["id2"] = id
+            return cls.compare_items(request)
+        
+    @classmethod
+    def compare_items(cls, request):
         # DZIAŁA
-        item1 = EShopItem.objects.get(pk=id1)
-        item2 = EShopItem.objects.get(pk=id2)
+        id1 = request.session.get("id1", None)
+        id2 = request.session.get("id2", None)
         
-        prop1 = json.loads(item1.base.properties)
-        prop2 = json.loads(item2.base.properties)
-        
-        keys = set(prop1.keys()) & set(prop2.keys())
-        table = [[key, prop1[key], prop2[key]] for key in keys]
-        
+        if id1 is not None and id2 is not None:
+            item1 = EShopItem.objects.get(pk=id1)
+            item2 = EShopItem.objects.get(pk=id2)
+            
+            if item1.base.properties and item2.base.properties:
+                prop1 = json.loads(item1.base.properties)
+                prop2 = json.loads(item2.base.properties)
+                
+                keys = set(prop1.keys()) & set(prop2.keys())
+                table = [[key, prop1[key], prop2[key]] for key in keys]
+            else:
+                table = []            
+        else:
+            item1 = None
+            item2 = None
+            table = []
+            
         return render_to_response("eshop_compare.html", 
                                   {'item1': item1, 'item2': item2, 'table': table},
                                   context_instance=RequestContext(request))
