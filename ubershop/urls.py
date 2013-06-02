@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     # url(r'^ubershop/', include('ubershop.foo.urls')),
     
     url(r'^home/$','core.views.home_page'),
-    url(r'^home/szukaj/$', BaseView.search_item),
+    url(r'^home/szukaj/$', EShopView.search_item),
     url(r'^home/kontakt/$','core.views.contact'),
    
     

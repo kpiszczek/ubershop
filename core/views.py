@@ -1,17 +1,18 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from core.forms import SearchForm
+from base.forms import SearchForm
 from core.models import Category
 from eshop.models import EShopItem
 from board.models import Message
+from eshop.views import EShopView
 
 from django.contrib.auth.models import User
 
 def home_page(request):
     # DZIALA
     if request.method == "POST":
-        form = SearchForm(request.POST)       
+        return EShopView.search_item(request)     
     else:      
         form = SearchForm()
     categories = Category.objects.all()
