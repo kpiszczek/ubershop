@@ -1,3 +1,4 @@
+import json
 from datetime import datetime
 
 from django.shortcuts import render_to_response
@@ -8,7 +9,7 @@ from django.template import RequestContext
 
 from base.views import BaseView
 from auction.models import AuctionItem, Bid
-from auction.forms import AuctionForm, BidForm
+from auction.forms import AuctionForm, BidForm, EditAuctionForm
 from core.models import ShopUser
 
 def inject_bid_form(view):
@@ -31,8 +32,33 @@ class AuctionView(BaseView):
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
-    def auction_panel(cls, request):
-        raise NotImplemented
+    def auction_panel(cls, request, id):
+        auction = AuctionItem.objects.get(pk=id)
+        base = auction.base
+        if request.method == "POST":
+            form = EditAuctionForm(request.POST)
+            if form.is_valid():
+                pass
+        else:
+            fields = {}
+            for cat in base.categories.all():
+                try:
+                    fields.update(json.loads(cat.properties))
+                except Exception:
+                    pass
+            props = [str(key) + ": \n" for key in fields.keys()]
+            form = EditAuctionForm({"name": base.name,
+                                    "categories": base.categories,
+                                    "properties": props,
+                                    "thumb": base.thumb,
+                                    "image": base.images.all()[0],
+                                    "start_date": auction.start_date,
+                                    "planned_close_date": auction.planned_close_date,
+                                    "reserve_price": auction.reserve_price
+                                    })
+            return render_to_response("edit_auction.html", {"form": form},
+                                      context_instance=RequestContext(request))
+            
     
     @classmethod
     def bid_item(cls, request, id):

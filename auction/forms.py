@@ -17,3 +17,15 @@ class AuctionForm(forms.Form):
     planned_close_date = forms.DateTimeField(widget=forms.DateTimeInput)
     start_price = forms.DecimalField(max_digits=15,decimal_places=2)
     reserve_price = forms.DecimalField(max_digits=15,decimal_places=2)
+    
+class EditAuctionForm(forms.Form):
+    name = forms.CharField()
+    categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all())
+    properties = forms.CharField(widget=forms.Textarea)
+    description = forms.CharField(widget=forms.Textarea)
+    thumb = forms.ImageField()
+    image = forms.ImageField()
+    start_date = forms.DateTimeField(widget=forms.DateTimeInput)
+    planned_close_date = forms.DateTimeField(widget=forms.DateTimeInput)
+    start_price = forms.DecimalField(max_digits=15,decimal_places=2)
+    reserve_price = forms.DecimalField(max_digits=15,decimal_places=2)
