@@ -1,7 +1,7 @@
 {% extends "auction_base.html" %}
 
 {% block css %}
-<link href="{{ STATIC_PREFIX }}css/auctionitem_detail.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/bid_history.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/auction_base.css" rel="stylesheet" type="text/css"/>
 
 {% endblock %}
@@ -11,13 +11,21 @@
 
 <div id="list">
 
-	<P>Historia ofert dla aukcji numer: {{ auction.pk }}</P>
+	<div id="list_title">Historia ofert dla aukcji numer: {{ auction.pk }}</div>
+	<table class="table_form">
+		<tr class="user">
+			<td>Data</td>
+			<td>Użytkownik</td>
+			<td>Oferta</td>
+		</tr>
     {% for bid in bid_history.all %}
-   
-        <p>{{ bid.date }}, użytkownik: {{ bid.user.user.username }}, oferta: {{ bid.price }} zł</p>
-
+   <tr class="user">
+    	<td>{{ bid.date }}</td>
+        			<td >{{ bid.user.user.username }}</td>
+        			<td>{{ bid.price }} zł</td>    
+   	</tr>
     {% endfor %}
-   
+   </table>
 </div>
 
 {% endblock %}

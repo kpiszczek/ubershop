@@ -1,0 +1,33 @@
+#content_container
+{
+	position:relative;
+	margin-top:50px;
+	width:740px;
+	min-height: 300px;
+	
+}
+#list{
+	background-color:#CECCCC;
+	
+}
+#list_title{
+	padding-left: 10px;
+	padding-top: 10px;
+	font-weight: bold;
+}
+.table_form
+{
+	margin-top:5px;
+	border:0px;
+	width:100%;
+	
+	
+}
+.user{
+	
+	background-color:#E0DFDF;		
+	padding-left:10px;
+	padding-bottom:5px;
+	padding-right:5px;
+	width:100px;
+}
