@@ -9,16 +9,37 @@
 {% block content %}
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
-</div>
-<section id='eshop_list' style="margin-top: 50px;min-height:250px;">
-  {% for item in items %}
-  <div class='eshop_item_entry'>
-    <img class='thumb' src='{{ item.thumb }}'/>
-    <a href='/grupowe/{{ item.id }}/'>{{ item.base.name }}</a>
-    <span class='price'>{{ item.price }}</span>
-    <span class='buyers'><a href="/grupowe/{{ item.pk }}/kupujacy/">Kupujący</a></span>
-    <span class='item_name'>{{ item.name }}</span>
-  </div>
-  {% endfor %}
-</section>
+   <div id='content_container'>
+
+          <!-- <div id='eshop_option'>
+              <a href="/all/"><div class='auction_option_item'> Wszystkie
+              </div></a>
+                <a href="/auction/"><div class='auction_option_item'>Aukcje
+              </div></a>
+               <a href="/buynow/"><div class='auction_option_item'> Kup teraz
+              </div></a>
+          </div> -->
+              <div id='list_content'>
+              	<div id='navigation'>
+                      Oferty Grupowe
+                      </div>
+                        <div id="listing_option">
+                          <div id='name' class='list_option_item'>Nazwa:</div>
+                          <div id='price' class='list_option_item'>Cena:</div>
+                          <div id='time' class='list_option_item'>Kupujący:</div>
+                       </div>
+                       <section id='eshop_list' >
+						  {% for item in items %}
+						  <div class='eshop_item_entry'>
+						    <img class='thumb' src='{{ item.thumb }}'/>
+						    <a href='/grupowe/{{ item.id }}/' class="item_name">{{ item.base.name }}</a>
+						    <span class='price'>{{ item.price }}</span>
+						    <span class='buyers'><a href="/grupowe/{{ item.pk }}/kupujacy/">Kupujący</a></span>
+						 	<span class='item_name'>{{ item.name }}</span>
+						  </div>
+						  {% endfor %}
+						</section>
+             </div>
+             </div>
+             </div>
 {% endblock %}
