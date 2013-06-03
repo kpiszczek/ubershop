@@ -114,10 +114,10 @@
 	background-color: #62a28c;
 }
 #name{
-	width: 350px;
+	width: 330px;
 }
 #price{
-	width: 170px;
+	width: 140px;
 }
 #time{
 	width: 160px;
@@ -155,18 +155,15 @@
 .item_name{
 	float: left;
 	font-weight: bold;
-	margin-top: 25px;
-	margin-left: 15px;
+	width:358px;
 	color:#62A28C;
+	padding-left:27px
 }
 .current_price{
 	float: left;
-	margin-left: 310px;
-	margin-top: 25px;
+	width: 123px;
 }
 .time_till_end{
-	float: right;
-	margin-right: 70px;
-	margin-top: 25px;
-}
+	float: left;
+	width: 200px;
 
