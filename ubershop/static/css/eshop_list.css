@@ -110,19 +110,17 @@
 .item_name{
 	float: left;
 	font-weight: bold;
-	margin-top: 25px;
-	margin-left: 15px;
+	width:378px;
 	color:#62A28C;
+	padding-left:27px
 }
 .price{
 	float: left;
-	margin-left: 310px;
-	margin-top: 25px;
+	width: 154px;
 }
 .buyers{
-	float: right;
-	margin-right: 110px;
-	margin-top: 25px;
+	float: left;
+	width: 100px;
 }
 .availiability{
 	float: right;
