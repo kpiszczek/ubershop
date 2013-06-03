@@ -7,13 +7,16 @@
 	
 }
 #list{
-	background-color:#CECCCC;
+	
 	
 }
 #list_title{
 	padding-left: 10px;
 	padding-top: 10px;
 	font-weight: bold;
+	font-size:110%;
+	background-color:#CECCCC;
+	height:30px;
 }
 .table_form
 {
@@ -22,12 +25,29 @@
 	width:100%;
 	
 	
+	
 }
 .user{
 	
 	background-color:#E0DFDF;		
+	padding-left:15px;
+	padding-bottom:5px;
+	padding-right:5px;
+	width:100%;
+	font-weight: bold;
+}
+.details{
+	background-color:#E0DFDF;		
 	padding-left:10px;
 	padding-bottom:5px;
 	padding-right:5px;
-	width:100px;
+	width:100%;
+	
+}
+.buyers_details{
+	background-color:#E0DFDF;		
+	padding-left:20px;
+	padding-bottom:5px;
+	padding-right:5px;
+	width:100%;
 }

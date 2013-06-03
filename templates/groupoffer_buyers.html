@@ -2,22 +2,29 @@
 
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
-<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/bid_history.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 
 {% block content %}
 <div id="list">
 
-	<P>Lista kupujących dla oferty nr: {{ offer.pk }}</P>
-	<ol>
+	<div id="list_title">Lista kupujących dla oferty nr: {{ offer.pk }}</div>
+	<table class="table_form">
+		<tr class="user">
+			<td></td>		
+			<td>Użytkownik</td>
+		</tr>
+		
     {% for item in buyers.all %}
-        
-        <p><li>{{ item.user.username }}</li></p>
-           
-
+   <tr class="buyers_details">
+   	<td></td>
+    	<td>{{ item.user.username }}</td>
+        			  
+   	</tr>
     {% endfor %}
-   </ol>
+   
+   </table>
 </div>
 {% endblock %}
 
