@@ -1,12 +1,14 @@
 #content_container{
 	position: relative;
 	top: 22px;
+	height:auto;
 }
 
 #list_content{
 	position: relative;
 	top:10px;
-	height: 260px;
+	height:250px;
+	
 	width: 738px;
 	margin-bottom: 70px;
 	background-color: rgb(235, 235, 235);
@@ -125,5 +127,22 @@
 .availiability{
 	float: left;
 	width: 100px;
+}
+#order{
+	margin-right:50px;
+	height: 30px;
+	float:right;
+	width:100px;
+	background-color:#FDF5E6;
+	border-radius: 12px 12px 12px 12px;	
+	border-style: solid;
+	border-color: rgb(172, 172, 172);
+	border-width: 1px;	
+	font-weight:bold;
+	font-size: 15px;	
+	color:#002F32;
+	padding-top: 5px;
+	text-align: center;
+	margin-top: -20px;
 }
 
