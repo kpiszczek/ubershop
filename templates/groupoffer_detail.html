@@ -1,0 +1,113 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshopitem_detail.css" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+{% block content %}
+<section id='eshop_item_page' style="margin-top: 50px">
+  <div id='eshop_title'>
+    {{ item.base.name }}
+  </div>
+  <div id='eshop_main_image'>
+    <img src="/mymedia/{{ item.base.images.all.0.image }}"/>
+  </div>
+  <div id='eshop_info_panel'>
+    <div id='eshop_availability'>
+    	<label >Dostępność:</label>
+      {{ item.availiability_status.name }}
+    </div>
+    <div id='eshop_price'>
+    	<label >Cena:</label>
+      {{ item.price }}
+    </div>
+    <div id='eshop_cart_form_wrapper' class="eshop_cart_form_wrapper">
+      <form id='cart_form' name='cart_form' action="dodaj/" method='post' accept-charset="utf-8">{% csrf_token %}
+        <p id='cart_input_wrapper' class="cart_input_wrapper">
+          <input value='Do koszyka' id='cart_input' type='submit' class="cart_input"/>
+          <p id='cart_submit_info'>{{ cart_form.info }}</p>
+        </p>
+      </form>
+     <form id='compare_form' name='compare_form' action="porownaj/" method='post' accept-charset="utf-8">{% csrf_token %}
+        <p id='compare_input_wrapper' class="cart_input_wrapper">
+          <input value='Dodaj do porównania' id='compare_input' type='submit' class="cart_input_compare"/>
+          <p id='compare_submit_info'>{{ compare_form.info }}</p>
+        </p>
+      </form>
+    </div>
+  </div>
+ <div id='eshop_mid_panel'>
+   <!-- <div id='eshop_mid_bids_subpanel'>
+      <div id='eshop_score'>
+        <div id='eshop_score_label'>
+          Ocena:
+        </div>
+        <div id='eshop_score_value'>
+          {{ item.mean_score }}
+        </div>
+       </div>
+       <div id'eshop_score_count'>
+         <div id='eshop_score_count_label'>
+          Ilość ocen:
+        </div>
+        <div id='eshop_score_count'>
+          {{ item.score_count }}
+        </div>   
+      </div>
+    </div>
+    <div id='eshop_mid_info_subpanel'>
+      <div id='eshop_shipment_methods'>
+        
+      </div>
+      <div id='eshop_query'>
+        
+      </div>
+    </div>-->
+ </div> 
+  <div id='eshop_description_wrapper'>
+    <div id='action_description_label'>
+      Opis:
+    </div>  
+    <div id='eshop_description'>
+      {{ item.base.description }}
+    </div>
+   </div>
+    <div id='eshop_gallery'>
+      {% for image in item.images %}
+      <div class='eshop_gallery_entry'>
+        <img class='eshop_gallery_image' src="/mymedia/{{ image.image }}"/>      
+      </div>
+      {% endfor %}
+    </div>
+  
+  <div id='eshop_comments'>
+    <div id='eshop_comments_label'>
+      Opinie:
+    </div>
+    <!--<div id='eshop_comments_line'>
+      &nbsp;
+    </div>-->
+    <table class="table_form">
+    {% for comment in comments %}
+    <tr class="user">
+    	<td>{{ comment.submitted_by }}</td>
+        			<td >
+        			{{ comment.submission_date }}
+        			</td>
+        			<td class="content">{{ comment.content }}</td>    
+   	</tr>
+   
+    {% endfor %}
+    </table>
+    <form method="post" action="komentuj/" accept-charset="utf-8" class="new_message_form">{% csrf_token %}                  
+        {{ comment_form.as_p }}
+        <input type="submit" value="Komentuj" class="comment_buton" />
+    </form>
+  </div>
+  <div id='eshop_print_page'>
+   <a href="get_pdf">Drukuj stronę</a>
+  </div>
+</section>
+{% endblock %}
