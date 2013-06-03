@@ -86,7 +86,7 @@
 }
 
 .eshop_item_entry{
-	width: 740px;
+	width: 732px;
 	top: 10px;	
 }
 #item{
@@ -99,12 +99,12 @@
 }
 #item:hover{background-color: #E6CCFF;
 }
-.tumb{
+.thumb{
 	float: left;
 	margin-right: 50px;
 	opacity: 0.8;
 }
-.tumb:hover{
+.thumb:hover{
 	opacity: 1;
 }
 .item_name{
@@ -120,6 +120,11 @@
 	margin-top: 25px;
 }
 .buyers{
+	float: right;
+	margin-right: 110px;
+	margin-top: 25px;
+}
+.availiability{
 	float: right;
 	margin-right: 110px;
 	margin-top: 25px;

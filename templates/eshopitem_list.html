@@ -9,15 +9,39 @@
 {% block content %}
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
-</div>
-<section id='eshop_list' style="margin-top: 50px;min-height:250px;">
-  {% for item in items %}
-  <div class='eshop_item_entry'>
-    <img class='thumb' src='{{ item.thumb }}'/>
-    <a href='/sklep/{{ item.id }}/'>{{ item.base.name }}</a>
-    <span class='price'>{{ item.price }}</span>
-    <span class='item_name'>{{ item.name }}</span>
-  </div>
-  {% endfor %}
-</section>
+   <div id='content_container'>
+
+          <!-- <div id='eshop_option'>
+              <a href="/all/"><div class='auction_option_item'> Wszystkie
+              </div></a>
+                <a href="/auction/"><div class='auction_option_item'>Aukcje
+              </div></a>
+               <a href="/buynow/"><div class='auction_option_item'> Kup teraz
+              </div></a>
+          </div> -->
+              <div id='list_content'>
+              	<div id='navigation'>
+                      Produkty
+                      </div>
+                        <div id="listing_option">
+                          <div id='name' class='list_option_item'>Nazwa:</div>
+                          <div id='price' class='list_option_item'>Cena:</div>
+                          <div id='time' class='list_option_item'>Dostępność:</div>
+                       </div>
+                       <section id='eshop_list' >
+                       	<ol>
+						  {% for item in items %}
+						  <li><div class='eshop_item_entry'>
+						    <!--<img class='thumb' src='{{ item.thumb }}'/>-->
+						    <span><a href='/sklep/{{ item.id }}/' class="item_name">{{ item.base.name }}</a></span>
+						    <span class='price'>{{ item.price }}</span>
+						    <span class='availiability'>{{ item.availiability_status.name }}</span>
+						 	<!--<span class='item_name'>{{ item.name }}</span>-->
+						  </div></li>
+						  {% endfor %}
+						 </ol>
+						</section>
+             </div>
+             </div>
+             </div>
 {% endblock %}
