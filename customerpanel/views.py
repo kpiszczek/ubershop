@@ -223,6 +223,7 @@ class CustomerPanel:
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def checkout(cls,request):
+        data = {'search_form': SearchForm(), 'categories': BaseView.get_categories()}
         cart = ShoppingCart.objects.get(user__user__pk=request.user.pk)
         if request.method == "POST":
             order_form = OrderForm(request.POST)
@@ -243,8 +244,10 @@ class CustomerPanel:
                 
                 return render_to_response("thankyou.html", {},
                                           context_instance=RequestContext(request))
-            return render_to_response("checkout.html",{"order_form": order_form},
+            data["order_form"] = order_form
+            return render_to_response("checkout.html",data,
                                       context_instance=RequestContext(request))
         else:
-            return render_to_response("checkout.html",{"order_form": OrderForm()},
+            data["order_form"] = OrderForm()
+            return render_to_response("checkout.html",data,
                                       context_instance=RequestContext(request))
