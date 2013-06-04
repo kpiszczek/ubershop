@@ -17,18 +17,28 @@
                           <div id='time' class='list_option_item'>Usuń:</div>
                        </div>
                        <div id='eshop_list' >
-                           {% for form in formset %}
-                               {{ form.as_p }}
-                           {% endfor %}
-						  {% for item in cart.items.all %}
+                          <form method="post" action="przelicz/">
+                          {% for item, form in data %}
 						  <div class='eshop_item_entry'>
-						    <img class='thumb' src='{{ item.thumb }}'/>
-						    <a href="/sklep/{{ item.id }}" class="item_name">{{ item.item.name }}</a>
-						    <span class='price'>{{ item.item.price }}</span>
-						    <span class='buyers'><a href="/grupowe/{{ item.pk }}/kupujacy/">button usuń</a></span>
-						 	<!--<span class='item_name'>{{ item.name }}</span> -->
+						    <img class='thumb' src='{{ item.base.thumb }}'/>
+						    {% if item.type == "eshop" %}
+						      <a href="/sklep/{{ item.concrete.id }}" class="item_name">{{ item.base.name }}</a>
+						    {% endif %}
+						    {% if item.type == "group" %}
+                              <a href="/grupowe/{{ item.concrete.id }}" class="item_name">{{ item.base.name }}</a>
+                            {% endif %}
+						    <span class='price'>{{ item.concrete.price }}</span>
+						 	<div class='cart_form_field'>
+                               <span class='form_error'>{{ form.quantity.errors }}</span>
+                               <label for='id_username'>ilość:</label>
+                                {{ form.quantity }}
+                            </div>
 						  </div>
-						  {% endfor %}						
+						  {% endfor %}
+    						  <div class="submit_wrapper">
+                                <input class="button" type="submit" value="Przelicz" />
+                              </div>
+						  </form>						
 						</div>
 						
 						 
