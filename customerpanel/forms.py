@@ -1,4 +1,6 @@
 from django import forms
+from django.forms.formsets import formset_factory
+
 from core.models import ShopUser
 
 class RegisterForm(forms.Form):
@@ -21,3 +23,7 @@ class EditUserForm(forms.Form):
     organisation = forms.CharField(required=False, widget=forms.Textarea)
     tax_id = forms.CharField(required=False)
     
+class CartItemForm(form.Form):
+    quantity = forms.IntegerField()
+    
+CartFormset = formset_factory(CartItemForm)
