@@ -86,7 +86,6 @@ class CustomerPanel:
                 
                 return HttpResponseRedirect("/aukcje/%s/" % str(auction.pk))
             else:
-                raise Http404(form._errors)
                 return render_to_response("auction_add.html", {'form': form},
                                       context_instance=RequestContext(request))
         else:
