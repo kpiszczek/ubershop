@@ -154,9 +154,13 @@ class CustomerPanel:
             
         formset = CartFormset(initial=formset_data)
         data = zip(cart_items, formset)
+        
+        total = sum([float(item.concrete.price) for item in cart_items])
+        total = "%.2f" % total
+        
         return render_to_response("shopping_cart.html",
                                   {'cart': cart, 'search_form': SearchForm(), "data": data,
-                                   'categories': BaseView.get_categories()},
+                                   'categories': BaseView.get_categories(), 'total': total},
                                   context_instance=RequestContext(request))
         #else:
         #    cart=ShoppingCart(user=current_user)
