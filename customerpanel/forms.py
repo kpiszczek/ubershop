@@ -23,7 +23,7 @@ class EditUserForm(forms.Form):
     organisation = forms.CharField(required=False, widget=forms.Textarea)
     tax_id = forms.CharField(required=False)
     
-class CartItemForm(form.Form):
+class CartItemForm(forms.Form):
     quantity = forms.IntegerField()
     
 CartFormset = formset_factory(CartItemForm)

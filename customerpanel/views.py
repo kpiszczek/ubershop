@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from collections import namedtuple
 
 from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
@@ -134,7 +135,9 @@ class CustomerPanel:
         current_user = ShopUser.objects.get(user__username=current_user)
         #if ShoppingCart.objects.get(user=current_user):
         cart = ShoppingCart.objects.get_or_create(user__pk=current_user.pk)[0]
-        return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
+        return render_to_response("shopping_cart.html",
+                                  {'cart': cart, 'search_form': SearchForm()},
+                                  context_instance=RequestContext(request))
         #else:
         #    cart=ShoppingCart(user=current_user)
         #    return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
