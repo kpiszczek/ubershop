@@ -13,6 +13,7 @@ background-color:#ebebeb;text-align:center;border-radius:6px;border-style:solid;
 border-width:1px;border-color:#002f32;padding-top:7px;margin-left:5px;margin-right:5px;
 box-shadow:4px 4px 10px #666}.top_button a{color:#002f32}
 .top_button a:hover{color:#fff}
+.form_error{visibility: visible;}
 #menubar_top{position:relative;padding-left:20px;padding-right:20px;width:700px;left:250px;
 height:50px;top:-15px;background-image:url("/static/img/menu_bg.png");
 border-radius:12px;box-shadow:4px 4px 10px #666}
