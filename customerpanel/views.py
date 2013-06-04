@@ -141,7 +141,7 @@ class CustomerPanel:
         formset = CartFormset(initial=data)
         return render_to_response("shopping_cart.html",
                                   {'cart': cart, 'search_form': SearchForm(),
-                                   'categories': BaseView.get_categories()},
+                                   'categories': BaseView.get_categories(), "formset": formset},
                                   context_instance=RequestContext(request))
         #else:
         #    cart=ShoppingCart(user=current_user)

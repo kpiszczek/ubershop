@@ -17,6 +17,9 @@
                           <div id='time' class='list_option_item'>Usuń:</div>
                        </div>
                        <div id='eshop_list' >
+                           {% for form in formset %}
+                               {{ form.as_p }}
+                           {% endfor %}
 						  {% for item in cart.items.all %}
 						  <div class='eshop_item_entry'>
 						    <img class='thumb' src='{{ item.thumb }}'/>

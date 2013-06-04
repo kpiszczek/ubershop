@@ -26,4 +26,4 @@ class EditUserForm(forms.Form):
 class CartItemForm(forms.Form):
     quantity = forms.IntegerField()
     
-CartFormset = formset_factory(CartItemForm)
+CartFormset = formset_factory(CartItemForm, extra=0)
