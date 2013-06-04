@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-
+import json
 from datetime import datetime
 
 from django.http import Http404
@@ -92,6 +92,8 @@ class BaseView():
         # cls.model odpowiada EShopItem, AuctionItem, GroupOffer w zależnosci od klasy, z której zostanie wywołane.
         
         item = cls.model.objects.get(pk=id)
+        properties=json.loads(item.base.properties)
+        table = [[key, properties[key]] for key in properties.keys()]
         try:
             topic = Topic.objects.filter(board__name=str(cls.model.__name__), title=str(id))[0]
             comments = topic.messages.all()
@@ -100,7 +102,7 @@ class BaseView():
         except IndexError:
             comments = []
         data = {"item": item, "categories": cls.get_categories(), 
-                "comments": comments, "comment_form": MessageForm()}
+                "comments": comments, "comment_form": MessageForm(),'table': table}
         if injected is not None:
             data.update(injected)
         
@@ -112,6 +114,7 @@ class BaseView():
     
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))  
+ 
     def comment(cls, request, id):
         if request.method == "POST":
             form = MessageForm(request.POST)
