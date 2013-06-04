@@ -10,27 +10,50 @@ Porównywarka
 {% endblock %}
 
 {% block content %}
+
 <section id='eshop_compare_items_page'>
 	<div id='eshop_compare_wrapper'>
     <div id='compare_title'>
       Porównywarka
     </div>  
-  	<div class='compare_items'>
-      <div id='compare_properties_line'>
-      	&nbsp;
-      </div>  
-      <div id='compare_properties_wrapper'>
-        <ul>
+<div id='compare_properties_img'>
+	<table class="table_form_1"> 
+        		<ul>
+             {% for row in table %}
+            <tr class="user">
+            	<td>Zdjęcie</td>              
+                <td class='row'><img class='thumb' src='{{ item1.thumb }}'/></td> 
+                <td class='row'><img class='thumb' src='{{ item2.thumb }}'/> </td>                          
+            </tr>
+            <tr class="user"> 
+       			<td>Nazwa</td>
+            	<td class='first_row'>{{ item1.base.name }}</td>
+            	<td class='first_row'>{{ item2.base.name }}</td>           	
+            </tr>
+           {% endfor %}
+            </ul>
+            </table>
+      	
+      </div> 
+      <div id='compare_properties'>
+      Właściwości
+    </div>  
+      <div id='compare_properties_wrapper'>     
+        	<table class="table_form"> 
+        		<ul>
             {% for row in table %}
-            <tr>
+            <tr class="user">
                 {% for value in row %}
-                <td> {{ value }} </td>
+                <td class='first_row'> {{ value }} </td>
                 {% endfor %}
             </tr>
             {% endfor %}
-        </ul>    
+            </ul>
+            </table>
+            
     </div>
    </div>  
-  	</div>
-</section>
+
+</section> 
+
 {% endblock %}

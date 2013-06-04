@@ -1,3 +1,86 @@
-body {
+#eshop_compare_items_page{
+	position: relative;
+	top: 40px;
+}
+#eshop_compare_wrapper{
+	position: relative;
+	top:10px;
+	height: 260px;
+	width: 738px;
+	margin-bottom: 70px;
+	background-color: rgb(235, 235, 235);
+	border-radius: 12px 12px 12px 12px;	
+	border-style: solid;
+	border-color: rgb(172, 172, 172);
+	border-width: 1px;
+	box-shadow: 4px 4px 10px rgb(102, 102, 102);
+}
+#compare_title{
+	position: relative;
+	height: 40px;
+	width: 722px;
+	background-color:#FDF5E6;
+	border-radius: 12px 12px 12px 12px;	
+	border-style: solid;
+	border-color: rgb(172, 172, 172);
+	border-width: 1px;
+	padding-left: 15px;
+	font-weight:bold;
+	font-size: 20px;
+	padding-top:10px;
+	color:#002F32;
+}
 
+#compare_properties_img{
+	
+	
+}
+#compare_properties_wrapper{
+	
+}
+.user{
+	
+	background-color:#E0DFDF;		
+	padding:5px;
+	width:100%;
+	font-weight: bold;
+	height: 25px;
+	
+	
+}
+.first_row:first-child{
+	background-color:#ACACAC;	
+	padding-left: 15px;
+	height: 25px;
+	border: 2px solid rgb(235, 235, 235);
+	border-collapse: collapse;
+}
+.first_row{
+	background-color:#CECCCC;	
+	padding-left:30px;
+	height: 25px;
+	border: 2px solid rgb(235, 235, 235);
+	border-collapse: collapse;
+}
+.table_form
+{
+	margin-top:0px;	
+	width:100%;
+	
+}
+.table_form_1{
+	margin-top:0px;	
+	width:100%;
+}
+#compare_properties{
+	background-color: #69AC95;
+	height:20px;
+	margin-top:10px;
+	margin-left:4px;
+	margin-bottom:10px;
+	padding-left: 15px;
+	padding: 3px;
+	color:#FDF5E6;
+	font-weight:bold;
+	width:98%;
 }
