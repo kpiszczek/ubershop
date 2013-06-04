@@ -84,3 +84,18 @@
 	font-weight:bold;
 	width:98%;
 }
+.row{
+	background-color:#ACACAC;	
+	padding-left: 15px;
+	height: 25px;
+	border: 2px solid rgb(235, 235, 235);
+	border-collapse: collapse;
+	width: 136px;
+}
+.row_1{
+	background-color:#CECCCC;	
+	padding-left:30px;
+	height: 25px;
+	border: 2px solid rgb(235, 235, 235);
+	border-collapse: collapse;
+}
