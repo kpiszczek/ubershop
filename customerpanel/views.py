@@ -19,7 +19,7 @@ from eshop.models import ShoppingCart, ProductWatcher
 from ordermanager.models import Order, OrderStatus, OrderItem
 from auction.models import Bid
 from core.models import ShopUser, Image
-from customerpanel.forms import RegisterForm, EditUserForm
+from customerpanel.forms import RegisterForm, EditUserForm, CartFormset
 from ordermanager.forms import OrderForm
 
 class CustomerPanel:
@@ -135,8 +135,13 @@ class CustomerPanel:
         current_user = ShopUser.objects.get(user__username=current_user)
         #if ShoppingCart.objects.get(user=current_user):
         cart = ShoppingCart.objects.get_or_create(user__pk=current_user.pk)[0]
+        data = []
+        for item in cart.items.all():
+            data.append({"quantity": item.quantity})
+        formset = CartFormset(initial=data)
         return render_to_response("shopping_cart.html",
-                                  {'cart': cart, 'search_form': SearchForm()},
+                                  {'cart': cart, 'search_form': SearchForm(),
+                                   'categories': BaseView.get_categories()},
                                   context_instance=RequestContext(request))
         #else:
         #    cart=ShoppingCart(user=current_user)
