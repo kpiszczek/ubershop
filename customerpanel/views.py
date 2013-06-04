@@ -23,7 +23,7 @@ from core.models import ShopUser, Image
 from customerpanel.forms import RegisterForm, EditUserForm, CartFormset
 from ordermanager.forms import OrderForm
 
-CartItem = namedtuple("CartItem", ["base", "concrete", "type"])
+CartItem = namedtuple("CartItem", ["base", "concrete", "type", "quantity"])
 
 class CustomerPanel:
     @classmethod
@@ -145,17 +145,19 @@ class CustomerPanel:
         for item in cart.items.all():
             try:
                 concrete = EShopItem.objects.get(base__pk=item.item.pk)
-                cart_items.append(CartItem(base=item.item, concrete=concrete, type="eshop"))
+                cart_items.append(CartItem(base=item.item, concrete=concrete, 
+                                           type="eshop", quantity=item.quantity))
             except EShopItem.DoesNotExist:
                 concrete = GroupOffer.objects.get(base__pk=item.item.pk)
-                cart_items.append(CartItem(base=item.item, concrete=concrete, type="group"))
+                cart_items.append(CartItem(base=item.item, concrete=concrete, 
+                                           type="group", quantity=item.quantity))
             
             formset_data.append({"quantity": item.quantity})
             
         formset = CartFormset(initial=formset_data)
         data = zip(cart_items, formset)
         
-        total = sum([float(item.concrete.price) for item in cart_items])
+        total = sum([float(item.concrete.price * item.quantity) for item in cart_items])
         total = "%.2f" % total
         
         return render_to_response("shopping_cart.html",
