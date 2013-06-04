@@ -3,7 +3,7 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-PROJECT_PATH = 'c:/projects/ubershop/'
+PROJECT_PATH = '/home/kuba/workspace/aptana/ubershop-master/'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -30,7 +30,7 @@ TIME_ZONE = 'America/Chicago'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pl-pl'
 
 SITE_ID = 1
 

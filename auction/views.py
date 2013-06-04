@@ -8,6 +8,7 @@ from django.http import Http404, HttpResponseRedirect
 from django.template import RequestContext
 
 from base.views import BaseView
+from base.forms import SearchForm
 from auction.models import AuctionItem, Bid
 from auction.forms import AuctionForm, BidForm, EditAuctionForm
 from core.models import ShopUser
@@ -27,7 +28,8 @@ class AuctionView(BaseView):
         auction = AuctionItem.objects.get(pk=auction_id)
         bid_history = auction.bids
         return render_to_response("bid_history.html",
-                                  {'bid_history': bid_history, 'auction': auction})
+                                  {'bid_history': bid_history, 'auction': auction, 
+                                   'search_form': SearchForm(), 'categories': cls.get_categories()})
         #raise NotImplemented       
     
     @classmethod
