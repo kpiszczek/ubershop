@@ -15,12 +15,15 @@ from base.forms import SearchForm
 from base.views import BaseView
 from auction.forms import AuctionForm
 from auction.models import AuctionItem
-from eshop.models import ShoppingCart, ProductWatcher
+from eshop.models import ShoppingCart, ProductWatcher, EShopItem
+from groupbuy.models import GroupOffer
 from ordermanager.models import Order, OrderStatus, OrderItem
 from auction.models import Bid
 from core.models import ShopUser, Image
 from customerpanel.forms import RegisterForm, EditUserForm, CartFormset
 from ordermanager.forms import OrderForm
+
+CartItem = namedtuple("CartItem", ["base", "concrete"])
 
 class CustomerPanel:
     @classmethod
@@ -135,10 +138,20 @@ class CustomerPanel:
         current_user = ShopUser.objects.get(user__username=current_user)
         #if ShoppingCart.objects.get(user=current_user):
         cart = ShoppingCart.objects.get_or_create(user__pk=current_user.pk)[0]
-        data = []
+        
+        cart_items = []
+        formset_data = []
+        
         for item in cart.items.all():
-            data.append({"quantity": item.quantity})
-        formset = CartFormset(initial=data)
+            try:
+                concrete = EShopItem.objects.get(base__pk=item.item.pk)
+            except EShopItem.DoesNotExist:
+                concrete = GroupOffer.objects.get(base__pk=item.item.pk)
+            cart_items.append(CartItem(base=item.item, concrete=concrete))
+            formset_data.append({"quantity": item.quantity})
+            
+        formset = CartFormset(initial=formset_data)
+        
         return render_to_response("shopping_cart.html",
                                   {'cart': cart, 'search_form': SearchForm(),
                                    'categories': BaseView.get_categories(), "formset": formset},
