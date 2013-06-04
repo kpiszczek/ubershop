@@ -10,6 +10,8 @@ from django.utils.decorators import method_decorator
 from django.template import RequestContext
 
 from base.models import BaseItem
+from base.forms import SearchForm
+from base.views import BaseView
 from auction.forms import AuctionForm
 from auction.models import AuctionItem
 from eshop.models import ShoppingCart, ProductWatcher
@@ -43,7 +45,10 @@ class CustomerPanel:
         # DZIALA - aukcje które założył użyszkodnik
         current_user = ShopUser.objects.get(user__pk=request.user.pk)
         list = AuctionItem.objects.filter(created_by__pk=current_user.pk)
-        return render_to_response("auctionitem_list.html",{'items': list},context_instance=RequestContext(request))
+        return render_to_response("auctionitem_list.html",
+                                  {'items': list, 'search_form': SearchForm(), 
+                                   'categories': BaseView.get_categories()},
+                                  context_instance=RequestContext(request))
         #raise NotImplemented
     
     @classmethod
@@ -201,6 +206,8 @@ class CustomerPanel:
                 shop_user.save()
                 
                 return HttpResponseRedirect("/accounts/login/")
+            else:
+                return render_to_response("registration.html", {'form': form}, context_instance=RequestContext(request))
         else:
             form = RegisterForm()
             return render_to_response("registration.html", {'form': form}, context_instance=RequestContext(request))

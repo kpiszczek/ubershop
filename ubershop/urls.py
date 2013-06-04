@@ -1,3 +1,5 @@
+import os
+
 from django.conf.urls import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
@@ -15,6 +17,7 @@ from backendpanel.views import BackendPanel
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+
 
 urlpatterns = patterns('',
     # Examples:
@@ -103,6 +106,8 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += staticfiles_urlpatterns()
+
+
 
 if settings.DEBUG:
     urlpatterns += patterns('',

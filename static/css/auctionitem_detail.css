@@ -94,7 +94,7 @@
 	background-color:#62a28c;
     position: relative;  
     width: 740px;
-    height: 80px;
+    height: 50px;
     border-radius: 12px 12px 12px 12px;
     box-shadow: 4px 4px 10px rgb(102, 102, 102);
     font-size:140%;   
@@ -115,8 +115,8 @@
 	position:relative;
 	float:left;
 	font-size:90%;
-	margin-left:10px;
-	width: 205px;	
+	margin-left:20px;
+	width: 305px;	
 	margin-top:10px;
 }
 #auction_bid
@@ -126,6 +126,7 @@
 	float:left;
 	font-size:90%;
 	margin-top:10px;
+	margin-left:20px;
 }
 #auction_mid_info_subpanel{
 	background-color:#62a28c;

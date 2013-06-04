@@ -4,6 +4,7 @@ from django import forms
 from auction.models import AuctionItem
 from core.models import Category
 #from base.forms import BaseForm
+
 class BidForm(forms.Form):
     bid = forms.DecimalField(max_digits=15,decimal_places=2)
     

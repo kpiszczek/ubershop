@@ -1,0 +1,148 @@
+#content_container{
+	position: relative;
+	top: 22px;
+	height:auto;
+}
+
+#list_content{
+	position: relative;
+	top:10px;
+	height:250px;
+	
+	width: 738px;
+	margin-bottom: 70px;
+	background-color: rgb(235, 235, 235);
+	border-radius: 12px 12px 12px 12px;	
+	border-style: solid;
+	border-color: rgb(172, 172, 172);
+	border-width: 1px;
+	box-shadow: 4px 4px 10px rgb(102, 102, 102);
+	
+}
+#navigation{
+	position: relative;
+	height: 40px;
+	width: 722px;
+	background-color:#FDF5E6;
+	border-radius: 12px 12px 12px 12px;	
+	border-style: solid;
+	border-color: rgb(172, 172, 172);
+	border-width: 1px;
+	padding-left: 15px;
+	font-weight:bold;
+	font-size: 20px;
+	padding-top:10px;
+	color:#002F32;
+}
+#eshop_option{
+	position: relative;
+	width:740px;
+	height: 40px;
+	top: 1px;
+}
+.eshop_option_item{
+	position: relative;
+	float: left;
+	width: 150px;
+	height: 40px;	
+	left: 25px;
+	bottom: 6px;
+	text-align: center;
+	margin-right: 20px;
+	line-height: 36px;
+	border-radius: 2px;	
+	border-style: solid;
+	border-color: rgb(172, 172, 172);
+	border-width: 1px;
+	box-shadow: 2px 2px 5px rgb(102, 102, 102);
+	background-color: rgb(235, 235, 235);	
+	color: #002f32;
+}
+.eshop_option_item:hover{
+	color: #fff;
+	background-color: #E6E6E6;
+}
+
+#listing_option{
+	width: 733px;	
+	height: 25px;
+	margin-top: 8px;
+	margin-left: 3px;
+	background-color: #62a28c;
+}
+#name{
+	width: 350px;
+}
+#price{
+	width: 170px;
+}
+#time{
+	width: 160px;
+	margin-left: -15px;
+}
+.list_option_item{
+	float: left;
+	text-align: left;
+	margin-top: 3px;
+	margin-left: 25px;
+}
+
+.eshop_item_entry{
+	width: 732px;
+	top: 10px;	
+}
+#item{
+	width: 700px;
+	height: 70px;
+	margin-bottom: 15px;
+	margin-left: auto;
+	margin-right: auto;
+	color: #002f32;
+}
+#item:hover{background-color: #E6CCFF;
+}
+.thumb{
+	float: left;
+	margin-right: 50px;
+	opacity: 0.8;
+}
+.thumb:hover{
+	opacity: 1;
+}
+.item_name{
+	float: left;
+	font-weight: bold;
+	width:378px;
+	color:#62A28C;
+	padding-left:27px
+}
+.price{
+	float: left;
+	width: 154px;
+}
+.buyers{
+	float: left;
+	width: 100px;
+}
+.availiability{
+	float: left;
+	width: 100px;
+}
+#order{
+	margin-right:50px;
+	height: 30px;
+	float:right;
+	width:100px;
+	background-color:#FDF5E6;
+	border-radius: 12px 12px 12px 12px;	
+	border-style: solid;
+	border-color: rgb(172, 172, 172);
+	border-width: 1px;	
+	font-weight:bold;
+	font-size: 15px;	
+	color:#002F32;
+	padding-top: 5px;
+	text-align: center;
+	margin-top: -20px;
+}
+

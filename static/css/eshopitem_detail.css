@@ -63,7 +63,7 @@
 	border-bottom-style: outset;
 	margin-left: 15px;
 }
-#eshop_cart_form_wrapper
+.eshop_cart_form_wrapper
 {
 	position:relative;
 	padding-left:15px;
@@ -72,13 +72,17 @@
 	font-size:120%;
 	width: 270px;
 }
-#cart_input_wrapper
+.cart_input_wrapper
 {
 	text-align:center;
 }
-#cart_input
+.cart_input
 {
 	width:110px;
+	height:30px;
+}
+.cart_input_compare{
+	width:140px;
 	height:30px;
 }
 #id_num_items
@@ -94,7 +98,7 @@
 	background-color:#62a28c;
     position: relative;  
     width: 740px;
-    height: 80px;
+    height:30px;
     border-radius: 12px 12px 12px 12px;
     box-shadow: 4px 4px 10px rgb(102, 102, 102);
     font-size:140%;   
@@ -142,7 +146,8 @@
 	background-color:#eaede7;
     position: relative;  
     width: 740px;
-    height: 258px;
+    height: auto;
+    min-height:150px;
     border-radius: 12px 12px 12px 12px;
     box-shadow: 4px 4px 10px rgb(102, 102, 102);
 	float:left;
@@ -188,10 +193,76 @@
 	background-color:#eaede7;
     position: relative;  
     width: 740px;
-    height: 258px;
-    border-radius: 12px 12px 12px 12px;
-    box-shadow: 4px 4px 10px rgb(102, 102, 102);
+    height: auto;
 	float:left;
 	margin-top: 15px;
 }
+#eshop_comments_label{
+	font-size:130%;	
+	background: -webkit-gradient(linear, left bottom, left top , from(#62a28c), to(#69ac95));
+	color:#F2EEEE;	
+	padding-left:15px;
+	height:35px;
+	padding-top:10px;
+}
+#eshop_comments_line{
+	background-color:black;
+}
+.eshop_comment_wrapper
+{
+	background-color:blue;
+}
+#eshop_comment_user{
+	background-color:blue;
+}
+#eshop_comment_date{
+	background-color:blue;
+}
+#eshop_comment_content{
+	background-color:blue;
+}
 
+#eshop_print_page
+{
+	width:130px;
+	height:30px;
+	float:right;
+	background-color:#62a28c;
+	box-shadow: 4px 4px 10px rgb(102, 102, 102);
+	border-radius: 12px 12px 12px 12px;
+	margin-right:20px;
+	margin-top:15px;
+	text-align:center;
+	padding-top:10px;
+	font-size:105%;
+	font-weight:bold;
+}
+.table_form
+{
+	margin-top:5px;
+	border:0px;
+	width:100%;
+	
+}
+.user{
+	
+	background-color:#cecccc;	
+	padding-top:5px;
+	padding-left:5px;
+	padding-bottom:5px;
+	padding-right:5px;
+	width:100px;
+}
+.content{
+	padding-top:5px;
+	padding-left:5px;
+	padding-bottom:5px;
+	padding-right:5px;
+	
+}
+.new_message_form{
+	float:left;
+}
+.comment_button{
+	margin-left:50px;
+}
