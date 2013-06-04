@@ -31,7 +31,7 @@
                        <section id='eshop_list' >
 						  {% for item in items %}
 						  <div class='eshop_item_entry'>
-						    <img class='thumb' src='{{ item.thumb }}'/>
+						    <img style="width: 30px; min-height: 30px;" src='{{ item.thumb }}'/>
 						    <a href='/grupowe/{{ item.id }}/' class="item_name">{{ item.base.name }}</a>
 						    <span class='price'>{{ item.price }}</span>
 						    <span class='buyers'><a href="/grupowe/{{ item.pk }}/kupujacy/">Kupujący</a></span>

@@ -40,7 +40,7 @@
                        <section id='auctions_list' >
 						  {% for item in items %}
 						  <div class='auction_item_entry'>
-						    <img class='thumb' src='{{ item.thumb }}'/>
+						    <img style="width: 30px; min-height: 30px;" src='{{ item.thumb }}'/>
 						    <a href='/aukcje/{{ item.id }}/' class="item_name">{{ item.base.name }}</a>
 						    <span class='current_price'>{{ item.current_price }}</span>
 						    <span class='time_till_end'>{{ item.planned_close_date }}</span>

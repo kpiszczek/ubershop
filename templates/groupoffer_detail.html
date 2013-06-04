@@ -12,7 +12,8 @@
     {{ item.base.name }}
   </div>
   <div id='eshop_main_image'>
-    <img src="/mymedia/{{ item.base.images.all.0.image }}"/>
+    <img style="width: 300px; min-height:258px;" src="/mymedia/{{ item.base.images.all.0.image }}"/>
+    
   </div>
   <div id='eshop_info_panel'>
     <div id='eshop_availability'>
@@ -77,7 +78,7 @@
     <div id='eshop_gallery'>
       {% for image in item.images %}
       <div class='eshop_gallery_entry'>
-        <img class='eshop_gallery_image' src="/mymedia/{{ image.image }}"/>      
+        <img style="width: 300px; min-height: 258px;" src="/mymedia/{{ image.image }}"/>      
       </div>
       {% endfor %}
     </div>
