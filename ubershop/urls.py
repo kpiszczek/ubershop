@@ -85,6 +85,7 @@ urlpatterns = patterns('',
     
     # url dla customerpanel
     url(r'^koszyk/$', CustomerPanel.shopping_cart),
+    url(r'^koszyk/przelicz/$', CustomerPanel.update_cart),
     url(r'^kasa/$', CustomerPanel.checkout),
     url(r'^accounts/login/$','django.contrib.auth.views.login'),
     url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'template_name': 'logout.html'}),#BackendPanel.logout),    

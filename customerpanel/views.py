@@ -160,13 +160,32 @@ class CustomerPanel:
         
         return render_to_response("shopping_cart.html",
                                   {'cart': cart, 'search_form': SearchForm(), "data": data,
-                                   'categories': BaseView.get_categories(), 'total': total},
+                                   'categories': BaseView.get_categories(), 'total': total,
+                                   'formset': formset},
                                   context_instance=RequestContext(request))
         #else:
         #    cart=ShoppingCart(user=current_user)
         #    return render_to_response("shopping_cart.html",{'cart': cart},context_instance=RequestContext(request))
         #raise NotImplemented
-    
+    @classmethod
+    @method_decorator(login_required(login_url='/accounts/login/'))
+    def update_cart(cls, request):
+        if request.method == "POST":
+            current_user = request.user.username
+            current_user = ShopUser.objects.get(user__username=current_user)
+            
+            cart = ShoppingCart.objects.get_or_create(user__pk=current_user.pk)[0]
+            formset = CartFormset(request.POST)
+            
+            if formset.is_valid():
+                for form, item in zip(formset.forms, cart.items.all()):
+                    item.quantity = int(form.cleaned_data["quantity"])
+                    item.save()
+                cart.save()
+            return HttpResponseRedirect("/koszyk/")
+        else:
+            return HttpResponseRedirect("/koszyk/")
+        
     @classmethod
     @method_decorator(login_required(login_url='/accounts/login/'))
     def watched_products(cls,request):
@@ -189,7 +208,7 @@ class CustomerPanel:
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                HttpResponseRedirect('/home/')
+                return HttpResponseRedirect('/home/')
             else:
                 message='Nieprawidlowy login lub haslo'
                 return render_to_response("login.html", {'message': message}, context_instance=RequestContext(request))
