@@ -21,7 +21,7 @@
                           {{ formset.management_form }}
                           {% for item, form in data %}
 						  <div class='eshop_item_entry'>
-						    <img style="width: 30px; height: 30px;" src='{{ item.base.thumb }}'/>
+						    <img style="width: 30px; max-height: 30px;" src='/mymedia/{{ item.base.thumb }}'/>
 						    {% if item.type == "eshop" %}
 						      <a href="/sklep/{{ item.concrete.id }}" class="item_name">{{ item.base.name }}</a>
 						    {% endif %}

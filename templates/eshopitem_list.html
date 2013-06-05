@@ -32,7 +32,7 @@
                        	
 						  {% for item in items %}
 						  <div class='eshop_item_entry'>
-						  <img style="width: 30px; min-height: 30px;" src='{{ item.thumb }}'/>
+						  <img style="width: 30px; max-height: 30px;" src='/mymedia/{{ item.base.thumb }}'/>
 						    <span><a href='/sklep/{{ item.id }}/' class="item_name">{{ item.base.name }}</a></span>
 						    <span class='price'>{{ item.price }}</span>
 						    <span class='availiability'>{{ item.availiability_status.name }}</span>

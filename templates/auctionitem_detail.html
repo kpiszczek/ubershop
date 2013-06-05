@@ -13,7 +13,7 @@
   </div>
   <div id='auction_main_image'>
    <!-- nie możemy nic wpisywać 'na sztywno' - wszystkie dane są pobierana z przesłanego obiektu -->
-   <img style="width: 300px; min-height: 258px;" src="/mymedia/{{ item.base.images.all.0.image }}"/>
+   <img style="width: 300px; max-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/>
   </div>
   <div id='auction_info_panel'>
     <div id='auction_created_by'>
@@ -81,7 +81,7 @@
     <div id='auction_gallery'>
       {% for image in item.base.images.all %}
       <div class='auction_gallery_entry'>
-        <img style="width: 300px; min-height: 258px;" src="/mymedia/{{ image.image }}"/>      
+        <img style="width: 300px; max-height: 258px;" src="/mymedia/{{ image.image }}"/>      
       </div>
       {% endfor %}
     </div>

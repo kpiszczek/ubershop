@@ -20,7 +20,7 @@ Strona główna
   </div>
   {% for item in promotion_items %}
   <div class='promotion_item'>
-    <a href="/sklep/{{ item.id }}"><img style="width: 300px; min-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/></a>
+    <a href="/sklep/{{ item.id }}"><img style="width: 300px; max-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/></a>
     <div class="promotion_item_name">
       <a href="/sklep/{{ item.id }}">{{ item.base.name }}</a>
     </div>
