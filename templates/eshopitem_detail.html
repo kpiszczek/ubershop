@@ -92,7 +92,7 @@
     </div>
    </div>
     <div id='eshop_gallery'>
-      {% for image in item.images %}
+      {% for image in item.base.images.all %}
       <div class='eshop_gallery_entry'>
         <img style="width: 300px; max-height: 258px;" src="/mymedia/{{ image.image }}"/>      
       </div>
