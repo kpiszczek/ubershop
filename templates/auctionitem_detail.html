@@ -3,6 +3,7 @@
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/auctionitem_detail.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/auction_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshop_compare.css" rel="stylesheet" type="text/css"/>
 
 {% endblock %}
 
@@ -22,7 +23,7 @@
     </div>
     <div id='auction_current_price'>
     	<label>Aktualna cena:</label> 
-      {{ item.current_price }}
+      {{ item.current_price }} zł
     </div>
     <div id='auction_bid_form_wrapper'>
       <form id='bid_form' name='bid_form' action='licytuj/' method='post' accept-charset="utf-8">{% csrf_token %}
@@ -76,7 +77,14 @@
     </div>  
     <div id='auction_description'>
       {{ item.base.description }}
-      <table class="table"> 
+      
+    </div>
+    
+    <div id='compare_properties'>
+      Cechy produktu
+    </div>  
+      <div id='compare_properties_wrapper'>
+      	<table class="table" style="width:100%;"> 
                 <ul> 
             {% for row in table %} 
             <tr class="user"> 
@@ -87,7 +95,8 @@
             {% endfor %} 
             </ul> 
             </table>
-    </div>
+      </div>
+    
    </div>
     <div id='auction_gallery'>
       {% for image in item.base.images.all %}

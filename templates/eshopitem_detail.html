@@ -3,6 +3,7 @@
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/eshopitem_detail.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshop_compare.css" rel="stylesheet" type="text/css"/>
 
 {% endblock %}
 
@@ -21,7 +22,7 @@
     </div>
     <div id='eshop_price'>
     	<label >Cena:</label>
-      {{ item.price }}
+      {{ item.price }} zł
     </div>
     <div id='eshop_cart_form_wrapper' class="eshop_cart_form_wrapper">
       <form id='cart_form' name='cart_form' action="dodaj/" method='post' accept-charset="utf-8">{% csrf_token %}
@@ -72,7 +73,11 @@
     </div>  
     <div id='eshop_description'>
       {{ item.base.description }}
-       <table class="table"> 
+<div id='compare_properties'>
+      Cechy produktu
+    </div>  
+      <div id='compare_properties_wrapper'>
+      	<table class="table" style="width:100%;"> 
                 <ul> 
             {% for row in table %} 
             <tr class="user"> 
@@ -83,6 +88,7 @@
             {% endfor %} 
             </ul> 
             </table>
+      </div>
     </div>
    </div>
     <div id='eshop_gallery'>
