@@ -39,37 +39,37 @@
     {% csrf_token %}
     <div class='auction_form_field'>
       <span class='id_username'>{{ form.first_name.errors }}</span>
-      <label for='id_username'>Imię:</label>
+      <label for='id_username' class='id_username'>Imię:</label>
       {{ form.first_name }}
     </div>
     <div class='auction_form_field'>
       <span class='id_username'>{{ form.last_name.errors }}</span>
-      <label for='id_username'>Nazwisko:</label>
+      <label for='id_username' class='id_username'>Nazwisko:</label>
       {{ form.last_name }}
     </div>
     <div class='auction_form_field'>
       <span class='id_username'>{{ form.email.errors }}</span>
-      <label for='id_username'>E-mail:</label>
+      <label for='id_username' class='id_username'>E-mail:</label>
       {{ form.email }}
     </div>
     <div class='auction_form_field'>
       <span class='id_username'>{{ form.password.errors }}</span>
-      <label for='id_username'>Hasło:</label>
+      <label for='id_username' class='id_username'>Hasło:</label>
       {{ form.password }}
     </div>
     <div class='auction_form_field'>
       <span class='id_username'>{{ form.organisation.errors }}</span>
-      <label for='id_username'>Firma:</label>
+      <label for='id_username' class='id_username'>Firma:</label>
       {{ form.organisation }}
     </div>
     <div class='auction_form_field'>
       <span class='id_username'>{{ form.address.errors }}</span>
-      <label for='id_username'>Adres:</label>
+      <label for='id_username' class='id_username'>Adres:</label>
       {{ form.address }}
     </div>
     <div class='auction_form_field'>
       <span class='id_username'>{{ form.tax_id.errors }}</span>
-      <label for='id_username'>NIP:</label>
+      <label for='id_username' class='id_username'>NIP:</label>
       {{ form.tax_id }}
     </div>
     <p class='auction_form_field'>
