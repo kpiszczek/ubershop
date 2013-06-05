@@ -3,6 +3,7 @@
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/bid_history.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block sidebar %}
@@ -32,15 +33,23 @@
 {% block content %}
 
 <div id="list" style="margin-top: 50px; min-height: 300px">
+<div id="list_title">Obserwowane produkty</div>
+	<table class="table_form">
+		<tr class="user">
+			<td style="padding-left:15px; ">Nazwa</td>
+			<td style="padding-left:15px; ">Cena</td>
+		</tr>
 
-	<P>Obserwowane produkty</P>
 	<ol>
     {% for item in list %}
-        
-        <li><a href="/sklep/{{ item.id }}">{{ item.product.base.name }}</a>. Cena: {{ item.product.price }} zł</li>
-
+         <tr class="details">
+    	<td><li><a href="/sklep/{{ item.id }}">{{ item.product.base.name }}</a></li></td>
+        			<td style="padding-left:15px;">{{ item.product.price }} zł</td>
+        			  
+   	</tr>
     {% endfor %}
    </ol>
+   </table>
 </div>
 
 {% endblock %}

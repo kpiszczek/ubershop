@@ -12,8 +12,9 @@
   <form id='auction_form' name='auction_form' method='post' accept-charset="utf-8" enctype="multipart/form-data">
     {% csrf_token %}
     <div class='auction_form_field'>
+    <label for='id_username'>Tytuł:</label>
       <span class='form_error'>{{ form.name.errors }}</span>
-      <label for='id_username'>Tytuł:</label>
+      
       {{ form.name }}
     </div>
     <div class='auction_form_field'>

@@ -3,6 +3,8 @@
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/bid_history.css" rel="stylesheet" type="text/css"/>
+
 {% endblock %}
 
 {% block sidebar %}
@@ -31,12 +33,18 @@
 
 {% block content %}
 <div id="list"  style="margin-top: 50px; min-height:300px">
-
-<p>Historia zamówień</p>
-<ol>
+<div id="list_title">Historia zamówień</div>
+<table  class="table_form">
+ <ol>
+    	
     {% for order in orders %}
-        <li><p><a href="/zamowienia/{{ order.pk }}/">Zamówienie numer {{ order.pk }} z dnia {{ order.date }}</a></p></li>
+   <tr class="details">
+    	
+    	<td><li><a href="/zamowienia/{{ order.pk }}/">Zamówienie numer {{ order.pk }} z dnia {{ order.date }}</a></li></td>
+    	</tr>
+          
     {% endfor %}
- </ol>  
+ 	</ol>  
+ </table>  
 </div>
 {% endblock %}
