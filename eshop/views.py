@@ -107,7 +107,8 @@ class EShopView(BaseView):
             table = []
             
         return render_to_response("eshop_compare.html", 
-                                  {'item1': item1, 'item2': item2, 'table': table},
+                                  {'item1': item1, 'item2': item2, 'table': table,
+                                   "categories": cls.get_categories(), "search_form": SearchForm()},
                                   context_instance=RequestContext(request))
     @classmethod
     def contact(cls, request):

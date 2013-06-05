@@ -5,7 +5,7 @@
 #eshop_compare_wrapper{
 	position: relative;
 	top:10px;
-	height: 260px;
+
 	width: 738px;
 	margin-bottom: 70px;
 	background-color: rgb(235, 235, 235);
@@ -54,6 +54,7 @@
 	height: 25px;
 	border: 2px solid rgb(235, 235, 235);
 	border-collapse: collapse;
+	width: 136px;
 }
 .first_row{
 	background-color:#CECCCC;	
