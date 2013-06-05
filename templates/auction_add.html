@@ -7,6 +7,31 @@
 <link href="{{ STATIC_PREFIX }}css/auction_add.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
+{% block sidebar %}
+<aside id="side_menu" class="side_menu_container">
+  <div id='side_menu_title'>
+    Moje konto
+  </div>
+  <nav>
+      
+      <div class='side_menu_item'>
+        <a href='/obserwowane/'>Obserwowane produkty</a>
+      </div>
+      <div class='side_menu_item'>
+        <a href='/zamowienia/'>Historia zamówień</a>
+      </div>
+      <div class='side_menu_item'>
+        <a href='/aukcje/dodaj/'>Wystaw aukcję</a>
+      </div>
+      <div class='side_menu_item'>
+        <a href='/aukcje_historia/'>Wystawione aukcje</a>
+      </div>
+
+ 
+  </nav>
+</aside>
+{% endblock %}
+
 {% block content %}
 <div id="auction_form_wrapper" style="margin-top: 50px">
 	<div id="list_title">Wystaw aukcje</div>
