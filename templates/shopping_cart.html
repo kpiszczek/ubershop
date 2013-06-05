@@ -15,39 +15,42 @@
                         	<div id='image' class='list_option_item'></div>
                           <div id='name' class='list_option_item'>Nazwa:</div>
                           <div id='price' class='list_option_item'>Cena:</div>
-                          <div id='time' class='list_option_item'>Usuń:</div>
+                          <div id='time' class='list_option_item'>Ilość:</div>
                        </div>
                        <div id='eshop_list' >
                           <form method="post" action="przelicz/"> {% csrf_token %}
                           {{ formset.management_form }}
                           {% for item, form in data %}
 						  <div class='eshop_item_entry'>
-						    <img style="width: 30px; max-height: 30px;" src='/mymedia/{{ item.base.thumb }}'/>
+						    <span id='image' class="list_option_item"><img style="width: 30px; max-height: 30px;" src='/mymedia/{{ item.base.thumb }}'/></span>
 						    {% if item.type == "eshop" %}
-						      <a href="/sklep/{{ item.concrete.id }}" class="item_name">{{ item.base.name }}</a>
+						      <span id='name' class="list_option_item"><a href="/sklep/{{ item.concrete.id }}" class="item_name">{{ item.base.name }}</a></span>
 						    {% endif %}
 						    {% if item.type == "group" %}
                               <a href="/grupowe/{{ item.concrete.id }}" class="item_name">{{ item.base.name }}</a>
                             {% endif %}
-						    <span class='price'>{{ item.concrete.price }}</span>
+						    <span id='price' class='list_option_item' style="width:100px;">{{ item.concrete.price }} zł</span>
 						 	<div class='cart_form_field'>
-                               <span class='form_error'>{{ form.quantity.errors }}</span>
-                               <label for='id_username'>ilość:</label>
-                                {{ form.quantity }}
+                               <span class='form_error'>{{ form.quantity.errors }}
+                               <label for='id_username'>Sztuk:</label>
+                                {{ form.quantity }}</span>
                             </div>
 						  </div>
 						  {% endfor %}
-    						  <div class="submit_wrapper">
+    						  <div class="submit_wrapper" style="float: right; margin-right: 60px;">
                                 <input class="button" type="submit" value="Przelicz" />
                               </div>
 						  </form>
-						  <div id="cart_total">Łącznie: {{ total }} zł</div>					
+						  <div id="cart_total" style="margin-left: 15px;">Łącznie: {{ total }} zł</div>					
 						</div>
+						</br>
+						<form  style="margin-left: 15px;" action="/kasa/">
+    						<input type="submit" value="Zamawiam">
+						</form>
 						
-						 
              </div>
              <div id='order'>
-						 	<a href="/kasa/">Zamawiam</a>						 	
+						 						 	
 						</div>
        </div>
 <!-- <div id="list" style="margin-top:50px">
