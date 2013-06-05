@@ -182,6 +182,8 @@ class CustomerPanel:
             if formset.is_valid():
                 for form, item in zip(formset.forms, cart.items.all()):
                     item.quantity = int(form.cleaned_data["quantity"])
+                    if item.quantity == 0:
+                        cart.items.remove(item)
                     item.save()
                 cart.save()
             return HttpResponseRedirect("/koszyk/")
