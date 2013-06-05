@@ -28,5 +28,4 @@ class EditAuctionForm(forms.Form):
     image = forms.ImageField()
     start_date = forms.DateTimeField(widget=forms.DateTimeInput)
     planned_close_date = forms.DateTimeField(widget=forms.DateTimeInput)
-    start_price = forms.DecimalField(max_digits=15,decimal_places=2)
     reserve_price = forms.DecimalField(max_digits=15,decimal_places=2)
