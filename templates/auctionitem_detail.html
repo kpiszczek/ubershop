@@ -45,20 +45,17 @@
       <div id='auction_winner'>
         <div id='auction_winner_label'>
           Wygrywa:
-        </div>
-        <div id='auction_winner_name'>
           {% with bid=item.bids.all.0 %}
-          {{ bid.user.username }}
+          {{ bid.user.user.username }}
           {% endwith %}
         </div>
+
          </div>
         <div id='auction_bid'>
          <div id='auction_bids_count_label'>
-          Ilość ofert:
+          Ilość ofert:{{ item.bids.count }}
         </div>
-        <div id='auction_bids_count'>
-          {{ item.bids_count }}
-        </div>   
+       
       </div>
     </div>
 
