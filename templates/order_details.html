@@ -2,7 +2,7 @@
 
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
-<link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/bid_history.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block sidebar %}
@@ -31,20 +31,22 @@
 
 {% block content %}
 <div id="list"  style="margin-top: 50px; min-height:300px">
-	<p>Szczegóły zamówienia nr: {{ order.pk }}</p>
-	<p>Data zamówienia: {{ order.date }}</p>
-	<p>Przesyłka: {{ order.shipment_method }}</p>
-	<p>Status: {{order.status.name}}</p>
-	<p>Produkty:</p>
+	<div id="list_title">Szczegóły zamówienia nr: {{ order.pk }}</div>
+	<table class="table_form">
+	<tr class="user"><td>Data zamówienia:</td> <td>{{ order.date }}</td></tr>
+	<tr class="user"><td>Przesyłka: </td> <td>{{ order.shipment_method }}</td></tr>
+	<tr class="user"><td>Status: </td> <td>{{order.status.name}}</td></tr>
+	<tr class="user"><td>Produkty:</td>
+	<td>
 	<ol>
 	{% for item in order.items.all %}
 	<li><a href="/sklep/{{ item.id }}">{{ item.item.name }}</a></li>
 	{% endfor %}
-	</ol>
+	</ol></td></tr>
 	
-	<p>Pozostałe informacje:</p>
-	<p>{{ order.details }}</p>
-	
+	<tr class="user"><td>Pozostałe informacje:</td>
+	<td><p style="min-height: 100px;">{{ order.details }}</p></td></tr>
+	</table>
 </div>
 {% endblock %}
 
