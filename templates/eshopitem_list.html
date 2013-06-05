@@ -24,6 +24,7 @@
                       Produkty
                       </div>
                         <div id="listing_option">
+                        	<div id='image' class='list_option_item'></div>
                           <div id='name' class='list_option_item'>Nazwa:</div>
                           <div id='price' class='list_option_item'>Cena:</div>
                           <div id='time' class='list_option_item'>Dostępność:</div>
@@ -32,10 +33,10 @@
                        	
 						  {% for item in items %}
 						  <div class='eshop_item_entry'>
-						  <img style="width: 30px; max-height: 30px;" src='/mymedia/{{ item.base.thumb }}'/>
-						    <span><a href='/sklep/{{ item.id }}/' class="item_name">{{ item.base.name }}</a></span>
-						    <span class='price'>{{ item.price }}</span>
-						    <span class='availiability'>{{ item.availiability_status.name }}</span>
+						  <span id='image' class="list_option_item"><img style="width: 30px; max-height: 30px;" src='/mymedia/{{ item.base.thumb }}'/></span>
+						    <span id='name' class="list_option_item"><a href='/sklep/{{ item.id }}/' class="item_name">{{ item.base.name }}</a></span>
+						    <span id='price' class='list_option_item'>{{ item.price }}</span>
+						    <span id='time' class='list_option_item'>{{ item.availiability_status.name }}</span>
 						 	<!--<span class='item_name'>{{ item.name }}</span>-->
 						  </div>
 						  {% endfor %}

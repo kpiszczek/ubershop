@@ -70,8 +70,12 @@
 	margin-left: 3px;
 	background-color: #62a28c;
 }
+#image{
+	width: 40px
+}
+
 #name{
-	width: 350px;
+	width: 300px;
 }
 #price{
 	width: 170px;
@@ -90,6 +94,7 @@
 .eshop_item_entry{
 	width: 732px;
 	top: 10px;	
+	height: 40px;
 }
 #item{
 	width: 700px;
@@ -109,10 +114,16 @@
 .thumb:hover{
 	opacity: 1;
 }
+.image{
+	float: left;
+	font-weight: bold;
+	width:40px;
+	color:#62A28C;
+	padding-left:27px
 .item_name{
 	float: left;
 	font-weight: bold;
-	width:378px;
+	width:300px;
 	color:#62A28C;
 	padding-left:27px
 }
