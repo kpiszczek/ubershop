@@ -49,8 +49,8 @@ class AuctionView(BaseView):
                 except Exception:
                     pass
             props = [str(key) + ": \n" for key in fields.keys()]
-            form = EditAuctionForm({"name": base.name,
-                                    "categories": base.categories,
+            form = EditAuctionForm(initial={"name": base.name,
+                                    "categories": base.categories.all(),
                                     "properties": props,
                                     "thumb": base.thumb,
                                     "image": base.images.all()[0],
