@@ -76,6 +76,17 @@
     </div>  
     <div id='auction_description'>
       {{ item.base.description }}
+      <table class="table"> 
+                <ul> 
+            {% for row in table %} 
+            <tr class="user"> 
+                {% for value in row %} 
+                <td class='first_row'> {{ value }} </td> 
+                {% endfor %} 
+            </tr> 
+            {% endfor %} 
+            </ul> 
+            </table>
     </div>
    </div>
     <div id='auction_gallery'>
