@@ -25,6 +25,8 @@ def home_page(request):
     return render_to_response("home.html",{'search_form': form, 'categories': categories,
                                            'promotion_items': products, "message": message},
                               context_instance=RequestContext(request))
-def contact(request):
+def contact(cls, request):
     # NIE DZIALA - WYSWIETLA PUSTA STRONE ZAMIAST POJEDYNCZEGO ZDANIA KTORE TAM TESTOWO WPISALEM
-    return render_to_response("contact.html", context_instance=RequestContext(request))
+    return render_to_response("contact.html",{"categories": cls.get_categories(),
+                                               "search_form": SearchForm()},
+                               context_instance=RequestContext(request))

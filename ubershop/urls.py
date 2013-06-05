@@ -26,7 +26,7 @@ urlpatterns = patterns('',
     
     url(r'^home/$','core.views.home_page'),
     url(r'^home/szukaj/$', EShopView.search_item),
-    url(r'^home/kontakt/$','core.views.contact'),
+    url(r'^home/kontakt/$', EShopView.contact),#'core.views.contact'),
    
     
     # url dla Auction

@@ -14,6 +14,7 @@ from base.models import BaseItem
 from eshop.models import EShopItem, ShoppingCart
 from ordermanager.models import OrderItem, Order
 from core.models import ShopUser
+from base.forms import SearchForm
 
 class EShopView(BaseView):
     model = EShopItem
@@ -108,5 +109,9 @@ class EShopView(BaseView):
         return render_to_response("eshop_compare.html", 
                                   {'item1': item1, 'item2': item2, 'table': table},
                                   context_instance=RequestContext(request))
-    
-    
+    @classmethod
+    def contact(cls, request):
+        # NIE DZIALA - WYSWIETLA PUSTA STRONE ZAMIAST POJEDYNCZEGO ZDANIA KTORE TAM TESTOWO WPISALEM
+        return render_to_response("contact.html",{"categories": cls.get_categories(),
+                                                  "search_form": SearchForm()},
+                                  context_instance=RequestContext(request))    
