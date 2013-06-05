@@ -1,0 +1,48 @@
+#auction_form_wrapper{
+	position:relative;
+	background-color:#CECCCC;
+	width:740px;
+
+}
+#form_list{
+	margin-top:5px;
+}
+.auction_form_field{
+	 background:#edefee;
+	 padding:5px;
+	 margin-top:1px;
+}
+.auction_form_field_button{
+	 background:#edefee;
+	 padding:5px;
+	 padding-left:600px;
+	 margin-top:1px;
+}
+.id_username{
+	float:left;
+	width:200px;
+}
+
+#list_title{
+	padding-left: 10px;
+	padding-top: 10px;
+	font-weight: bold;
+	font-size:110%;
+	background-color:#CECCCC;
+	
+	border-style: solid;
+	border-color: #CECCCC;
+	border-width: 1px;
+	
+	background-color: rgb(235, 235, 235);	
+	color: #002f32;
+	height:30px;	
+}
+#form_input_wrapper{
+	padding-top:10px;
+	padding-left:200px;
+}
+
+#form_label{
+	min-width: 200px;
+}
