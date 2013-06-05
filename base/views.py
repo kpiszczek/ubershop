@@ -75,7 +75,7 @@ class BaseView():
     @classmethod
     def category(cls, request, id, page=0):
         items = cls.model.objects.filter(base__categories__pk=id)
-        items = cls.model.objects.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
+        items = items.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
         
         next_page = page+1 if len(items) == 15 else None
         prev_page = page-1 if page > 0 else None
