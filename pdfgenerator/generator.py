@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpResponse
 
 from reportlab.lib.styles import getSampleStyleSheet
@@ -38,7 +40,8 @@ class PdfGenerator():
         
         self.story.append(Paragraph(item.base.name, self.styles["Normal"]))
         if item.base.properties is not None:
-            data = [[key, item.base.properties[key]] for key in item.base.properties.keys()]
+            props = json.loads(item.base.properties)
+            data = [[key, props[key]] for key in props.keys()]
             self.story.append(Table(data))
         
         return self.serve_file()
