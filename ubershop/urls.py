@@ -74,6 +74,8 @@ urlpatterns = patterns('',
     url(r'^grupowe/(?P<offer_id>\d+)/kupujacy/$', GroupBuyView.buyers_list),
     url(r'^grupowe/(?P<id>\d+)/get_pdf/$', GroupBuyView.get_item_pdf),
     url(r'^grupowe/.+/szukaj/$', GroupBuyView.search_item),  
+    url(r'^grupowe/porownaj/$', GroupBuyView.compare_items),
+    url(r'^grupowe/(?P<id>\d+)/porownaj/$', GroupBuyView.add_to_compare),
     
     # url dla forum
     url(r'^forum/$', BoardView.show_available_board),

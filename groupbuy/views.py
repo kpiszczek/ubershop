@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*- 
+import json
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
@@ -54,4 +57,55 @@ class GroupBuyView(BaseView):
         cart.save()
         
         return HttpResponseRedirect('/koszyk/')
+    
+    @classmethod
+    def add_to_compare(cls, request, id):
+        id1 = request.session.get("id1", None)
+        id2 = request.session.get("id2", None)
+        
+        if id1 is not None and id2 is not None:
+            request.session["id1"] = request.session["id2"]
+            request.session["id2"] = id
+            return cls.compare_items(request)
+        
+        if id1 is None and id2 is None:
+            request.session["id1"] = id
+            request.session["id2"] = id
+            return cls.compare_items(request)
+        
+        if id1 is None:
+            request.session["id1"] = id
+            return cls.compare_items(request)
+        
+        if id2 is None:
+            request.session["id2"] = id
+            return cls.compare_items(request)
+        
+    @classmethod
+    def compare_items(cls, request):
+        # DZIAŁA
+        id1 = request.session.get("id1", None)
+        id2 = request.session.get("id2", None)
+        
+        if id1 is not None and id2 is not None:
+            item1 = GroupOffer.objects.get(pk=id1)
+            item2 = GroupOffer.objects.get(pk=id2)
+            
+            if item1.base.properties and item2.base.properties:
+                prop1 = json.loads(item1.base.properties)
+                prop2 = json.loads(item2.base.properties)
+                
+                keys = set(prop1.keys()) & set(prop2.keys())
+                table = [[key, prop1[key], prop2[key]] for key in keys]
+            else:
+                table = []            
+        else:
+            item1 = None
+            item2 = None
+            table = []
+            
+        return render_to_response("eshop_compare.html", 
+                                  {'item1': item1, 'item2': item2, 'table': table,
+                                   "categories": cls.get_categories(), "search_form": SearchForm()},
+                                  context_instance=RequestContext(request))
    
