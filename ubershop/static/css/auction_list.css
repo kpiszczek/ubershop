@@ -1,12 +1,13 @@
 #content_container{
 	position: relative;
 	top: 22px;
+	height:auto;
 }
 
 #list_content{
 	position: relative;
 	top:10px;
-	height: 260px;
+	height:300px;	
 	width: 738px;
 	margin-bottom: 70px;
 	background-color: rgb(235, 235, 235);
@@ -120,7 +121,7 @@
 	width: 300px;
 }
 #price{
-	width: 140px;
+	width: 170px;
 }
 #time{
 	width: 160px;
@@ -169,6 +170,7 @@
 	font-weight: bold;
 	width:300px;
 	color:#62A28C;
+	padding-left:27px
 
 }
 .current_price{

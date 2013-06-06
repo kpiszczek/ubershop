@@ -54,3 +54,4 @@ class GroupBuyView(BaseView):
         cart.save()
         
         return HttpResponseRedirect('/koszyk/')
+   
