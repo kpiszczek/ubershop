@@ -67,6 +67,7 @@ class CustomerPanel:
                 base_item.categories = form.cleaned_data["categories"]
                 base_item.description = form.cleaned_data["description"]
                 base_item.thumb = form.cleaned_data["thumb"]
+                base.is_active = True
                 
                 image = Image()
                 image.image = form.cleaned_data["image"]
@@ -82,6 +83,7 @@ class CustomerPanel:
                 auction.start_price = form.cleaned_data["start_price"]
                 auction.current_price = auction.start_price
                 auction.reserve_price = form.cleaned_data["reserve_price"]
+                auction.properties = "{}"
                 
                 current_user = ShopUser.objects.get(user__pk=request.user.pk)
                 auction.created_by = current_user
@@ -133,11 +135,16 @@ class CustomerPanel:
     @method_decorator(login_required(login_url='/accounts/login/'))
     def shopping_cart(cls,request):
         # DZIALA
-        current_user = request.user.username
+        current_user = request.user
         #raise Http404(current_user)
-        current_user = ShopUser.objects.get(user__username=current_user)
+        current_user = ShopUser.objects.get(user__pk=current_user.pk)
+
         #if ShoppingCart.objects.get(user=current_user):
-        cart = ShoppingCart.objects.get_or_create(user__pk=current_user.pk)[0]
+        try:
+            cart = ShoppingCart.objects.get_or_create(user__pk=current_user.pk)[0]
+        except Exception:
+            cart = ShoppingCart.objects.create(user=current_user)
+            cart.save()
         
         cart_items = []
         formset_data = []
@@ -278,13 +285,20 @@ class CustomerPanel:
                 order.details = order_form.cleaned_data["details"]
                 order.save()
                 
-                for item in cart.items.all(): order.items.add(item)
+                for item in cart.items.all():
+                    try:
+                        offer = GroupOffer.objects.get(base__pk=item.pk)
+                        offer.buyers.add(order.placed_by)
+                        offer.save()
+                    except Exception:
+                        pass
+                    order.items.add(item)
                 cart.items.clear()
                 
                 cart.save()    
                 order.save()
                 
-                return render_to_response("thankyou.html", {},
+                return render_to_response("thankyou.html", {"search_form": SearchForm(), "categories": BaseView.get_categories()},
                                           context_instance=RequestContext(request))
             data["order_form"] = order_form
             return render_to_response("checkout.html",data,

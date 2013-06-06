@@ -8,6 +8,7 @@ from django.utils.decorators import method_decorator
 from django.http import HttpResponseRedirect
 
 from base.views import BaseView
+from base.models import BaseItem
 from groupbuy.models import GroupOffer
 from base.forms import SearchForm
 from eshop.models import ShoppingCart

@@ -27,6 +27,7 @@ urlpatterns = patterns('',
     url(r'^home/$','core.views.home_page'),
     url(r'^home/szukaj/$', EShopView.search_item),
     url(r'^home/kontakt/$', EShopView.contact),#'core.views.contact'),
+    url(r'^home/.+/szukaj/$', EShopView.search_item),
    
     
     # url dla Auction
@@ -57,6 +58,7 @@ urlpatterns = patterns('',
     url(r'^sklep/szukaj/$', EShopView.search_item),  
     url(r'^sklep/(?P<id>\d+)/$', EShopView.show_item),
     url(r'^sklep/(?P<id>\d+)/komentuj/$', EShopView.comment),
+    url(r'^sklep/(?P<id>\d+)/obserwuj/$', EShopView.add_to_watchlist),
     url(r'^sklep/(?P<id>\d+)/porownaj/$', EShopView.add_to_compare),
     url(r'^sklep/(?P<id>\d+)/dodaj/$', EShopView.add_to_cart),
     url(r'^sklep/(?P<id>\d+)/get_pdf/$', EShopView.get_item_pdf),

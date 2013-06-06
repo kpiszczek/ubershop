@@ -19,21 +19,16 @@ Porównywarka
 <div id='compare_properties_img'>
 	<table class="table_form_1"> 
         	<!--	<ul>-->
-             {% for row in table %}
-            <tr class="user">
-            	<td  class='row'>Zdjęcie</td>              
+        	 <tr class="user">
+                <td  class='row'>Zdjęcie</td>              
                 <td><img style="width: 280px; max-height: 258px;" src='/mymedia/{{ item1.base.thumb }}'/></td> 
                 <td><img style="width: 280px; max-height: 258px;" src='/mymedia/{{ item2.base.thumb }}'/> </td>                          
             </tr> 
-           </table>
-</div> 
-<table class="table_form_1">
             <tr class="user"> 
-       			<td class='row'>Nazwa produktu</td>
-            	<td class='row_1'>{{ item1.base.name }}</td>
-            	<td class='row_1'>{{ item2.base.name }}</td>           	
+                <td class='row'>Nazwa produktu</td>
+                <td class='row_1'>{{ item1.base.name }}</td>
+                <td class='row_1'>{{ item2.base.name }}</td>            
             </tr>
-           {% endfor %}
          <!--</ul> -->
             </table>
       	
@@ -56,7 +51,7 @@ Porównywarka
             
     </div>
    </div>  
-
+</div>
 </section> 
 
 {% endblock %}

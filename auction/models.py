@@ -4,6 +4,9 @@ from django.contrib import admin
 from base.models import BaseItem
 
 class Bid(models.Model):
+    class Meta:
+        ordering = ('-price',)
+        
     user = models.ForeignKey('core.ShopUser')
     item = models.ForeignKey('AuctionItem')
     date = models.DateTimeField()

@@ -11,14 +11,29 @@ from django.http import Http404, HttpResponseRedirect
 
 from base.views import BaseView
 from base.models import BaseItem
-from eshop.models import EShopItem, ShoppingCart
+from eshop.models import EShopItem, ShoppingCart, ProductWatcher
 from ordermanager.models import OrderItem, Order
 from core.models import ShopUser
 from base.forms import SearchForm
 
+
 class EShopView(BaseView):
     model = EShopItem
     
+    @classmethod
+    @method_decorator(login_required(login_url='/accounts/login/'))
+    def add_to_watchlist(self, request, id):
+        user = ShopUser.objects.get(user__pk=request.user.pk)
+        item = EShopItem.objects.get(pk=id)
+        try:
+            watcher = ProductWatcher.objects.get(user=user)
+            watcher.item = item
+        except Exception:
+            watcher = ProductWatcher.objects.create(user=user, product=item)
+        watcher.save()
+        
+        return HttpResponseRedirect("/obserwowane/")
+        
     @classmethod
     def onsale_products(cls, request):
         # DZIAŁA

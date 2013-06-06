@@ -144,11 +144,11 @@
 	height: 30px;
 	float:right;
 	width:100px;
-	background-color:#FDF5E6;
+	/*background-color:#FDF5E6;*/	
 	border-radius: 12px 12px 12px 12px;	
-	border-style: solid;
-	border-color: rgb(172, 172, 172);
-	border-width: 1px;	
+	/*border-style: solid;*/
+	/*border-color: rgb(172, 172, 172);*/
+	/*border-width: 1px;*/	
 	font-weight:bold;
 	font-size: 15px;	
 	color:#002F32;

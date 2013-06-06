@@ -125,6 +125,7 @@ class AuctionView(BaseView):
                 bid.save()    
             
                 auction.bids.add(bid)
+                
                 auction.current_price = price
                 auction.save()
         return HttpResponseRedirect('/aukcje/%s/' % str(auction_id))
