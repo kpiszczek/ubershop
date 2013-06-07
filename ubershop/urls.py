@@ -103,6 +103,7 @@ urlpatterns = patterns('',
     url(r'^aukcje/dodaj/$', CustomerPanel.add_auction),
     url(r'^panel_klienta/$', CustomerPanel.show_panel),
     
+    url(r'^.+/szukaj/$', EShopView.search_item),
     
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

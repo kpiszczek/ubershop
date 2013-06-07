@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import *
@@ -43,8 +43,11 @@ class PdfGenerator():
             props = json.loads(item.base.properties)
             data = [[key, props[key]] for key in props.keys()]
             self.story.append(Table(data))
-        
+        try:
+            self.story.append(Image(item.base.images.all()[0].image))
+        except Exception:
+            pass
         return self.serve_file()
     
-    def order_confirmation(self,order):
+    def order_confirmation(self, order):
         raise NotImplemented
