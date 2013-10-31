@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import mandrill
+
 from collections import namedtuple
 
 from django.shortcuts import render_to_response

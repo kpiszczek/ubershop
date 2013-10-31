@@ -1,0 +1,14 @@
+ubershop@o2.pl
+pass 123456
+
+mandrill:
+ubershop@o2.pl
+pass ubershop123
+
+API key
+
+Key
+
+x03KMKaNVHHoV3g0APQt4g
+
+Created: Oct 31, 2013 2:20 pm
