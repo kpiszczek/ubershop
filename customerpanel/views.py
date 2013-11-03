@@ -333,6 +333,9 @@ class CustomerPanel:
                           "search_form": SearchForm(), "categories": BaseView.get_categories()},
                         context_instance=RequestContext(request))
                                                                    
+                #for item in order.items.all():
+                #    item.quantity=0
+                    
                 cart.items.clear()
 
                 cart.save()
