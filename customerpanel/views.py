@@ -308,23 +308,25 @@ class CustomerPanel:
                 cart.save()
                 order.save()
                 
-                html_mail_content = '<p>Szczegóły zamówienia<p><table><tr><td>Nazwa</td><td>ilość</td><td>cena</td></tr>'  
+                user=ShopUser.objects.get(user__pk=request.user.pk)
+                total=0
+                html_mail_content ='<p>Witaj'+user.user.first_name+' '+user.user.last_name+'</p>'+'<p>Potwierdzamy przyjęcie zamówienia nr '+ str(order.pk) +'<p>'+'<p>Szczegóły zamówienia<p><table border="1" rules="typ"><tr><td>Nazwa</td><td>ilość</td><td>cena</td></tr>'  
                 for item in order.items.all():
                     shop_item = EShopItem.objects.get(base__pk=item.item.pk)
                     html_mail_content=html_mail_content+'<tr><td>'+str(item.item.name)+'</td><td>'+str(item.quantity)+'</td><td>'+str(shop_item.price)+'</td></tr>'
-                html_mail_content = html_mail_content + '</table>'
-                
-                user=ShopUser.objects.get(user__pk=request.user.pk)
+                    total=total+item.quantity*shop_item.price
+                html_mail_content = html_mail_content + '</table></br>'+'<p>Razem: '+str(total)+'</p>' +'<p>Adres do wysyłki:</p>'+user.address+'<p>Z poważaniem </br> Ekipa UberShop</p>'
+
                 #Wysylka maila z potwierdzeniem
                 try:
                     mandrill_client = mandrill.Mandrill('x03KMKaNVHHoV3g0APQt4g')
                     message = {'to': [{'email':user.user.email,
-                                       'name':'imie i nazwisko',
+                                       'name':user.user.first_name+' '+user.user.last_name,
                                        'type':'to'}],
                                #'bcc_address':'ubershop@o2.pl',
                                'from_email':'ubershop@o2.pl',
                                'from_name':'Ubershop',
-                               'subject':'potwierdzenie zamówienia numer '+str(order.pk),
+                               'subject':'Potwierdzenie zamówienia numer '+str(order.pk),
                                'headers': {'Reply-To':'ubershop@o2.pl'},
                                'html': html_mail_content,
                                }
