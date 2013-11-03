@@ -293,7 +293,7 @@ class CustomerPanel:
                 order.shipment_method = order_form.cleaned_data[
                     "shipment_method"]
                 order.details = order_form.cleaned_data["details"]
-                order.save()
+                order.save()                                            
 
                 for item in cart.items.all():
                     try:
@@ -307,6 +307,34 @@ class CustomerPanel:
 
                 cart.save()
                 order.save()
+                
+                html_mail_content = '<p>Szczegóły zamówienia<p><table><tr><td>Nazwa</td><td>ilość</td><td>cena</td></tr>'  
+                for item in order.items.all():
+                    shop_item = EShopItem.objects.get(base__pk=item.item.pk)
+                    html_mail_content=html_mail_content+'<tr><td>'+str(item.item.name)+'</td><td>'+str(item.quantity)+'</td><td>'+str(shop_item.price)+'</td></tr>'
+                html_mail_content = html_mail_content + '</table>'
+                
+                user=ShopUser.objects.get(user__pk=request.user.pk)
+                #Wysylka maila z potwierdzeniem
+                try:
+                    mandrill_client = mandrill.Mandrill('x03KMKaNVHHoV3g0APQt4g')
+                    message = {'to': [{'email':user.user.email,
+                                       'name':'imie i nazwisko',
+                                       'type':'to'}],
+                               #'bcc_address':'ubershop@o2.pl',
+                               'from_email':'ubershop@o2.pl',
+                               'from_name':'Ubershop',
+                               'subject':'potwierdzenie zamówienia numer '+str(order.pk),
+                               'headers': {'Reply-To':'ubershop@o2.pl'},
+                               'html': html_mail_content,
+                               }
+                    result = mandrill_client.messages.send(message=message, async=False)
+                except mandrill.Error,e:
+                    return render_to_response(
+                        "error.html", {
+                          "search_form": SearchForm(), "categories": BaseView.get_categories()},
+                        context_instance=RequestContext(request))
+                                   
 
                 return render_to_response(
                     "thankyou.html", {

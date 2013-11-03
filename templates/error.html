@@ -1,0 +1,12 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/logout.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+{% block content %}
+<div  class='loginout_message'>
+<P>Wystąpił błąd, spróbuj ponownie za kilka minut. Wróć na <a href="/home/" style="color:blue;">stronę główną.</a></P>
+</div>
+{% endblock %}
