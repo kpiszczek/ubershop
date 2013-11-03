@@ -303,11 +303,7 @@ class CustomerPanel:
                     except Exception:
                         pass
                     order.items.add(item)
-                cart.items.clear()
 
-                cart.save()
-                order.save()
-                
                 user=ShopUser.objects.get(user__pk=request.user.pk)
                 total=0
                 html_mail_content ='<p>Witaj'+user.user.first_name+' '+user.user.last_name+'</p>'+'<p>Potwierdzamy przyjęcie zamówienia nr '+ str(order.pk) +'<p>'+'<p>Szczegóły zamówienia<p><table border="1" rules="typ"><tr><td>Nazwa</td><td>ilość</td><td>cena</td></tr>'  
@@ -336,7 +332,12 @@ class CustomerPanel:
                         "error.html", {
                           "search_form": SearchForm(), "categories": BaseView.get_categories()},
                         context_instance=RequestContext(request))
-                                   
+                                                                   
+                cart.items.clear()
+
+                cart.save()
+                order.save()
+                
 
                 return render_to_response(
                     "thankyou.html", {
