@@ -12,8 +12,8 @@ class TopicForm(ModelForm):
 class BoardForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(BoardForm, self).__init__(*args, **kwargs)
-        self.fields['name'].label = "Nazwa działu"
-        self.fields['description'].label = "Opis działu"
+        self.fields['name'].label = "Nazwa dzialu"
+        self.fields['description'].label = "Opis dzialu"
     class Meta:
         model = Board
         fields = ('name','description',)
@@ -21,7 +21,7 @@ class BoardForm(ModelForm):
 class MessageForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(MessageForm, self).__init__(*args, **kwargs)
-        self.fields['content'].label = "Twoja wiadomość"
+        self.fields['content'].label = "Twoja wiadomosc"
     class Meta:
         model = Message
         fields = ('content',)
