@@ -12,11 +12,29 @@
   <div id='eshop_title'>
     {{ item.base.name }}
   </div>
-  <div id='eshop_main_image'>
+  <div id='gallery'style="position: relative;width: 300px;height: 258px;float:left;">
+  <div id='eshop_main_image'style="height:258px;">
     <img style="width: 300px; max-height:258px;" src="/mymedia/{{ item.base.thumb }}"/>
     
   </div>
-  <div id='eshop_info_panel'>
+  
+  <!-- Dynamiczna galeria -->
+	<script type="text/javascript">
+    function changeImage(a) {
+        document.getElementById("main_image").src=a;
+    }
+	</script>
+
+ 	<div id='eshop_small_gallery'style="text-align:center;width:300px; max-height: 80px;position: relative;margin-top:10px;float:left;margin-left: 15px;">
+    <img class="miniaturka" style="width: 80px; max-height: 80px;position:relative;;margin-top:5px;" src="http://placehold.it/130x60" onclick='changeImage("http://placehold.it/130x60");'/>
+ 	{% for image in item.base.images.all %}
+    	    <img class="miniaturka" style="width: 80px; max-height: 80px;position: relative;margin-top:5px;" src="/mymedia/{{ image.image }}"  onclick='changeImage("/mymedia/{{ image.image }}");'/>      
+	{% endfor %}
+ 	</div>
+	<!-- Dynamiczna galeria --> 
+  </div>
+  
+  <div id='eshop_info_panel' style="height: 353px;">
     <div id='eshop_availability'>
     	<label >Dostępność:</label>
       {{ item.availiability_status.name }}
@@ -40,7 +58,7 @@
       </form>
     </div>
   </div>
- <div id='eshop_mid_panel'>
+ <div id='eshop_mid_panel'style="position: relative;float:right;margin-top:15px;">
  	<!-- AddThis Button BEGIN -->
 <div class="addthis_toolbox addthis_default_style" style='position:relative;float:right;margin-top:5px;
 	margin-right:18px;'>

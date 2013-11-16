@@ -8,17 +8,32 @@
 {% endblock %}
 
 {% block content %}
-<section id='eshop_item_page' style="margin-top: 50px">
+<section id='eshop_item_page' style="margin-top:50px">
   <div id='eshop_title'>
     {{ item.base.name }}
   </div>
+<div id='gallery'style="position: relative;width: 300px;height: 258px;float:left;">
+  <div id='eshop_main_image'style="height:258px;">
+    <img id="main_image" style="width:300px; max-height:258px;"src="/mymedia/{{ item.base.thumb }}"/>
+   </div>
+   
+   <!-- Dynamiczna galeria -->
+	<script type="text/javascript">
+    function changeImage(a) {
+        document.getElementById("main_image").src=a;
+    }
+	</script>
 
-  <div id='eshop_main_image'>
-    <img id="main_image" style="width: 300px; max-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/>
+ 	<div id='eshop_small_gallery'style="text-align:center;width:300px; max-height: 80px;position: relative;margin-top:10px;float:left;margin-left: 15px;">
+    <img class="miniaturka" style="width: 80px; max-height: 80px;position:relative;;margin-top:5px;" src="http://placehold.it/130x60" onclick='changeImage("http://placehold.it/130x60");'/>
+ 	{% for image in item.base.images.all %}
+    	    <img class="miniaturka" style="width: 80px; max-height: 80px;position: relative;margin-top:5px;" src="/mymedia/{{ image.image }}"  onclick='changeImage("/mymedia/{{ image.image }}");'/>      
+	{% endfor %}
+ 	</div>
+	<!-- Dynamiczna galeria --> 
   </div>
-  
 
-  <div id='eshop_info_panel'>
+  <div id='eshop_info_panel' style="height: 353px;">
     <div id='eshop_availability'>
     	<label >Dostępność:</label>
       {{ item.availiability_status.name }}
@@ -43,16 +58,16 @@
       </form>
     </div>
   </div>
-  
- <div id='eshop_mid_panel'>
+ 
+ <div id='eshop_mid_panel'style="position: relative;float:right;margin-top:15px;">
  	<!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style" style='position:relative;float:right;margin-top:5px;
+	<div class="addthis_toolbox addthis_default_style" style='position:relative;float:right;margin-top:5px;
 	margin-right:18px;'>
-<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-<a class="addthis_counter addthis_pill_style"></a>
-</div>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527920254d4d7335"></script>
+	<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+	<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+	<a class="addthis_counter addthis_pill_style"></a>
+	</div>
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527920254d4d7335"></script>
 <!-- AddThis Button END -->
    <!-- <div id='eshop_mid_bids_subpanel'>
       <div id='eshop_score'>
@@ -82,20 +97,7 @@
     </div>-->
  </div> 
  
-<!-- Dynamiczna galeria -->
-<script type="text/javascript">
-    function changeImage(a) {
-        document.getElementById("main_image").src=a;
-    }
-</script>
 
- <div id='eshop_small_gallery'>
-    <img class="miniaturka" style="width: 80px; max-height: 80px;" src="http://placehold.it/130x60" onclick='changeImage("http://placehold.it/130x60");'/>
- 	{% for image in item.base.images.all %}
-    	    <img class="miniaturka" style="width: 80px; max-height: 80px;" src="/mymedia/{{ image.image }}"  onclick='changeImage("/mymedia/{{ image.image }}");'/>      
-	{% endfor %}
- </div>
-<!-- Dynamiczna galeria --> 
 
   <div id='eshop_description_wrapper'>
     <div id='action_description_label'>
@@ -103,7 +105,8 @@
     </div>  
     <div id='eshop_description'>
       {{ item.base.description }}
-<div id='compare_properties'>
+	
+	<div id='compare_properties'>
       Cechy produktu
     </div>  
       <div id='compare_properties_wrapper'>
@@ -121,13 +124,13 @@
       </div>
     </div>
    </div>
-    <div id='eshop_gallery'>
+   <!-- <div id='eshop_gallery'>
       {% for image in item.base.images.all %}
       <div class='eshop_gallery_entry'>
         <img style="width: 300px; max-height: 258px;" src="/mymedia/{{ image.image }}"/>      
       </div>
       {% endfor %}
-    </div>
+   </div> -->
   
   <div id='eshop_comments'>
     <div id='eshop_comments_label'>

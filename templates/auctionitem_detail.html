@@ -12,11 +12,28 @@
   <div id='auction_title'>
     {{ item.base.name }}
   </div>
+  <div id='gallery'style="position: relative;width: 300px;height: 258px;float:left;">
   <div id='auction_main_image'>
    <!-- nie możemy nic wpisywać 'na sztywno' - wszystkie dane są pobierana z przesłanego obiektu -->
    <img style="width: 300px; max-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/>
   </div>
-  <div id='auction_info_panel'>
+   <!-- Dynamiczna galeria -->
+	<script type="text/javascript">
+    function changeImage(a) {
+        document.getElementById("main_image").src=a;
+    }
+	</script>
+
+ 	<div id='eshop_small_gallery'style="text-align:center;width:300px; max-height: 80px;position: relative;margin-top:10px;float:left;margin-left: 15px;">
+    <img class="miniaturka" style="width: 80px; max-height: 80px;position:relative;;margin-top:5px;" src="http://placehold.it/130x60" onclick='changeImage("http://placehold.it/130x60");'/>
+ 	{% for image in item.base.images.all %}
+    	    <img class="miniaturka" style="width: 80px; max-height: 80px;position: relative;margin-top:5px;" src="/mymedia/{{ image.image }}"  onclick='changeImage("/mymedia/{{ image.image }}");'/>      
+	{% endfor %}
+ 	</div>
+	<!-- Dynamiczna galeria --> 
+  </div>
+  
+  <div id='auction_info_panel'style="height: 353px;">
     <div id='auction_created_by'>
     	<label >Sprzedający:</label> 
       {{ item.created_by }}
@@ -40,7 +57,7 @@
       </form>
     </div>
   </div>
-  <div id='auction_mid_panel'>
+  <div id='auction_mid_panel'style="position: relative;float:right;margin-top:15px;">
     <!--<div id='auction_mid_bids_subpanel'>-->
       <div id='auction_winner'>
         <div id='auction_winner_label'>
@@ -58,14 +75,14 @@
        
       </div> 
       <!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style" style='position:relative;float:left;margin-top:10px;
-	margin-left:24px;'>
-<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
-<a class="addthis_counter addthis_pill_style"></a>
-</div>
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527920254d4d7335"></script>
-<!-- AddThis Button END -->
+		<div class="addthis_toolbox addthis_default_style" style='position:relative;float:left;margin-top:10px;
+			margin-left:24px;'>
+			<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+			<a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+			<a class="addthis_counter addthis_pill_style"></a>
+		</div>
+		<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527920254d4d7335"></script>
+	<!-- AddThis Button END -->
      
     </div>
 
