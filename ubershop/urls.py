@@ -102,9 +102,21 @@ urlpatterns = patterns('',
     url(r'^obserwowane/$', CustomerPanel.watched_products),
     url(r'^aukcje/dodaj/$', CustomerPanel.add_auction),
     url(r'^panel_klienta/$', CustomerPanel.show_panel),
-    
+
+    # url dla backendpanel
+    url(r'^manager/$', BackendPanel.main),
+    url(r'^manager/sklep/$', BackendPanel.items_list),
+    url(r'^manager/sklep/(?P<id>\d+)/edytuj/$', BackendPanel.edit_item),
+    url(r'^manager/sklep/nowy/$', BackendPanel.add_item),
+    url(r'^manager/grupowe/$', BackendPanel.group_list),
+    url(r'^manager/grupowe/(?P<id>\d+)/edytuj/$', BackendPanel.edit_group),
+    url(r'^manager/grupowe/nowy/$', BackendPanel.add_group),
+    url(r'^manager/kategorie/$', BackendPanel.category_list),
+    url(r'^manager/kategorie/(?P<id>\d+)/edytuj/$', BackendPanel.edit_category),
+    url(r'^manager/kategorie/nowy/$', BackendPanel.add_category),
+
     url(r'^.+/szukaj/$', EShopView.search_item),
-    
+ 
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
