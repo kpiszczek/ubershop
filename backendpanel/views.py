@@ -1,7 +1,12 @@
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
-from django.http import HttpResponseRedirect
+
+from base.forms import SearchForm
+from core.models import Category
+from eshop.models import EShopItem
+from groupbuy.models import GroupOffer
 
 
 class BackendPanel:
@@ -10,12 +15,18 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def main(cls, request):
-        raise NotImplemented
+        return render_to_response("backendpanel.html",
+            {'search_form': SearchForm()},
+            context_instance=RequestContext(request))
 
     @classmethod
     @method_decorator(staff_member_required)
     def items_list(cls, request):
-        raise NotImplemented
+        items = EShopItem.objects.all()
+        return render_to_response(
+            "backpanel_items_list.html",
+            {'items': items},
+            context_instance=RequestContext(request))
 
     @classmethod
     @method_decorator(staff_member_required)
@@ -30,7 +41,11 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def group_list(cls, request):
-        raise NotImplemented
+        items = GroupOffer.objects.all()
+        return render_to_response(
+            "backpanel_group_list.html",
+            {'items': items},
+            context_instance=RequestContext(request))
 
     @classmethod
     @method_decorator(staff_member_required)
@@ -45,7 +60,11 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def category_list(cls, request):
-        raise NotImplemented
+        items = Category.objects.all()
+        return render_to_response(
+            "backpanel_category_list.html",
+            {'items': items},
+            context_instance=RequestContext(request))
 
     @classmethod
     @method_decorator(staff_member_required)

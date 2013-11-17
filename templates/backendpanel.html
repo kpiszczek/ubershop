@@ -1,0 +1,22 @@
+{% extends "eshop_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div style="margin-top: 50px">
+<section id='panel_info'>
+    <a href="/manager/sklep/">Produkty</a>
+    <a href="/manager/grupowe/">Oferty grupowe</a>
+    <a href="/manager/kategorie/">Kategorie</a>
+    <a href="/manager/sklep/nowy/">Nowy produkt</a>
+    <a href="/manager/grupowe/nowy/">Nowa oferta</a>
+    <a href="/manager/kategorie/nowy/">Nowa kategoria</a>
+</section>
+</div>
+{% endblock %} 
