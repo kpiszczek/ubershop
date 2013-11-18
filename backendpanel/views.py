@@ -37,7 +37,12 @@ class BackendPanel:
     @method_decorator(staff_member_required)
     def add_item(cls, request):
         raise NotImplemented
-
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def remove_item(cls, request):
+        raise NotImplemented
+    
     @classmethod
     @method_decorator(staff_member_required)
     def group_list(cls, request):
@@ -56,7 +61,22 @@ class BackendPanel:
     @method_decorator(staff_member_required)
     def add_group(cls, request):
         raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def remove_group(cls, request):
+        raise NotImplemented
 
+    @classmethod
+    @method_decorator(staff_member_required)
+    def auctions_list(cls, request):
+        raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def remove_auction(cls, request):
+        raise NotImplemented
+        
     @classmethod
     @method_decorator(staff_member_required)
     def category_list(cls, request):
@@ -74,4 +94,34 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def add_category(cls, request):
+        raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def remove_category(cls, request):
+        raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def orders_list(cls, request):
+        raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def remove_order(cls, request):
+        raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def shipmentmethod_list(cls, request):
+        raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def add_shipmentmethod(cls, request):
+        raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
+    def remove_shipmentmethod(cls, request):
         raise NotImplemented
