@@ -1,7 +1,9 @@
-{% extends "eshop_base.html" %}
+{% extends "backpanel_base.html" %}
 
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/backpanel.css" rel="stylesheet" type="text/css"/>
+
 
 {% endblock %}
 
@@ -11,12 +13,31 @@
 
 <div style="margin-top: 50px">
 <section id='panel_info'>
-    <a href="/manager/sklep/">Produkty</a>
+    <!--<a href="/manager/sklep/">Produkty</a>
     <a href="/manager/grupowe/">Oferty grupowe</a>
     <a href="/manager/kategorie/">Kategorie</a>
     <a href="/manager/sklep/nowy/">Nowy produkt</a>
     <a href="/manager/grupowe/nowy/">Nowa oferta</a>
-    <a href="/manager/kategorie/nowy/">Nowa kategoria</a>
+    <a href="/manager/kategorie/nowy/">Nowa kategoria</a>-->
+    
+    <table width="100%">
+		<tr class="header">				 	
+       		<td class="header" style="padding-left:15px;">Zarządzanie ofertą</td>
+        	<td></td>
+    	</tr>
+		<tr class="board_name">
+        	<td class="board_name"> <a href="/manager/sklep/">Produkty</a></td>
+        	<td style="width: 170px;"><a class="button" href="/manager/sklep/nowy/">Nowy produkt</a></td>
+   		</tr>
+   		<tr class="board_name">
+        	<td class="board_name"> <a href="/manager/grupowe/">Oferty grupowe</a></td>
+        	<td><a class="button" href="/manager/grupowe/nowy/">Nowa oferta</a></td>
+   		</tr>
+   		<tr class="board_name">
+        	<td class="board_name"> <a href="/manager/kategorie/">Kategorie</a></td>
+        	<td><a class="button" href="/manager/kategorie/nowy/">Nowa kategoria</a></td>
+   		</tr>
+   	</table>
 </section>
 </div>
 {% endblock %} 

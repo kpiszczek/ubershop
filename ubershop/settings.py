@@ -3,7 +3,7 @@
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
-PROJECT_PATH = '/home/kuba/Workspace/web/ubershop/'
+PROJECT_PATH = 'c:/projects/ubershop/'
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
