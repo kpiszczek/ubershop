@@ -14,7 +14,7 @@
   </div>
   <div id='gallery'style="position: relative;width: 300px;height: 258px;float:left;">
   <div id='eshop_main_image'style="height:258px;">
-    <img style="width: 300px; max-height:258px;" src="/mymedia/{{ item.base.thumb }}"/>
+    <img id="main_image" style="width: 300px; max-height:258px;" src="/mymedia/{{ item.base.thumb }}"/>
     
   </div>
   
@@ -25,7 +25,7 @@
     }
 	</script>
 
- 	<div id='eshop_small_gallery'style="text-align:center;width:300px; max-height: 80px;position: relative;margin-top:10px;float:left;margin-left: 15px;">
+ 	<div id='eshop_small_gallery'>
     <img class="miniaturka" style="width: 80px; max-height: 80px;position:relative;;margin-top:5px;" src="http://placehold.it/130x60" onclick='changeImage("http://placehold.it/130x60");'/>
  	{% for image in item.base.images.all %}
     	    <img class="miniaturka" style="width: 80px; max-height: 80px;position: relative;margin-top:5px;" src="/mymedia/{{ image.image }}"  onclick='changeImage("/mymedia/{{ image.image }}");'/>      
@@ -152,7 +152,7 @@
     </form>
   </div>
   <div id='eshop_print_page'>
-   <a href="get_pdf">Drukuj stronę</a>
+   <a href="get_pdf" style="color:#EAEDE7;">Drukuj stronę</a>
   </div>
 </section>
 {% endblock %}

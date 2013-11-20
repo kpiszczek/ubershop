@@ -17,6 +17,7 @@
     color:#f2eeee; 
     padding-left: 20px;
     padding-right: 20px;
+    padding-top: 6px;
    
     }
 #eshop_main_image
@@ -179,6 +180,16 @@
 	float:left;
 	background-color:#eaede7;
 	box-shadow: 4px 4px 10px rgb(102, 102, 102);
+}
+#eshop_small_gallery
+{
+	text-align:center;
+	width:300px; 
+	max-height: 80px;
+	position: relative;
+	margin-top:10px;
+	float:left;
+	margin-left: 15px;
 }
 .eshop_gallery_entry{
 	position:relative;

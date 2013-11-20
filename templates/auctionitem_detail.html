@@ -15,7 +15,7 @@
   <div id='gallery'style="position: relative;width: 300px;height: 258px;float:left;">
   <div id='auction_main_image'>
    <!-- nie możemy nic wpisywać 'na sztywno' - wszystkie dane są pobierana z przesłanego obiektu -->
-   <img style="width: 300px; max-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/>
+   <img id='main_image' style="width: 300px; max-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/>
   </div>
    <!-- Dynamiczna galeria -->
 	<script type="text/javascript">
@@ -133,7 +133,7 @@
     </div>
  
   <div id='auction_print_page'>
-    <a href="get_pdf">Drukuj stronę</a>
+    <a href="get_pdf" style="color:#EAEDE7;">Drukuj stronę</a>
   </div>
 </section>
 {% endblock %}
