@@ -7,6 +7,9 @@ from base.forms import SearchForm
 from core.models import Category
 from eshop.models import EShopItem
 from groupbuy.models import GroupOffer
+from auction.models import AuctionItem
+from ordermanager.models import Order
+from ordermanager.models import ShipmentMethod
 
 
 class BackendPanel:
@@ -70,7 +73,11 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def auctions_list(cls, request):
-        raise NotImplemented
+        items = AuctionItem.objects.all()
+        return render_to_response(
+            "backpanel_auction_list.html",
+            {'items': items},
+            context_instance=RequestContext(request))
     
     @classmethod
     @method_decorator(staff_member_required)
@@ -104,7 +111,11 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def orders_list(cls, request):
-        raise NotImplemented
+        items = Order.objects.all()
+        return render_to_response(
+            "backpanel_orders_list.html",
+            {'items': items},
+            context_instance=RequestContext(request))
     
     @classmethod
     @method_decorator(staff_member_required)
@@ -114,7 +125,11 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def shipmentmethod_list(cls, request):
-        raise NotImplemented
+        items = ShipmentMethod.objects.all()
+        return render_to_response(
+            "backpanel_shipmentmethod_list.html",
+            {'items': items},
+            context_instance=RequestContext(request))
     
     @classmethod
     @method_decorator(staff_member_required)
