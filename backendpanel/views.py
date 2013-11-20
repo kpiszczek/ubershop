@@ -43,8 +43,11 @@ class BackendPanel:
     
     @classmethod
     @method_decorator(staff_member_required)
-    def remove_item(cls, request):
-        raise NotImplemented
+    def remove_item(cls, request, item_id):
+        item = EShopItem.objects.get(pk=item_id)
+        item.delete()
+        return HttpResponseRedirect("/manager/sklep/")
+        #raise NotImplemented
     
     @classmethod
     @method_decorator(staff_member_required)
@@ -67,8 +70,11 @@ class BackendPanel:
     
     @classmethod
     @method_decorator(staff_member_required)
-    def remove_group(cls, request):
-        raise NotImplemented
+    def remove_group(cls, request, item_id):
+        item = GroupOffer.objects.get(pk=item_id)
+        item.delete()
+        return HttpResponseRedirect("/manager/grupowe/")
+        #raise NotImplemented
 
     @classmethod
     @method_decorator(staff_member_required)
@@ -81,8 +87,11 @@ class BackendPanel:
     
     @classmethod
     @method_decorator(staff_member_required)
-    def remove_auction(cls, request):
-        raise NotImplemented
+    def remove_auction(cls, request, auction_id):
+        auction = AuctionItem.objects.get(pk=auction_id)
+        auction.delete()
+        return HttpResponseRedirect("/manager/aukcje/")
+        #raise NotImplemented
         
     @classmethod
     @method_decorator(staff_member_required)
@@ -105,8 +114,11 @@ class BackendPanel:
     
     @classmethod
     @method_decorator(staff_member_required)
-    def remove_category(cls, request):
-        raise NotImplemented
+    def remove_category(cls, request, category_id):
+        category = Category.objects.get(pk=category_id)
+        category.delete()
+        return HttpResponseRedirect("/manager/kategorie/")
+        #raise NotImplemented
     
     @classmethod
     @method_decorator(staff_member_required)
@@ -119,8 +131,11 @@ class BackendPanel:
     
     @classmethod
     @method_decorator(staff_member_required)
-    def remove_order(cls, request):
-        raise NotImplemented
+    def remove_order(cls, request, order_id):
+        order = Order.Objects.get(pk=order_id)
+        order.delete()
+        return HttpResponseRedirect("/manager/zamowienia/")
+        #raise NotImplemented
     
     @classmethod
     @method_decorator(staff_member_required)
@@ -138,5 +153,8 @@ class BackendPanel:
     
     @classmethod
     @method_decorator(staff_member_required)
-    def remove_shipmentmethod(cls, request):
-        raise NotImplemented
+    def remove_shipmentmethod(cls, request, item_id):
+        item = ShipmentMethod.objects.get(pk=item_id)
+        item.delete()
+        return HttpResponseRedirect("/manager/wysylka/")
+        #raise NotImplemented
