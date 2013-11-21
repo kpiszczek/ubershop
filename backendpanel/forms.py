@@ -25,7 +25,7 @@ class CategoryForm(forms.Form):
 class ShipmentMethodForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super(CategoryForm, self).__init__(*args, **kwargs)
-        self.fields['name'].label = "Nazwa kategorii"
+        self.fields['name'].label = "Sposob wysylki"
     class Meta:
         model = Topic
         fields = ('name',)
