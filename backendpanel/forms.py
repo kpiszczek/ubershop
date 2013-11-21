@@ -13,3 +13,19 @@ class EshopItemForm(froms.Form):
     category = forms.ModelChoiceField(queryset=Category.objects.all())
     description = forms.TextField()
     thumb = forms.ImageField()
+
+class CategoryForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(CategoryForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = "Nazwa kategorii"
+    class Meta:
+        model = Topic
+        fields = ('name',)
+
+class ShipmentMethodForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(CategoryForm, self).__init__(*args, **kwargs)
+        self.fields['name'].label = "Nazwa kategorii"
+    class Meta:
+        model = Topic
+        fields = ('name',)

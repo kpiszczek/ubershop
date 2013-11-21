@@ -110,7 +110,17 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def add_category(cls, request):
-        raise NotImplemented
+        if request.method == 'POST':
+            category_form = CategoryForm(request.POST)
+            if category_form.is_valid():
+                new_category = category_form.save()
+                return HttpResponseRedirect("/manager/kategorie/")
+        else:
+            category_form = CategoryForm()
+        return render_to_response('backpanel_new_category.html', 
+                                  {'category_form': category_form}, 
+                                  context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @classmethod
     @method_decorator(staff_member_required)
@@ -149,7 +159,17 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def add_shipmentmethod(cls, request):
-        raise NotImplemented
+        if request.method == 'POST':
+            shipment_form = ShipmentMethodForm(request.POST)
+            if shipment_form.is_valid():
+                new_shipment_method = shipment_form.save()
+                return HttpResponseRedirect("/manager/wysylka/")
+        else:
+            category_form = CategoryForm()
+        return render_to_response('backpanel_new_shipment.html', 
+                                  {'shipment_form': shipment_form}, 
+                                  context_instance=RequestContext(request))
+        #raise NotImplemented
     
     @classmethod
     @method_decorator(staff_member_required)
