@@ -21,7 +21,7 @@
           </div> -->
               <div id='list_content'>
                 <div id='navigation'>
-                      Kategorie
+                      Metody wysyłki
                       </div>
                         <div id="listing_option">
                             <div id='image' class='list_option_item'></div>
@@ -31,7 +31,7 @@
                         
                           {% for item in items %}
                           <div class='eshop_item_entry'>
-                            <span id='name' class="list_option_item"><a href='/manager/kategorie/{{ item.id }}/edytuj/' class="item_name">{{ item.name }}</a></span>
+                            <span id='name' class="list_option_item"><a href='/manager/wysylka/{{ item.id }}/edytuj/' class="item_name">{{ item.name }}</a></span>
                             <!--<span class='item_name'>{{ item.name }}</span>-->
                           </div>
                           {% endfor %}

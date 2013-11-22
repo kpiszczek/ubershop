@@ -81,7 +81,7 @@ class BackendPanel:
     def auctions_list(cls, request):
         items = AuctionItem.objects.all()
         return render_to_response(
-            "backpanel_auction_list.html",
+            "backpanel_auctions_list.html",
             {'items': items},
             context_instance=RequestContext(request))
     
@@ -104,8 +104,20 @@ class BackendPanel:
 
     @classmethod
     @method_decorator(staff_member_required)
-    def edit_category(cls, request):
-        raise NotImplemented
+    def edit_category(cls, request, item_id):
+        if request.method == 'POST':
+            category_form = CategoryForm(request.POST)
+            if category_form.is_valid():
+                new_category = category_form.save()
+                return HttpResponseRedirect("/manager/kategorie/")
+        else:
+            category=Category.objects.get(pk=item_id)
+            category_name=category.name
+            category_form = CategoryForm()
+        return render_to_response('backpanel_new_category.html', 
+                                  {'category_form': category_form, 'category_name': category_name}, 
+                                  context_instance=RequestContext(request))        
+        #raise NotImplemented
 
     @classmethod
     @method_decorator(staff_member_required)
@@ -142,7 +154,7 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def remove_order(cls, request, order_id):
-        order = Order.Objects.get(pk=order_id)
+        order = Order.objects.get(pk=order_id)
         order.delete()
         return HttpResponseRedirect("/manager/zamowienia/")
         #raise NotImplemented
@@ -170,6 +182,20 @@ class BackendPanel:
                                   {'shipment_form': shipment_form}, 
                                   context_instance=RequestContext(request))
         #raise NotImplemented
+    @classmethod
+    @method_decorator(staff_member_required)
+    def edit_shipmentmethod(cls, request, item_id):
+        if request.method == 'POST':
+            shipment_form = ShipmentMethodForm(request.POST)
+            if shipment_form.is_valid():
+                new_shipment_method = shipment_form.save()
+                return HttpResponseRedirect("/manager/wysylka/")
+        else:
+            shipment_name=ShipmentMethod.objects.get(pk=item_id)
+            category_form = CategoryForm()
+        return render_to_response('backpanel_new_shipment.html', 
+                                  {'shipment_form': shipment_form, 'shipment_name': shipment_name}, 
+                                  context_instance=RequestContext(request))
     
     @classmethod
     @method_decorator(staff_member_required)
