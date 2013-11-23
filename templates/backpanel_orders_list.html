@@ -25,13 +25,14 @@
                       </div>
                         <div id="listing_option">
                             <div id='image' class='list_option_item'></div>
-                          <div id='name' class='list_option_item'>Nazwa:</div>
+                          <div id='name' class='list_option_item'>Zamówienia:</div>
                        </div>
                        <section id='eshop_list' >
                         
                           {% for item in items %}
                           <div class='eshop_item_entry'>
-                            <span id='name' class="list_option_item">{{ item.pk }}</span>
+                            <span id='name' class="list_option_item">{{ item.pk }}</span> 
+                            <span id='name' class="list_option_item"><a href='/manager/zamowienia/{{ item.id }}/usun/' class="item_name">Usuń</a></span>
                             <!--<span class='item_name'>{{ item.name }}</span>-->
                           </div>
                           {% endfor %}

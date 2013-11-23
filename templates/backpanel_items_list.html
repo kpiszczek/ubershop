@@ -21,7 +21,7 @@
           </div> -->
               <div id='list_content'>
                 <div id='navigation'>
-                      Produkty
+                      Produkty, <a class="button" href="/manager/sklep/nowy/">Nowy produkt</a>
                       </div>
                         <div id="listing_option">
                             <div id='image' class='list_option_item'></div>
@@ -37,6 +37,7 @@
                             <span id='name' class="list_option_item"><a href='/manager/sklep/{{ item.id }}/edytuj/' class="item_name">{{ item.base.name }}</a></span>
                             <span id='price' class='list_option_item'>{{ item.price }}</span>
                             <span id='time' class='list_option_item'>{{ item.availiability_status.name }}</span>
+                            <span id='name' class="list_option_item"><a href='/manager/sklep/{{ item.id }}/usun/' class="item_name">Usuń</a></span>
                             <!--<span class='item_name'>{{ item.name }}</span>-->
                           </div>
                           {% endfor %}

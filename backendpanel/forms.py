@@ -8,24 +8,15 @@ from eshop.models import EShopItem
 from groupbuy.models import GroupOffer
 
 
-class EshopItemForm(froms.Form):
-    name = forms.CharField()
-    category = forms.ModelChoiceField(queryset=Category.objects.all())
-    description = forms.TextField()
-    thumb = forms.ImageField()
+#class EshopItemForm(forms.Form):
+#    name = forms.CharField()
+#    category = forms.ModelChoiceField(queryset=Category.objects.all())
+#    description = forms.TextField()
+#    thumb = forms.ImageField()
 
 class CategoryForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(CategoryForm, self).__init__(*args, **kwargs)
-        self.fields['name'].label = "Nazwa kategorii"
-    class Meta:
-        model = Topic
-        fields = ('name',)
+    name = forms.CharField()
 
 class ShipmentMethodForm(forms.Form):
-    def __init__(self, *args, **kwargs):
-        super(CategoryForm, self).__init__(*args, **kwargs)
-        self.fields['name'].label = "Sposob wysylki"
-    class Meta:
-        model = Topic
-        fields = ('name',)
+    name = forms.CharField()
+    
