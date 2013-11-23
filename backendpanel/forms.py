@@ -11,7 +11,7 @@ from groupbuy.models import GroupOffer
 #class EshopItemForm(forms.Form):
 #    name = forms.CharField()
 #    category = forms.ModelChoiceField(queryset=Category.objects.all())
-#    description = forms.TextField()
+#    description = forms.CharField(widget=forms.Textarea)
 #    thumb = forms.ImageField()
 
 class CategoryForm(forms.Form):
@@ -19,4 +19,5 @@ class CategoryForm(forms.Form):
 
 class ShipmentMethodForm(forms.Form):
     name = forms.CharField()
-    
+    description = forms.CharField(widget=forms.Textarea)
+    price = forms.DecimalField(max_digits=15,decimal_places=2)

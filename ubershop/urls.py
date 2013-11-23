@@ -124,6 +124,7 @@ urlpatterns = patterns('',
     url(r'^manager/wysylka/$', BackendPanel.shipmentmethod_list),
     url(r'^manager/wysylka/nowy/$', BackendPanel.add_shipmentmethod),
     url(r'^manager/wysylka/(?P<id>\d+)/usun/$', BackendPanel.remove_shipmentmethod),
+    url(r'^manager/wysylka/(?P<id>\d+)/edytuj/$', BackendPanel.edit_shipmentmethod),
 
     url(r'^.+/szukaj/$', EShopView.search_item),
  

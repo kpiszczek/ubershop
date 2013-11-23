@@ -184,39 +184,58 @@ class BackendPanel:
             {'items': items},
             context_instance=RequestContext(request))
     
+    #DZIALA
     @classmethod
     @method_decorator(staff_member_required)
     def add_shipmentmethod(cls, request):
         if request.method == 'POST':
-            shipment_form = ShipmentMethodForm(request.POST)
-            if shipment_form.is_valid():
-                new_shipment_method = shipment_form.save()
+            form = ShipmentMethodForm(request.POST)
+            if form.is_valid():
+                name = request.POST['name']
+                description = request.POST['description']
+                price = request.POST['price']
+                new_shipment_method = ShipmentMethod(name = name, description = description, price = price)
+                new_shipment_method.save()
                 return HttpResponseRedirect("/manager/wysylka/")
         else:
-            category_form = CategoryForm()
+            form = ShipmentMethodForm()
         return render_to_response('backpanel_new_shipment.html', 
-                                  {'shipment_form': shipment_form}, 
+                                  {'form': form}, 
                                   context_instance=RequestContext(request))
-        #raise NotImplemented
+        
+    #DZIALA        
     @classmethod
     @method_decorator(staff_member_required)
-    def edit_shipmentmethod(cls, request, item_id):
+    def edit_shipmentmethod(cls, request, id):
         if request.method == 'POST':
-            shipment_form = ShipmentMethodForm(request.POST)
-            if shipment_form.is_valid():
-                new_shipment_method = shipment_form.save()
+            form = ShipmentMethodForm(request.POST)
+            if form.is_valid():
+                shipment_method = ShipmentMethod.objects.get(pk=id)
+                name = request.POST['name']
+                description = request.POST['description']
+                price = request.POST['price']
+                shipment_method.name = name
+                shipment_method.description = description
+                shipment_method.price = price
+                shipment_method.save()
                 return HttpResponseRedirect("/manager/wysylka/")
         else:
-            shipment_name=ShipmentMethod.objects.get(pk=item_id)
-            category_form = CategoryForm()
+            shipment = ShipmentMethod.objects.get(pk=id)
+            shipment_name = shipment.name
+            price = shipment.price
+            description = shipment.description
+            form = ShipmentMethodForm(initial={"name": shipment_name,
+                                               "description": description,
+                                               "price": price})
         return render_to_response('backpanel_new_shipment.html', 
-                                  {'shipment_form': shipment_form, 'shipment_name': shipment_name}, 
+                                  {'form': form,}, 
                                   context_instance=RequestContext(request))
     
+    #DZIALA
     @classmethod
     @method_decorator(staff_member_required)
-    def remove_shipmentmethod(cls, request, item_id):
-        item = ShipmentMethod.objects.get(pk=item_id)
+    def remove_shipmentmethod(cls, request, id):
+        item = ShipmentMethod.objects.get(pk=id)
         item.delete()
         return HttpResponseRedirect("/manager/wysylka/")
         #raise NotImplemented

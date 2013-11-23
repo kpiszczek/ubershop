@@ -1,0 +1,47 @@
+{% extends "backpanel_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='eshop_list_control_panel'>
+  <!-- TODO -->
+  <div id='content_container'>
+	<div id="form_wrapper" style="margin-top: 50px">
+	<div id="list_title">Nowa Metoda wysylki:</div>
+	<div id="form_list">
+  <form id='form' name='form' method='post' accept-charset="utf-8">
+    {% csrf_token %}
+    <div class='form_field'>
+      <span class='id_name'>{{ form.name.errors }}</span>
+      <label for='id_name' class='id_name'>Nazwa:</label>
+      {{ form.name }}
+	</div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.description.errors }}</span>
+      <label for='id_name' class='id_name'>Opis:</label>
+      {{ form.description }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.price.errors }}</span>
+      <label for='id_name' class='id_name'>Cena:</label>
+      {{ form.price }}
+    </div>
+    <p class='auction_form_field'>
+       <input value='Zapisz' id='save' type='submit'/>
+       <p id='form_submit_info'>{{ form.info }}</p>
+    </p>
+    </form>
+    
+    </div>
+    </div>
+          
+             </div>
+             </div>
+
+             <div class="clear" style="height: 50px">&nbsp;</div>
+             <div class="clear">&nbsp;</div>
+{% endblock %}
