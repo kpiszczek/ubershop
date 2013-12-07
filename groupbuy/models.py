@@ -8,8 +8,8 @@ class GroupOffer(models.Model):
     min_num_buyers = models.IntegerField()
     availiability_status = models.ForeignKey('core.AvailiabilityStatus')
     current_stock = models.IntegerField()
-    buyers = models.ManyToManyField('core.ShopUser')
-    current_num_buyers = models.IntegerField()
+    buyers = models.ManyToManyField('core.ShopUser', blank=True,null=True)
+    current_num_buyers = models.IntegerField(blank=True,null=True)
     base = models.OneToOneField(BaseItem)
     
     def __str__(self):
