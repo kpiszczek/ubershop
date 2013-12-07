@@ -22,6 +22,11 @@ class BoardView():
         return render_to_response("topic_list.html", 
                                   {'board':board, 'topics': topics },
                                   context_instance=RequestContext(request))
+    @classmethod #BRAK URL
+    def delete_board(cls, request, board_id):
+        board = Board.objects.get(pk=board_id)
+        board.delete()
+        return HttpResponseRedirect("/forum/")
     
     @classmethod
     def show_topic(cls, request, board_id, topic_id):
@@ -35,6 +40,11 @@ class BoardView():
                                   {'messages':messages, 'topic': topic, 'topic_id': topic_id, 'board': board},
                                   context_instance=RequestContext(request))
 
+    @classmethod #BRAK URL
+    def delete_topic(cls, request, topic_id, board_id):
+        topic = Topic.objects.get(pk=topic_id)
+        topic.delete()
+        return HttpResponseRedirect("/forum/%s/" % (board_id))
     
     @classmethod
     def show_message(cls, request, board_id, topic_id, message_id):
@@ -45,6 +55,16 @@ class BoardView():
         return render_to_response("message_detail.html", 
                                   {'message':message, 'topic': topic, 'board': board},
                                   context_instance=RequestContext(request))
+    @classmethod #BRAK URL
+    def delete_message(cls, request, topic_id, board_id, message_id):
+        message=Message.objects.get(pk=message_id)
+        message.delete() 
+        messages = Messages.objects.filter(topic__pk=topic_id)
+        return HttpResponseRedirect("/forum/%s/%s/" % (board_id, topic_id))
+        if messages.count()==0:
+            topic = Topic.objects.get(pk=topic_id)
+            topic.delete()
+            return HttpResponseRedirect("/forum/%s/" % (board_id))
 
     @classmethod
     def show_available_board(cls,request):
