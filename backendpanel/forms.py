@@ -4,8 +4,10 @@ from django.forms.formsets import formset_factory
 from base.models import BaseItem
 from core.models import Category
 from core.models import ShipmentMethod
+from core.models import AvailiabilityStatus
 from eshop.models import EShopItem
 from groupbuy.models import GroupOffer
+from base.models import BaseItem
 
 
 #class EshopItemForm(forms.Form):
@@ -21,3 +23,10 @@ class ShipmentMethodForm(forms.Form):
     name = forms.CharField()
     description = forms.CharField(widget=forms.Textarea)
     price = forms.DecimalField(max_digits=15,decimal_places=2)
+    
+class GroupOfferForm(forms.Form):
+    base = forms.ModelChoiceField(queryset=BaseItem.objects.all().order_by('name'))
+    price = forms.DecimalField(max_digits=15,decimal_places=2)
+    min_num_buyers = forms.IntegerField()
+    availiability_status = forms.ModelChoiceField(queryset=AvailiabilityStatus.objects.all().order_by('name'))
+    current_stock = forms.IntegerField()

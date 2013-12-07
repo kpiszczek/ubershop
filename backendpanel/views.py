@@ -5,7 +5,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
 
 from base.forms import SearchForm
+from base.models import BaseItem
 from core.models import Category
+from core.models import ShopUser
+from core.models import AvailiabilityStatus
 from eshop.models import EShopItem
 from groupbuy.models import GroupOffer
 from auction.models import AuctionItem
@@ -13,6 +16,7 @@ from ordermanager.models import Order
 from ordermanager.models import ShipmentMethod
 from backendpanel.forms import CategoryForm
 from backendpanel.forms import ShipmentMethodForm
+from backendpanel.forms import GroupOfferForm
 #from backendpanel.forms import EshopItemForm
 
 class BackendPanel:
@@ -70,7 +74,26 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def add_group(cls, request):
-        raise NotImplemented
+        if request.method == 'POST':
+            form = GroupOfferForm(request.POST)
+            if form.is_valid():
+                base_name = request.POST['base']
+                base = BaseItem.objects.get(pk=base_name)
+                price = request.POST['price']
+                min_num_buyers = request.POST['min_num_buyers']
+                availiability_status_name = request.POST['availiability_status']
+                availiability_status = AvailiabilityStatus.objects.get(pk=availiability_status_name)
+                current_stock = request.POST['current_stock']
+                user = ShopUser.objects.get(user__pk=request.user.pk)
+                new_groupoffer = GroupOffer(price=price ,min_num_buyers=min_num_buyers, availiability_status=availiability_status, current_stock=current_stock, current_num_buyers=1, base=base)
+                new_groupoffer.buyers.add(user)
+                new_groupoffer.save()
+                return HttpResponseRedirect("/manager/grupowe/")
+        else:
+            form = GroupOfferForm()
+        return render_to_response('backpanel_new_groupoffer.html', 
+                                  {'form': form}, 
+                                  context_instance=RequestContext(request))
     
     #POWINNO DZIALAC ALE NIE CHCE MI SIE POZNIEJ DODAWAC GRUPOWEJ OFERTY OD NOWA ;)
     @classmethod

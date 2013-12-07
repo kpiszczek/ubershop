@@ -1,0 +1,57 @@
+{% extends "backpanel_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='eshop_list_control_panel'>
+  <!-- TODO -->
+  <div id='content_container'>
+	<div id="form_wrapper" style="margin-top: 50px">
+	<div id="list_title">Nowa oferta grupowa:</div>
+	<div id="form_list">
+  <form id='form' name='form' method='post' accept-charset="utf-8">
+    {% csrf_token %}
+    <div class='form_field'>
+      <span class='id_name'>{{ form.base.errors }}</span>
+      <label for='id_name' class='id_name'>Produkt:</label>
+      {{ form.base }}
+	</div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.price.errors }}</span>
+      <label for='id_name' class='id_name'>Cena:</label>
+      {{ form.price }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.min_num_buyers.errors }}</span>
+      <label for='id_name' class='id_name'>Minimalna liczba kupujących:</label>
+      {{ form.min_num_buyers }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.availiability_status.errors }}</span>
+      <label for='id_name' class='id_name'>Dostępność:</label>
+      {{ form.availiability_status }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.current_stock.errors }}</span>
+      <label for='id_name' class='id_name'>Ilość sztuk w ofercie:</label>
+      {{ form.current_stock }}
+    </div>
+    <p class='auction_form_field'>
+       <input value='Zapisz' id='save' type='submit'/>
+       <p id='form_submit_info'>{{ form.info }}</p>
+    </p>
+    </form>
+    
+    </div>
+    </div>
+          
+             </div>
+             </div>
+
+             <div class="clear" style="height: 50px">&nbsp;</div>
+             <div class="clear">&nbsp;</div>
+{% endblock %}
