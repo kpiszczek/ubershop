@@ -22,7 +22,7 @@ class BoardView():
         return render_to_response("topic_list.html", 
                                   {'board':board, 'topics': topics },
                                   context_instance=RequestContext(request))
-    @classmethod #BRAK URL
+    @classmethod
     def delete_board(cls, request, board_id):
         board = Board.objects.get(pk=board_id)
         board.delete()
@@ -40,7 +40,7 @@ class BoardView():
                                   {'messages':messages, 'topic': topic, 'topic_id': topic_id, 'board': board},
                                   context_instance=RequestContext(request))
 
-    @classmethod #BRAK URL
+    @classmethod
     def delete_topic(cls, request, topic_id, board_id):
         topic = Topic.objects.get(pk=topic_id)
         topic.delete()
@@ -55,7 +55,7 @@ class BoardView():
         return render_to_response("message_detail.html", 
                                   {'message':message, 'topic': topic, 'board': board},
                                   context_instance=RequestContext(request))
-    @classmethod #BRAK URL
+    @classmethod
     def delete_message(cls, request, topic_id, board_id, message_id):
         message=Message.objects.get(pk=message_id)
         message.delete() 
