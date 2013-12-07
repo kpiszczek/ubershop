@@ -29,7 +29,11 @@
    				
 			<tr class="footer">				 	
        			<td></td>
-        		<td><a href="{{ message.pk }}">Widok pojedynczego postu</a></td>
+        		<td><a href="{{ message.pk }}">Widok pojedynczego postu</a>
+        		{% if user.is_staff %}
+        		<a class="button" style="background-color:darkred" href="{{ message.pk }}/usun/">Usuń post</a>
+        		{% endif %}
+        		</td>
     		</tr>
     		{% endfor %}
     		

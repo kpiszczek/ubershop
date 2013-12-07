@@ -26,6 +26,9 @@
         			<td class="topic_title">{{ topic.date }}</td>
         
         			<td>
+        			{% if user.is_staff %}	
+        			<a class="button" style="background-color:darkred" href="{{ topic.pk }}/usun/">Usuń temat</a>
+        			{% endif %}
             		<a class="button" href="{{ topic.pk }}">Wyświetl temat</a>
         			</td>
    					</tr>

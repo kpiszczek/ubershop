@@ -23,12 +23,15 @@
         			</td>
         
         			<td>
+        			{% if user.is_staff %}
+        			<a class="button" style="background-color:darkred" href="{{ board.pk }}/usun/">Usuń forum</a>
+        			{% endif %}
             		<a class="button" href="{{ board.pk }}">Wyświetl forum</a>
         			</td>
    					</tr>
 
     		{% endfor %}
     	</table>
-    	<div class="new_board"><a href="nowe_forum/">Nowy dział</a></div>
+    	<div class="new_board">{% if user.is_staff %}<a href="nowe_forum/">Nowy dział</a> {% endif %}</div>
 </div>
 {% endblock %}

@@ -59,7 +59,7 @@ class BoardView():
     def delete_message(cls, request, topic_id, board_id, message_id):
         message=Message.objects.get(pk=message_id)
         message.delete() 
-        messages = Messages.objects.filter(topic__pk=topic_id)
+        messages = Message.objects.filter(topic__pk=topic_id)
         return HttpResponseRedirect("/forum/%s/%s/" % (board_id, topic_id))
         if messages.count()==0:
             topic = Topic.objects.get(pk=topic_id)
