@@ -85,7 +85,7 @@ class BackendPanel:
                 availiability_status = AvailiabilityStatus.objects.get(pk=availiability_status_name)
                 current_stock = request.POST['current_stock']
                 user = ShopUser.objects.get(user__pk=request.user.pk)
-                new_groupoffer = GroupOffer(price=price ,min_num_buyers=min_num_buyers, availiability_status=availiability_status, current_stock=current_stock, current_num_buyers=1, base=base)
+                new_groupoffer = GroupOffer(price=price ,min_num_buyers=min_num_buyers, availiability_status=availiability_status, current_stock=current_stock, current_num_buyers=0, base=base)
                 #new_groupoffer.buyers.add(user)
                 new_groupoffer.save()
                 return HttpResponseRedirect("/manager/grupowe/")
