@@ -69,8 +69,14 @@ class BoardView():
     @classmethod
     def show_available_board(cls,request):
         # DZIALA
-        forums = Board.objects.all()
-        return render_to_response("board_list.html",
+        if request.user.is_staff:
+            forums = Board.objects.all()
+            return render_to_response("board_list.html",
+                                  {'boards': forums},
+                                  context_instance=RequestContext(request))
+        else:
+            forums = Board.objects.exclude(name='news').exclude(name='EShopItem').exclude(name='AuctionItem').exclude(name='GroupOffer')
+            return render_to_response("board_list.html",
                                   {'boards': forums},
                                   context_instance=RequestContext(request))
   
