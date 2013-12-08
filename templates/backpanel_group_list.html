@@ -37,6 +37,7 @@
                             <span id='price' class='list_option_item'>{{ item.price }}</span>
                             <span id='time' class='list_option_item'><a href="/grupowe/{{ item.pk }}/kupujacy/">Kupujący</a></span>
                             <span id='name' class="list_option_item"><a href='/manager/grupowe/{{ item.id }}/usun/' class="item_name">Usuń</a></span>
+                            <span id='name' class="list_option_item"><a href='/manager/grupowe/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></span>
                             <!--<span class='item_name'>{{ item.name }}</span> -->
                           </div>
                           {% endfor %}

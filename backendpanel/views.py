@@ -68,8 +68,36 @@ class BackendPanel:
 
     @classmethod
     @method_decorator(staff_member_required)
-    def edit_group(cls, request):
-        raise NotImplemented
+    def edit_group(cls, request, id):
+        if request.method == 'POST':
+            form = GroupOfferForm(request.POST)
+            if form.is_valid():
+                groupoffer = GroupOffer.objects.get(pk=id)
+                base_name = request.POST['base']
+                base = BaseItem.objects.get(pk=base_name)
+                price = request.POST['price']
+                min_num_buyers = request.POST['min_num_buyers']
+                availiability_status_name = request.POST['availiability_status']
+                availiability_status = AvailiabilityStatus.objects.get(pk=availiability_status_name)
+                current_stock = request.POST['current_stock']
+                groupoffer.base = base
+                groupoffer.price = price
+                groupoffer.min_num_buyers = min_num_buyers
+                groupoffer.availiability_status = availiability_status
+                groupoffer.current_stock = current_stock
+                groupoffer.save()
+                return HttpResponseRedirect("/manager/grupowe/")
+        else:
+            groupoffer = GroupOffer.objects.get(pk=id)
+            base = groupoffer.base
+            price = groupoffer.price
+            min_num_buyers = groupoffer.min_num_buyers
+            availiability_status = groupoffer.availiability_status
+            current_stock = groupoffer.current_stock
+            form = GroupOfferForm(initial={"base":base, "price":price, "min_num_buyers":min_num_buyers, "availiability_status":availiability_status, "current_stock":current_stock})
+        return render_to_response('backpanel_new_groupoffer.html', 
+                                  {'form': form}, 
+                                  context_instance=RequestContext(request))
 
     @classmethod
     @method_decorator(staff_member_required)
@@ -84,7 +112,7 @@ class BackendPanel:
                 availiability_status_name = request.POST['availiability_status']
                 availiability_status = AvailiabilityStatus.objects.get(pk=availiability_status_name)
                 current_stock = request.POST['current_stock']
-                user = ShopUser.objects.get(user__pk=request.user.pk)
+                #user = ShopUser.objects.get(user__pk=request.user.pk)
                 new_groupoffer = GroupOffer(price=price ,min_num_buyers=min_num_buyers, availiability_status=availiability_status, current_stock=current_stock, current_num_buyers=0, base=base)
                 #new_groupoffer.buyers.add(user)
                 new_groupoffer.save()
