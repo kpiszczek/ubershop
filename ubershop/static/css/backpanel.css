@@ -2,9 +2,16 @@
 {
 	position:relative;
 	
-	width:740px;
+	width:700px;
 	min-height: 300px;
 	
+}
+#panel_info
+{
+	position:relative;
+	padding-left:10px;
+	width:990px;
+	min-height: 300px;
 }
 #list{
 	background-color:#edecec;
@@ -115,10 +122,10 @@ background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#
 }
 .button
 {
-	background-color:#028389;
+	background:-webkit-gradient(linear, left bottom, left top , from(#666666), to(#ACACAC));
 	height:23px;
-	width:130px;
-	color:black;
+	width:120px;
+	color:#EBEBEB;
 	float:right;
 	margin-right:20px;	
 	padding-left:5px;
