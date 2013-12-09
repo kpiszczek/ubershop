@@ -1,0 +1,126 @@
+{% extends "backpanel_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='eshop_list_control_panel'>
+  <!-- TODO -->
+  <div id='content_container'>
+	<div id="form_wrapper" style="margin-top: 50px">
+	<div id="list_title">Nowy produkta:</div>
+	<div id="form_list">
+  <form id='form' name='form' method='post' enctype="multipart/form-data" accept-charset="utf-8">
+    {% csrf_token %}
+    <div class='form_field'>
+      <span class='id_name'>{{ form.name.errors }}</span>
+      <label for='id_name' class='id_name'>Nazwa:</label>
+      {{ form.name }}
+	</div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.category.errors }}</span>
+      <label for='id_name' class='id_name'>Kategoria:</label>
+      {{ form.category }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.description.errors }}</span>
+      <label for='id_name' class='id_name'>Opis:</label>
+      {{ form.description }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.is_active.errors }}</span>
+      <label for='id_name' class='id_name'>Aktywny:</label>
+      {{ form.is_active }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.thumb.errors }}</span>
+      <label for='id_name' class='id_name'>Zdjęcie główne:</label>
+      {{ form.thumb }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.image1.errors }}</span>
+      <label for='id_name' class='id_name'>Zdjęcie 1:</label>
+      {{ form.image1 }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.image2.errors }}</span>
+      <label for='id_name' class='id_name'>Zdjęcie 2:</label>
+      {{ form.image2 }}
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.image3.errors }}</span>
+      <label for='id_name' class='id_name'>Zdjęcie 3:</label>
+      {{ form.image3 }}
+    </div>
+    
+    <div class='form_field'>
+      <span class='id_name'>{{ form.pname1.errors }}</span>
+      <label for='id_name' class='id_name'>Wartość:</label>
+      {{ form.pname1 }}
+      <span class='id_name'>{{ form.properties1.errors }}</span>
+      <label for='id_name' class='id_name'>Cecha 1:</label>
+      {{ form.properties1 }}      
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.pname2.errors }}</span>
+      <label for='id_name' class='id_name'>Wartość:</label>
+      {{ form.pname2 }}
+      <span class='id_name'>{{ form.properties2.errors }}</span>
+      <label for='id_name' class='id_name'>Cecha 2:</label>
+      {{ form.properties2 }}
+      
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.pname3.errors }}</span>
+      <label for='id_name' class='id_name'>Wartość:</label>
+      {{ form.pname3 }}
+      <span class='id_name'>{{ form.properties3.errors }}</span>
+      <label for='id_name' class='id_name'>Cecha 3:</label>
+      {{ form.properties3 }}
+      
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.pname4.errors }}</span>
+      <label for='id_name' class='id_name'>Wartość:</label>
+      {{ form.pname4 }}
+      <span class='id_name'>{{ form.properties4.errors }}</span>
+      <label for='id_name' class='id_name'>Cecha 4:</label>
+      {{ form.properties4 }}
+      
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.pname5.errors }}</span>
+      <label for='id_name' class='id_name'>Wartość:</label>
+      {{ form.pname5 }}
+      <span class='id_name'>{{ form.properties5.errors }}</span>
+      <label for='id_name' class='id_name'>Cecha 5:</label>
+      {{ form.properties5 }}
+      
+    </div>
+    <div class='form_field'>
+      <span class='id_name'>{{ form.pname6.errors }}</span>
+      <label for='id_name' class='id_name'>Wartość:</label>
+      {{ form.pname6 }}
+      <span class='id_name'>{{ form.properties6.errors }}</span>
+      <label for='id_name' class='id_name'>Cecha 6:</label>
+      {{ form.properties6 }}
+      
+    </div>
+    <p class='auction_form_field'>
+       <input value='Zapisz' id='save' type='submit'/>
+       <p id='form_submit_info'>{{ form.info }}</p>
+    </p>
+    </form>
+    
+    </div>
+    </div>
+          
+             </div>
+             </div>
+
+             <div class="clear" style="height: 50px">&nbsp;</div>
+             <div class="clear">&nbsp;</div>
+{% endblock %}

@@ -4,10 +4,14 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
 
+from django.core.files import File
+import urllib
+
 from base.forms import SearchForm
 from base.models import BaseItem
 from core.models import Category
 from core.models import ShopUser
+from core.models import Image
 from core.models import AvailiabilityStatus
 from eshop.models import EShopItem
 from groupbuy.models import GroupOffer
@@ -17,7 +21,7 @@ from ordermanager.models import ShipmentMethod
 from backendpanel.forms import CategoryForm
 from backendpanel.forms import ShipmentMethodForm
 from backendpanel.forms import GroupOfferForm
-#from backendpanel.forms import EshopItemForm
+from backendpanel.forms import EshopItemForm
 
 class BackendPanel:
     #DZIALA
@@ -44,8 +48,60 @@ class BackendPanel:
 
     @classmethod
     @method_decorator(staff_member_required)
-    def add_item(cls, request):
-        raise NotImplemented
+    def add_item(cls, request): 
+        if request.method == 'POST':
+            form = EshopItemForm(request.POST)
+            if form.is_valid():
+                #nowy BaseItem
+                base_name = request.POST['name']
+                base_category_name = request.POST['category']
+                base_category = Category.objects.get(pk=base_category_name)
+                #properties konstrukcja Json
+                json = '{\\'
+                properties = [[request.POST['properties1'], request.POST['pname1']], [request.POST['properties2'], request.POST['pname2']], [request.POST['properties3'], request.POST['pname3']], [request.POST['properties4'], request.POST['pname4']],
+                              [request.POST['properties5'], request.POST['pname5']], [request.POST['properties6'], request.POST['pname6']]]
+                i=0
+                for property in properties:
+                    if property[0]:
+                        json = json + '"' + property[1] + '\\":\\"' + property[0] +'\\"'
+                        if i+1<len(properties):
+                            json = json + ',\\r\\n\\'
+                        i = i+1
+                json = json +'}'
+                    
+                #
+                base_description = request.POST['description']
+                base_thumb = request.FILES.get('thumb')
+                base_is_active = request.POST['is_active']
+                #images
+                image1 = request.FILES.get('image1')
+                new_image1 = Image(image=image1)
+                new_image1.save()
+                image2 = request.FILES.get('image2')
+                new_image2 = Image(image=image2)
+                new_image2.save()
+                image3 = request.FILES.get('image3')
+                new_image3 = Image(image=image3)
+                new_image3.save()
+                #
+                new_base = BaseItem(name=base_name, properties=json, description=base_description, thumb=base_thumb, is_active=base_is_active)
+                new_base.save()
+                
+                #dodaj kategorie i obrazy 
+                new_base.images.add(new_image1)
+                new_base.images.add(new_image2)
+                new_base.images.add(new_image3)
+                new_base.categories.add(base_category)                
+                new_base.save()
+                #nowy EshopItem
+                
+                return HttpResponseRedirect("/manager/sklep/")
+        else:
+            form = EshopItemForm()
+        return render_to_response('backpanel_new_item.html', 
+                                  {'form': form}, 
+                                  context_instance=RequestContext(request))
+        #raise NotImplemented
 
     #POWINNO DZIALAC ALE NIE CHCE MI SIE POZNIEJ DODAWAC PRODUKTU OD NOWA ;)    
     @classmethod

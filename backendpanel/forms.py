@@ -10,12 +10,31 @@ from groupbuy.models import GroupOffer
 from base.models import BaseItem
 
 
-#class EshopItemForm(forms.Form):
-#    name = forms.CharField()
-#    category = forms.ModelChoiceField(queryset=Category.objects.all())
-#    description = forms.CharField(widget=forms.Textarea)
-#    thumb = forms.ImageField()
-
+class EshopItemForm(forms.Form):
+    name = forms.CharField()
+    category = forms.ModelChoiceField(queryset=Category.objects.all())
+    description = forms.CharField(widget=forms.Textarea)
+    thumb = forms.ImageField(required=False)
+    
+    image1 = forms.ImageField(required=False)
+    image2 = forms.ImageField(required=False)
+    image3 = forms.ImageField(required=False)
+    
+    is_active = forms.BooleanField(widget=forms.CheckboxInput)
+    
+    properties1 = forms.CharField(required=False)
+    properties2 = forms.CharField(required=False)
+    properties3 = forms.CharField(required=False)
+    properties4 = forms.CharField(required=False)
+    properties5 = forms.CharField(required=False)
+    properties6 = forms.CharField(required=False)
+    pname1 = forms.CharField(required=False)
+    pname2 = forms.CharField(required=False)
+    pname3 = forms.CharField(required=False)
+    pname4 = forms.CharField(required=False)
+    pname5 = forms.CharField(required=False)
+    pname6 = forms.CharField(required=False)
+    
 class CategoryForm(forms.Form):
     name = forms.CharField()
 
