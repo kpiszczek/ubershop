@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 
 from django.core.files import File
 import urllib
+import os.path
 
 from base.forms import SearchForm
 from base.models import BaseItem
@@ -57,16 +58,17 @@ class BackendPanel:
                 base_category_name = request.POST['category']
                 base_category = Category.objects.get(pk=base_category_name)
                 #properties konstrukcja Json
-                json = '{\\'
+                json = '{'
                 properties = [[request.POST['properties1'], request.POST['pname1']], [request.POST['properties2'], request.POST['pname2']], [request.POST['properties3'], request.POST['pname3']], [request.POST['properties4'], request.POST['pname4']],
                               [request.POST['properties5'], request.POST['pname5']], [request.POST['properties6'], request.POST['pname6']]]
                 i=0
                 for property in properties:
                     if property[0]:
-                        json = json + '"' + property[1] + '\\":\\"' + property[0] +'\\"'
-                        if i+1<len(properties):
-                            json = json + ',\\r\\n\\'
+                        if i+1<len(properties) and i>0:
+                            json = json + ',\r\n'
                         i = i+1
+                        json = json + '"' + property[1] + '":"' + property[0] +'"'
+                        
                 json = json +'}'
                     
                 #
