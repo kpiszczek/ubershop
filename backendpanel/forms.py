@@ -35,6 +35,12 @@ class EshopItemForm(forms.Form):
     pname5 = forms.CharField(required=False)
     pname6 = forms.CharField(required=False)
     
+    price = forms.DecimalField(max_digits=15,decimal_places=2)
+    is_on_sale = forms.BooleanField(widget=forms.CheckboxInput, required=False)
+    discount_price = forms.DecimalField(max_digits=15,decimal_places=2, required=False)
+    availiability_status = forms.ModelChoiceField(queryset=AvailiabilityStatus.objects.all().order_by('name'))
+    current_stock = forms.IntegerField()
+    
 class CategoryForm(forms.Form):
     name = forms.CharField()
 

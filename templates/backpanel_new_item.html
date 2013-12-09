@@ -26,6 +26,32 @@
       {{ form.category }}
     </div>
     <div class='form_field'>
+      <span class='id_name'>{{ form.price.errors }}</span>
+      <label for='id_name' class='id_name'>Cena:</label>
+      {{ form.price }}
+	</div>
+	<div class='form_field'>
+      <span class='id_name'>{{ form.is_on_sale.errors }}</span>
+      <label for='id_name' class='id_name'>Wyprzedaż?:</label>
+      {{ form.is_on_sale }}
+	</div>
+	<div class='form_field'>
+      <span class='id_name'>{{ form.discount_price.errors }}</span>
+      <label for='id_name' class='id_name'>Obniżona cena:</label>
+      {{ form.discount_price }}
+	</div>
+	<div class='form_field'>
+      <span class='id_name'>{{ form.availiability_status.errors }}</span>
+      <label for='id_name' class='id_name'>Dostępność:</label>
+      {{ form.availiability_status }}
+	</div>
+
+    <div class='form_field'>
+      <span class='id_name'>{{ form.current_stock.errors }}</span>
+      <label for='id_name' class='id_name'>Ilość w magazynie:</label>
+      {{ form.current_stock }}
+    </div>
+    <div class='form_field'>
       <span class='id_name'>{{ form.description.errors }}</span>
       <label for='id_name' class='id_name'>Opis:</label>
       {{ form.description }}

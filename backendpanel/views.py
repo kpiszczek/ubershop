@@ -100,10 +100,18 @@ class BackendPanel:
                 new_base.categories.add(base_category)                
                 new_base.save()
                 #nowy EshopItem
+                price = request.POST['price']
+                is_on_sale = request.POST.get('is_on_sale', False)
+                discount_price = request.POST.get('discount_price')
+                availiability_status_name = request.POST['availiability_status']
+                availiability_status = AvailiabilityStatus.objects.get(pk=availiability_status_name)
+                current_stock = request.POST['current_stock']
                 
+                new_eshopitem = EShopItem(price=price, is_on_sale=is_on_sale, discount_price=discount_price, availiability_status=availiability_status, current_stock=current_stock, base=new_base)
+                new_eshopitem.save()
                 return HttpResponseRedirect("/manager/sklep/")
         else:
-            form = EshopItemForm()
+            form = EshopItemForm(initial={"discount_price":0})
         return render_to_response('backpanel_new_item.html', 
                                   {'form': form}, 
                                   context_instance=RequestContext(request))
