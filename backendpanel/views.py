@@ -75,24 +75,28 @@ class BackendPanel:
                 base_description = request.POST['description']
                 base_thumb = request.FILES.get('thumb')
                 base_is_active = request.POST['is_active']
-                #images
-                image1 = request.FILES.get('image1')
-                new_image1 = Image(image=image1)
-                new_image1.save()
-                image2 = request.FILES.get('image2')
-                new_image2 = Image(image=image2)
-                new_image2.save()
-                image3 = request.FILES.get('image3')
-                new_image3 = Image(image=image3)
-                new_image3.save()
                 #
                 new_base = BaseItem(name=base_name, properties=json, description=base_description, thumb=base_thumb, is_active=base_is_active)
                 new_base.save()
                 
+                #images
+                image1 = request.FILES.get('image1')
+                new_image1 = Image(image=image1)
+                if image1:                    
+                    new_image1.save()
+                    new_base.images.add(new_image1)
+                image2 = request.FILES.get('image2')
+                new_image2 = Image(image=image2)
+                if image2:                    
+                    new_image2.save()
+                    new_base.images.add(new_image2)
+                image3 = request.FILES.get('image3')
+                new_image3 = Image(image=image3)
+                if image3:
+                    new_image3.save()
+                    new_base.images.add(new_image3)
+                
                 #dodaj kategorie i obrazy 
-                new_base.images.add(new_image1)
-                new_base.images.add(new_image2)
-                new_base.images.add(new_image3)
                 new_base.categories.add(base_category)                
                 new_base.save()
                 #nowy EshopItem
