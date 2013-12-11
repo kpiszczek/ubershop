@@ -2,14 +2,16 @@
 
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
-<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/backpanel.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 
 {% block content %}
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
-   <div id='content_container'>
+ </div>
+<div style="margin-top: 50px">
+	<section id='panel_info'>
 
           <!-- <div id='eshop_option'>
               <a href="/all/"><div class='auction_option_item'> Wszystkie
@@ -19,7 +21,35 @@
                <a href="/buynow/"><div class='auction_option_item'> Kup teraz
               </div></a>
           </div> -->
-              <div id='list_content'>
+           
+           	  <table width="100%">
+		<tr class="header">				 	
+       	<td class="header" style="padding-left:15px;">Produkty grupowe </td>    	
+    	</tr>
+    	<tr class="header">
+        	<td class="board_name2">Numer Produktu</td>
+        	<td class="board_name2">Nazwa</td>       	
+        	<td class="board_name2">Cena</td>
+        	<td class="board_name2">Dostępność</td>
+        	<td class="delete" >Opcje</td>
+        	
+   		</tr>
+   		{% for item in items %}
+   		<tr class="board_name">
+        	<td class="board_name">Numer Oferty</td>
+        	<td class="board_name"><a href='/manager/sklep/{{ item.id }}/edytuj/' class="item_name">{{ item.base.name }}</a></td>
+        	<td class="board_name">{{ item.price }}</td>
+        	<td class="board_name">{{ item.availiability_status.name }}</td>
+        	<td style="float:left;margin-left: 40px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
+        	<td style="float:right;margin-right: 40px;"><a class="buttondelete" href='/manager/sklep/{{ item.id }}/usun/' class="item_name">Usuń</a></td>
+   		</tr>
+   		   {% endfor %}
+   		   <tr>
+   		   	<td><a class="buttondelete" style="float:left;" href="/manager/sklep/nowy/">Nowy produkt</a> </td>
+   		   </tr>
+   	</table>
+            <!--  	
+           	<div id='list_content'>
                 <div id='navigation'>
                       Produkty, <a class="button" href="/manager/sklep/nowy/">Nowy produkt</a>
                       </div>
@@ -39,7 +69,7 @@
                             <span id='time' class='list_option_item'>{{ item.availiability_status.name }}</span>
                             <span id='name' class="list_option_item"><a href='/manager/sklep/{{ item.id }}/usun/' class="item_name">Usuń</a></span>
                             <!--<span class='item_name'>{{ item.name }}</span>-->
-                          </div>
+                         <!-- </div>
                           {% endfor %}
                          
                         </section>
@@ -47,5 +77,7 @@
              </div>
              </div>
              <div class="clear" style="height: 50px">&nbsp;</div>
-             <div class="clear">&nbsp;</div>
+             <div class="clear">&nbsp;</div> -->
+      </section>
+</div>
 {% endblock %}

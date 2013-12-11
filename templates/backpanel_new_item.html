@@ -2,140 +2,143 @@
 
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
-<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 
 {% block content %}
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
-  <div id='content_container'>
-	<div id="form_wrapper" style="margin-top: 50px">
+ </div>
+ 
+	<div id="auction_form_wrapper" style="margin-top: 50px;margin-left: 250px;">
 	<div id="list_title">Nowy produkta:</div>
 	<div id="form_list">
   <form id='form' name='form' method='post' enctype="multipart/form-data" accept-charset="utf-8">
     {% csrf_token %}
-    <div class='form_field'>
-      <span class='id_name'>{{ form.name.errors }}</span>
-      <label for='id_name' class='id_name'>Nazwa:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.name.errors }}</span>
+      <label for='id_username' class='id_username'>Nazwa:</label>
       {{ form.name }}
 	</div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.category.errors }}</span>
-      <label for='id_name' class='id_name'>Kategoria:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.category.errors }}</span>
+      <label for='id_username' class='id_username'>Kategoria:</label>
       {{ form.category }}
+      
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.price.errors }}</span>
-      <label for='id_name' class='id_name'>Cena:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.price.errors }}</span>
+      <label for='id_username' class='id_username'>Cena:</label>
       {{ form.price }}
+      
 	</div>
-	<div class='form_field'>
-      <span class='id_name'>{{ form.is_on_sale.errors }}</span>
-      <label for='id_name' class='id_name'>Wyprzedaż?:</label>
+	<div class='auction_form_field'>
+      <span class='id_username'>{{ form.is_on_sale.errors }}</span>
+      <label for='id_username' class='id_username'>Wyprzedaż?:</label>
       {{ form.is_on_sale }}
 	</div>
-	<div class='form_field'>
-      <span class='id_name'>{{ form.discount_price.errors }}</span>
-      <label for='id_name' class='id_name'>Obniżona cena:</label>
+	<div class='auction_form_field'>
+      <span class='id_username'>{{ form.discount_price.errors }}</span>
+      <label for='id_username' class='id_username'>Obniżona cena:</label>
       {{ form.discount_price }}
 	</div>
-	<div class='form_field'>
-      <span class='id_name'>{{ form.availiability_status.errors }}</span>
-      <label for='id_name' class='id_name'>Dostępność:</label>
+	<div class='auction_form_field'>
+      <span class='id_username'>{{ form.availiability_status.errors }}</span>
+      <label for='id_username' class='id_username'>Dostępność:</label>
       {{ form.availiability_status }}
 	</div>
 
-    <div class='form_field'>
-      <span class='id_name'>{{ form.current_stock.errors }}</span>
-      <label for='id_name' class='id_name'>Ilość w magazynie:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.current_stock.errors }}</span>
+      <label for='id_username' class='id_username'>Ilość w magazynie:</label>
       {{ form.current_stock }}
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.description.errors }}</span>
-      <label for='id_name' class='id_name'>Opis:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.description.errors }}</span>
+      <label for='id_username' class='id_username'>Opis:</label>
       {{ form.description }}
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.is_active.errors }}</span>
-      <label for='id_name' class='id_name'>Aktywny:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.is_active.errors }}</span>
+      <label for='id_username' class='id_username'>Aktywny:</label>
       {{ form.is_active }}
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.thumb.errors }}</span>
-      <label for='id_name' class='id_name'>Zdjęcie główne:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.thumb.errors }}</span>
+      <label for='id_username' class='id_username'>Zdjęcie główne:</label>
       {{ form.thumb }}
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.image1.errors }}</span>
-      <label for='id_name' class='id_name'>Zdjęcie 1:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.image1.errors }}</span>
+      <label for='id_username' class='id_username'>Zdjęcie 1:</label>
       {{ form.image1 }}
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.image2.errors }}</span>
-      <label for='id_name' class='id_name'>Zdjęcie 2:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.image2.errors }}</span>
+      <label for='id_username' class='id_username'>Zdjęcie 2:</label>
       {{ form.image2 }}
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.image3.errors }}</span>
-      <label for='id_name' class='id_name'>Zdjęcie 3:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.image3.errors }}</span>
+      <label for='id_username' class='id_username'>Zdjęcie 3:</label>
       {{ form.image3 }}
     </div>
     
-    <div class='form_field'>
-      <span class='id_name'>{{ form.pname1.errors }}</span>
-      <label for='id_name' class='id_name'>Wartość:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.pname1.errors }}</span>
+      <label for='id_username' class='id_username'>Wartość:</label>
       {{ form.pname1 }}
-      <span class='id_name'>{{ form.properties1.errors }}</span>
-      <label for='id_name' class='id_name'>Cecha 1:</label>
+      <span class='id_username'>{{ form.properties1.errors }}</span>
+      <label for='id_username' class='id_username'>Cecha 1:</label>
       {{ form.properties1 }}      
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.pname2.errors }}</span>
-      <label for='id_name' class='id_name'>Wartość:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.pname2.errors }}</span>
+      <label for='id_username' class='id_username'>Wartość:</label>
       {{ form.pname2 }}
-      <span class='id_name'>{{ form.properties2.errors }}</span>
-      <label for='id_name' class='id_name'>Cecha 2:</label>
+      <span class='id_username'>{{ form.properties2.errors }}</span>
+      <label for='id_username' class='id_username'>Cecha 2:</label>
       {{ form.properties2 }}
       
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.pname3.errors }}</span>
-      <label for='id_name' class='id_name'>Wartość:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.pname3.errors }}</span>
+      <label for='id_username' class='id_username'>Wartość:</label>
       {{ form.pname3 }}
-      <span class='id_name'>{{ form.properties3.errors }}</span>
-      <label for='id_name' class='id_name'>Cecha 3:</label>
+      <span class='id_username'>{{ form.properties3.errors }}</span>
+      <label for='id_username' class='id_username'>Cecha 3:</label>
       {{ form.properties3 }}
       
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.pname4.errors }}</span>
-      <label for='id_name' class='id_name'>Wartość:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.pname4.errors }}</span>
+      <label for='id_username' class='id_username'>Wartość:</label>
       {{ form.pname4 }}
-      <span class='id_name'>{{ form.properties4.errors }}</span>
-      <label for='id_name' class='id_name'>Cecha 4:</label>
+      <span class='id_username'>{{ form.properties4.errors }}</span>
+      <label for='id_username' class='id_username'>Cecha 4:</label>
       {{ form.properties4 }}
       
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.pname5.errors }}</span>
-      <label for='id_name' class='id_name'>Wartość:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.pname5.errors }}</span>
+      <label for='id_username' class='id_username'>Wartość:</label>
       {{ form.pname5 }}
-      <span class='id_name'>{{ form.properties5.errors }}</span>
-      <label for='id_name' class='id_name'>Cecha 5:</label>
+      <span class='id_username'>{{ form.properties5.errors }}</span>
+      <label for='id_username' class='id_username'>Cecha 5:</label>
       {{ form.properties5 }}
       
     </div>
-    <div class='form_field'>
-      <span class='id_name'>{{ form.pname6.errors }}</span>
-      <label for='id_name' class='id_name'>Wartość:</label>
+    <div class='auction_form_field'>
+      <span class='id_username'>{{ form.pname6.errors }}</span>
+      <label for='id_username' class='id_username'>Wartość:</label>
       {{ form.pname6 }}
-      <span class='id_name'>{{ form.properties6.errors }}</span>
-      <label for='id_name' class='id_name'>Cecha 6:</label>
+      <span class='id_username'>{{ form.properties6.errors }}</span>
+      <label for='id_username' class='id_username'>Cecha 6:</label>
       {{ form.properties6 }}
       
     </div>
-    <p class='auction_form_field'>
+    <p class='auction_form_field_button'>
        <input value='Zapisz' id='save' type='submit'/>
        <p id='form_submit_info'>{{ form.info }}</p>
     </p>
@@ -143,10 +146,7 @@
     
     </div>
     </div>
-          
-             </div>
-             </div>
 
-             <div class="clear" style="height: 50px">&nbsp;</div>
-             <div class="clear">&nbsp;</div>
+            <!-- <div class="clear" style="height: 50px">&nbsp;</div>
+             <div class="clear">&nbsp;</div> -->
 {% endblock %}

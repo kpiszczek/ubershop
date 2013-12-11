@@ -2,14 +2,17 @@
 
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
-<link href="{{ STATIC_PREFIX }}css/eshop_list.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/backpanel.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 
 {% block content %}
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
-   <div id='content_container'>
+  </div>
+	<div style="margin-top: 50px">
+	<section id='panel_info'>
+  
 
           <!-- <div; id='eshop_option'>
               <a href="/all/"><div class='auction_option_item'> Wszystkie
@@ -19,7 +22,33 @@
                <a href="/buynow/"><div class='auction_option_item'> Kup teraz
               </div></a>
           </div> -->
-              <div id='list_content'>
+          
+            <table width="100%">
+		<tr class="header">				 	
+       	<td class="header" style="padding-left:15px;">Lista kategorii</td>
+       
+        	
+    	</tr>
+    	<tr class="header">
+        	<td class="board_name2" style="width: 500px;">Nazwa kategorii</td>
+        	<td class="delete">Opcje</td>
+        	
+   		</tr>
+   		{% for item in items %}
+   		<tr class="board_name">
+        	<td class="board_name"><a href='/manager/kategorie/{{ item.id }}' class="item_name">{{ item.name }}</a></td>     	
+        	<td class="buttondelete" style="float:left;margin-left: 80px;"><a href='/manager/kategorie/{{ item.id }}/edytuj/' style="color: #EBEBEB;">Edytuj</a></td>
+        	<td class="buttondelete" style="float:right;margin-right: 80px;"><a href='/manager/kategorie/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
+   		</tr>
+   		   {% endfor %}
+ 
+    <tr>
+   	<td><a class="buttondelete" style="float:left;" href="/manager/kategorie/nowy/">Nowa kategoria</a>
+   	</td>
+   	</tr>
+      	</table>	
+    
+            <!--  <div id='list_content'>
                 <div id='navigation'>
                       Kategorie, <a class="button" href="/manager/kategorie/nowy/">Nowa kategoria</a>
                       </div>
@@ -35,7 +64,7 @@
                             <span id='name' class="list_option_item"><a href='/manager/kategorie/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></span>
                             <span id='name' class="list_option_item"><a href='/manager/kategorie/{{ item.id }}/usun/' class="item_name">Usuń</a></span>
                             <!--<span class='item_name'>{{ item.name }}</span>-->
-                          </div>
+                        <!--  </div>
                           {% endfor %}
                          
                         </section>
@@ -43,5 +72,7 @@
              </div>
              </div>
              <div class="clear" style="height: 50px">&nbsp;</div>
-             <div class="clear">&nbsp;</div>
+             <div class="clear">&nbsp;</div> -->
+             </section>
+</div>
 {% endblock %}
