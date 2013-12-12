@@ -151,7 +151,7 @@ background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#
 }
 .button
 {
-	background:-webkit-gradient(linear, left bottom, left top , from(#666666), to(#ACACAC));
+	background:-webkit-gradient(linear, left bottom, left top , from(#05767E), to(#028389));
 	height:23px;
 	width:120px;
 	color:#EBEBEB;
@@ -166,10 +166,11 @@ background: -webkit-gradient(linear, left bottom, left top , from(#c3c1c1), to(#
 }
 .buttondelete
 {
-	background:-webkit-gradient(linear, left bottom, left top , from(#666666), to(#ACACAC));
+	background:-webkit-gradient(linear, left bottom, left top , from(#05767E), to(#028389));
 	height:23px;
 	width:110px;
 	color:#EBEBEB;
+	
 	float:right;
 	margin-right:40px;	
 	padding-left:5px;

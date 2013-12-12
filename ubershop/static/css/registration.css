@@ -4,6 +4,12 @@
 	width:740px;
 
 }
+#auction_form_wrapper1{
+	 background:#edefee;
+	 padding:5px;
+	 margin-top:50px;
+
+}
 #form_list{
 	margin-top:5px;
 }
@@ -22,7 +28,10 @@
 	float:left;
 	width:200px;
 }
-
+.id_error{
+	float:right;
+	width:200px;
+}
 #list_title{
 	padding-left: 10px;
 	padding-top: 10px;
@@ -42,7 +51,12 @@
 	padding-top:10px;
 	padding-left:200px;
 }
-
+.error{
+	float:right;
+	height:20px;
+	margin-right:40px; 
+	color: red; 
+}
 #form_label{
 	min-width: 200px;
 }

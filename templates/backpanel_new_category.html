@@ -15,10 +15,11 @@
 	<div id="form_list">
   <form id='form' name='form' method='post' accept-charset="utf-8">
     {% csrf_token %}
-    <div class='auction_form_field'>
-      <span class='id_username'>{{ form.name.errors }}</span>
+    <div class='auction_form_field'>    
       <label for='id_username' class='id_username'style="float:left;padding-left: 60px;">Nazwa:</label>
-      {{ form.name }}
+     <span>{{ form.name }}</span>
+     <span class="error">{{ form.name.errors }}</span>
+      
 <!--    </div>
     <div class='form_field'>
       <span class='id_name'>{{ form.description.errors }}</span>
@@ -29,14 +30,15 @@
       <span class='id_name'>{{ form.price.errors }}</span>
       <label for='id_name' class='id_name'>Cena:</label>
       {{ form.price }}
-    </div>-->
+    </div>--> 
+    </div>
     <p class='auction_form_field_button'>
        <input value='Zapisz' id='save' type='submit'/>
        <p id='form_submit_info'>{{ form.info }}</p>
     </p>
     </form>
-    
     </div>
+   
     </div>
           
             

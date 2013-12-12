@@ -17,30 +17,36 @@
   <form id='form' name='form' method='post' accept-charset="utf-8">
     {% csrf_token %}
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.base.errors }}</span>
+      
       <label for='id_username' class='id_username'>Produkt:</label>
-      {{ form.base }}
+     <span>{{ form.base }}</span> 
+      <span class="error">{{ form.base.errors }}</span>
 	</div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.price.errors }}</span>
+     
       <label for='id_username' class='id_username'>Cena:</label>
-      {{ form.price }}
+     <span>{{ form.price }} </span> 
+      <span class='error'>{{ form.price.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.min_num_buyers.errors }}</span>
+      
       <label for='id_username' class='id_username'>Min. liczba kupujących:</label>
-      {{ form.min_num_buyers }}
+     <span>{{ form.min_num_buyers }}</span> 
+      <span class='error'>{{ form.min_num_buyers.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.availiability_status.errors }}</span>
+      
       <label for='id_username' class='id_username'>Dostępność:</label>
-      {{ form.availiability_status }}
+      <span>{{ form.availiability_status }}</span>
+      <span class='error'>{{ form.availiability_status.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.current_stock.errors }}</span>
+     
       <label for='id_username' class='id_username'>Ilość sztuk w ofercie:</label>
-      {{ form.current_stock }}
+      <span>{{ form.current_stock }} </span>
+      <span class='error'>{{ form.current_stock.errors }}</span>
     </div>
+    
     <p class='auction_form_field_button'>
        <input value='Zapisz' id='save' type='submit'/>
        <p id='form_submit_info'>{{ form.info }}</p>
