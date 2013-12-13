@@ -7,6 +7,28 @@
 
 
 {% block content %}
+<script type="text/javascript">
+
+function display(action, id)
+{
+	if (action == 'show')
+	{
+		document.getElementById(id).style.display = "block";
+		document.getElementById("link"+id).style.display = "none";
+		document.getElementById("link"+(id+1)).style.display = "block";
+		//document.getElementById("link"+id).href= "javascript:display('hide', "+id+")";
+		//document.getElementById("link"+id).innerHTML = "Close";
+	}
+
+	if (action == 'hide')
+	{
+		document.getElementById(id).style.display = "none";
+		//document.getElementById("link"+id).href= "javascript:display('show', "+id+")";
+		//document.getElementById("link"+id).innerHTML = "Explain";
+	}
+}
+
+</script>
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
  </div>
@@ -97,7 +119,7 @@
       <span class='error'>{{ form.image3.errors }}</span>
     </div>
     
-    <div class='auction_form_field'>
+    <div class='auction_form_field' id="1">
       <div><span class='id_username'>{{ form.pname1.errors }}</span>
       <label for='id_username' class='id_username'>Nazwa cechy 1:</label>
       <span>{{ form.pname1 }}</span>
@@ -108,7 +130,10 @@
      <span class='error'>{{ form.properties1.errors }}</span></div>
         
     </div>
-    <div class='auction_form_field'>
+    
+    <div><a id="link2" href="javascript:display('show', 2)">Dodaj cechę</a></div>
+    
+    <div class='auction_form_field' id="2" style="display:none">
      
       <div><label for='id_username' class='id_username'>Nazwa cechy 2:</label>
       <span>{{ form.pname2 }} </span>
@@ -118,7 +143,10 @@
      <span>{{ form.properties2 }}</span> 
       <span class='error'>{{ form.properties2.errors }}</span></div>
     </div>
-    <div class='auction_form_field'>
+    
+    <div><a id="link3" href="javascript:display('show', 3)" style="display:none">Dodaj cechę</a></div>
+    
+    <div class='auction_form_field' id="3" style="display:none">
       
       <div><label for='id_username' class='id_username'>Nazwa cechy 3:</label>
       <span>{{ form.pname3 }}</span>
@@ -128,7 +156,10 @@
       <span>{{ form.properties3 }}</span>
       <span class='error'>{{ form.properties3.errors }}</span></div>
     </div>
-    <div class='auction_form_field'>
+    
+    <div><a id="link4" href="javascript:display('show', 4)" style="display:none">Dodaj cechę</a></div>
+    
+    <div class='auction_form_field' id="4" style="display:none">
       
       <div><label for='id_username' class='id_username'>Nazwa cechy 4:</label>
       <span>{{ form.pname4 }}</span>
@@ -138,7 +169,10 @@
      <span>{{ form.properties4 }}</span> 
        <span class='error'>{{ form.properties4.errors }}</span></div>
     </div>
-    <div class='auction_form_field'>
+    
+    <div><a id="link5" href="javascript:display('show', 5)" style="display:none">Dodaj cechę</a></div>
+    
+    <div class='auction_form_field' id="5" style="display:none">
      
       <div><label for='id_username' class='id_username'>Nazwa cechy 5:</label>
      <span> {{ form.pname5 }}</span> 
@@ -148,7 +182,10 @@
       <span>{{ form.properties5 }}</span>
        <span class='error'>{{ form.properties5.errors }}</span></div>
     </div>
-    <div class='auction_form_field'>
+    
+    <div><a id="link6" href="javascript:display('show', 6)" style="display:none">Dodaj cechę</a></div>
+    
+    <div class='auction_form_field' id="6" style="display:none">
       
       <div><label for='id_username' class='id_username'>Nazwa cechy 6:</label>
       <span>{{ form.pname6 }}</span>
