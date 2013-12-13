@@ -7,6 +7,11 @@
 
 
 {% block content %}
+<script type="text/javascript">
+    function changeImage(a) {
+        document.getElementById("main_image").src=a;
+    }
+</script>
 <div id='eshop_list_control_panel'>
   <!-- TODO -->
  </div>
@@ -42,7 +47,7 @@
         	<td class="board_name">{{ item.created_by.user.first_name }} {{ item.created_by.user.last_name }}</td>
         	<td class="board_name">{{ item.current_price }} zł</td>
         	<td class="board_name">{{ item.bids.count }}</td>
-        	<td class="buttondelete"><a href='/manager/aukcje/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
+        	<td class="buttondelete"><a href='/manager/aukcje/{{ item.id }}/usun/' style="color: #EBEBEB;" onclick="return confirm('Usunąć element?')">Usuń</a></td>
    		</tr>
    		   {% endfor %}
    	</table>

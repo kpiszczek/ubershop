@@ -43,7 +43,7 @@
         	<td class="board_name">{{ item.description }}</td>
         	<td class="board_name">{{ item.price }} zł</td>
         	<td style="float:left;margin-left: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
-        	<td style="float:right;margin-right: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
+        	<td style="float:right;margin-right: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/usun/' style="color: #EBEBEB;" onclick="return confirm('Usunąć element?')">Usuń</a></td>
         
    		</tr>
    		   {% endfor %}

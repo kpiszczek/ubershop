@@ -43,7 +43,7 @@
         	<td class="board_name">{{ item.availiability_status.name }}</td>
         	<td class="board_name">{{ item.current_stock }}</td>
         	<td style="float:left;margin-left: 10px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
-        	<td style="float:right;margin-right: 10px;"><a class="buttondelete" href='/manager/sklep/{{ item.id }}/usun/' class="item_name">Usuń</a></td>
+        	<td style="float:right;margin-right: 10px;"><a class="buttondelete" href='/manager/sklep/{{ item.id }}/usun/' class="item_name" onclick="return confirm('Usunąć element?')">Usuń</a></td>
    		</tr>
    		   {% endfor %}
    		   <tr>

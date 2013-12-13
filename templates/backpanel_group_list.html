@@ -43,7 +43,7 @@
         	<td class="board_name">{{ item.min_num_buyers }}</td>
         	<td class="board_name" style="max-width: 50px;"><a href="/grupowe/{{ item.pk }}/kupujacy/">{{ item.buyers.count }}</a></td>
         	<td style="float:left;margin-left: 20px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
-        	<td style="float:right;margin-right: 20px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/usun/' class="item_name">Usuń</a></td>
+        	<td style="float:right;margin-right: 20px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/usun/' class="item_name" onclick="return confirm('Usunąć element?')">Usuń</a></td>
    		</tr>
    		   {% endfor %}
    		   <tr>

@@ -38,7 +38,7 @@
    		<tr class="board_name">
         	<td class="board_name">{{ item.name }}</td>     	
         	<td class="buttondelete" style="float:left;margin-left: 80px;"><a href='/manager/kategorie/{{ item.id }}/edytuj/' style="color: #EBEBEB;">Edytuj</a></td>
-        	<td class="buttondelete" style="float:right;margin-right: 80px;"><a href='/manager/kategorie/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
+        	<td class="buttondelete" style="float:right;margin-right: 80px;"><a href='/manager/kategorie/{{ item.id }}/usun/' style="color: #EBEBEB;" onclick="return confirm('Usunąć element?')" >Usuń</a></td>
    		</tr>
    		   {% endfor %}
  

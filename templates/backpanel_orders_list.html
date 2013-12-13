@@ -43,7 +43,7 @@
         	<td class="board_name">{{ item.placed_by.user.first_name }} {{ item.placed_by.user.last_name }}</td>
         	<td class="board_name">{{ item.status.name }}</td>
         	<td class="board_name">{{ item.shipment_method.name }}</td>
-        	<td class="buttondelete"><a href='/manager/zamowienia/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
+        	<td class="buttondelete"><a href='/manager/zamowienia/{{ item.id }}/usun/' style="color: #EBEBEB;" onclick="return confirm('Usunąć element?')">Usuń</a></td>
         	
         	
    		</tr>
