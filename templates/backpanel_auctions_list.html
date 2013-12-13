@@ -23,24 +23,26 @@
           
           <table width="100%">
 		<tr class="header">				 	
-       	<td class="header" style="padding-left:15px;">Produkty-Aukcja </td>
+       	<td class="header" colspan="6" style="padding-left:15px;">Produkty-Aukcja </td>
        
         	
     	</tr>
     	<tr class="header">
         	<td class="board_name2">Numer Aukcji</td>
         	<td class="board_name2">Nazwa</td>
-        	<td class="delete">Usuń</td>
+        	<td class="board_name2">Utworzone przez</td>
         	<td class="board_name2">Cena</td>
-        	<td class="board_name2">Dostępność</td>
+        	<td class="board_name2">Licytujący</td>
+        	<td class="delete">Usuń</td>
    		</tr>
    		{% for item in items %}
    		<tr class="board_name">
-        	<td class="board_name">Numer Aukcji</td>
+        	<td class="board_name">{{ item.pk }}</td>
         	<td class="board_name"><a href='/aukcje/{{ item.id }}' class="item_name">{{ item.base.name }}</a></td>
+        	<td class="board_name">{{ item.created_by.user.first_name }} {{ item.created_by.user.last_name }}</td>
+        	<td class="board_name">{{ item.current_price }} zł</td>
+        	<td class="board_name">{{ item.bids.count }}</td>
         	<td class="buttondelete"><a href='/manager/aukcje/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
-        	<td class="board_name">{{ item.price }}</td>
-        	<td class="board_name">{{ item.availiability_status.name }}</td>
    		</tr>
    		   {% endfor %}
    	</table>

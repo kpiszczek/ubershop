@@ -24,12 +24,13 @@
           
               <table width="100%">
 		<tr class="header">				 	
-       	<td class="header" style="padding-left:15px;">Produkty grupowe </td>    	
+       	<td class="header" colspan="6" style="padding-left:15px;">Produkty grupowe </td>    	
     	</tr>
     	<tr class="header">
         	<td class="board_name2">Numer Oferty</td>
         	<td class="board_name2">Nazwa</td>       	
         	<td class="board_name2">Cena</td>
+        	<td class="board_name2">Min klientów </td>
         	<td class="board_name2">Kupujący</td>
         	<td class="delete" >Opcje</td>
         	
@@ -37,11 +38,12 @@
    		{% for item in items %}
    		<tr class="board_name">
         	<td class="board_name">Numer Oferty</td>
-        	<td class="board_name"><a href='/manager/grupowe/{{ item.id }}/edytuj/' class="item_name">{{ item.base.name }}</a></td>
-        	<td class="board_name">{{ item.price }}</td>
-        	<td class="board_name"><a href="/grupowe/{{ item.pk }}/kupujacy/">Kupujący</a></td>
-        	<td style="float:left;margin-left: 40px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
-        	<td style="float:right;margin-right: 40px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/usun/' class="item_name">Usuń</a></td>
+        	<td class="board_name">{{ item.base.name }}</td>
+        	<td class="board_name">{{ item.price }} zł</td>
+        	<td class="board_name">{{ item.min_num_buyers }}</td>
+        	<td class="board_name" style="max-width: 50px;"><a href="/grupowe/{{ item.pk }}/kupujacy/">{{ item.buyers.count }}</a></td>
+        	<td style="float:left;margin-left: 20px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
+        	<td style="float:right;margin-right: 20px;"><a class="buttondelete" href='/manager/grupowe/{{ item.id }}/usun/' class="item_name">Usuń</a></td>
    		</tr>
    		   {% endfor %}
    		   <tr>

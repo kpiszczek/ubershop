@@ -24,21 +24,26 @@
            
              <table width="100%">
 		<tr class="header">				 	
-       	<td class="header" style="padding-left:15px;">Opcje wysyłki </td>
+       	<td class="header" colspan="5" style="padding-left:15px;">Opcje wysyłki </td>
        
         	
     	</tr>
-    	<tr class="header">     	
+    	<tr class="header">
+    		<td class="board_name2">Numer</td>     	
         	<td class="board_name2">Nazwa</td>
+        	<td class="board_name2">Opis</td>
+        	<td class="board_name2">Cena</td>
         	<td class="delete">Opcje</td>
         	
    		</tr>
    		{% for item in items %}
    		<tr class="board_name">
-        	
-        	<td class="board_name"><a href='/manager/wysylka/{{ item.id }}/edytuj/' class="item_name">{{ item.name }}</a></td>
-        	<td style="float:left;margin-left: 200px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
-        	<td style="float:right;margin-right: 200px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
+        	<td class="board_name">{{ item.pk }}</td>
+        	<td class="board_name">{{ item.name }}</td>
+        	<td class="board_name">{{ item.description }}</td>
+        	<td class="board_name">{{ item.price }} zł</td>
+        	<td style="float:left;margin-left: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
+        	<td style="float:right;margin-right: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
         
    		</tr>
    		   {% endfor %}

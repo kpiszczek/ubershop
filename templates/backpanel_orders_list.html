@@ -22,13 +22,16 @@
           </div> -->
            <table width="100%">
 		<tr class="header">				 	
-       	<td class="header" style="padding-left:15px;">Lista zamówień </td>
+       	<td class="header" colspan="6" style="padding-left:15px;">Lista zamówień </td>
        
         	
     	</tr>
     	<tr class="header">
-        	<td class="board_name2">Numer zamówienia</td>  	
-     		<td class="board_name2">Cena</td>   	
+        	<td class="board_name2">Numer zamówienia</td>  
+        	<td class="board_name2">Data</td> 
+        	<td class="board_name2">Zamawiający</td> 
+     		<td class="board_name2">Status</td>
+     		<td class="board_name2">Przesyłka</td>
      		<td class="delete">Usuń</td>
         	
         
@@ -36,7 +39,10 @@
    		{% for item in items %}
    		<tr class="board_name">
         	<td class="board_name">{{ item.pk }}</td>
-        	<td class="board_name">{{ item.price }}</td>
+        	<td class="board_name">{{ item.date }}</td>
+        	<td class="board_name">{{ item.placed_by.user.first_name }} {{ item.placed_by.user.last_name }}</td>
+        	<td class="board_name">{{ item.status.name }}</td>
+        	<td class="board_name">{{ item.shipment_method.name }}</td>
         	<td class="buttondelete"><a href='/manager/zamowienia/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
         	
         	

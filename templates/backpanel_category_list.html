@@ -25,7 +25,7 @@
           
             <table width="100%">
 		<tr class="header">				 	
-       	<td class="header" style="padding-left:15px;">Lista kategorii</td>
+       	<td class="header" colspan="2" style="padding-left:15px;">Lista kategorii</td>
        
         	
     	</tr>
@@ -36,7 +36,7 @@
    		</tr>
    		{% for item in items %}
    		<tr class="board_name">
-        	<td class="board_name"><a href='/manager/kategorie/{{ item.id }}' class="item_name">{{ item.name }}</a></td>     	
+        	<td class="board_name">{{ item.name }}</td>     	
         	<td class="buttondelete" style="float:left;margin-left: 80px;"><a href='/manager/kategorie/{{ item.id }}/edytuj/' style="color: #EBEBEB;">Edytuj</a></td>
         	<td class="buttondelete" style="float:right;margin-right: 80px;"><a href='/manager/kategorie/{{ item.id }}/usun/' style="color: #EBEBEB;">Usuń</a></td>
    		</tr>
