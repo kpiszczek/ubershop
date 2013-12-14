@@ -1,0 +1,46 @@
+{% extends "backpanel_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/backpanel.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='eshop_list_control_panel'>
+  <!-- TODO -->
+ </div>
+<div style="margin-top: 50px">
+	<section id='panel_info'>
+		   <table width="100%">
+		<tr class="header">				 	
+       	<td class="header" colspan="6" style="padding-left:15px;">Lista zamówień </td>
+       
+        	
+    	</tr>
+    	<tr class="header">
+        	<td class="board_name2">Nr</td>  
+        	<td class="board_name2">Data</td> 
+        	<td class="board_name2">Zamawiający</td> 
+     		<td class="board_name2"></td>
+     		<td class="board_name2">Przesyłka</td>
+     
+        	
+        
+   		</tr>
+   		{% for item in items %}
+   		<tr class="board_name">
+        	<td class="board_name">{{ item.pk }}</td>
+        	<td class="board_name">{{ item.date }}</td>
+        	<td class="board_name">{{ item.placed_by.user.first_name }} {{ item.placed_by.user.last_name }}</td>
+        	<td class="board_name">{{ item.status.name }}</td>
+        	<td class="board_name">{{ item.shipment_method.name }}</td>
+        	
+        	
+        	
+   		</tr>
+   		   {% endfor %}
+   	</table>
+   	 </section>
+</div>
+{% endblock %}

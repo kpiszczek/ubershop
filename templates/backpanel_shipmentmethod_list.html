@@ -24,16 +24,17 @@
            
              <table width="100%">
 		<tr class="header">				 	
-       	<td class="header" colspan="5" style="padding-left:15px;">Opcje wysyłki </td>
+       	<td class="header" colspan="6" style="padding-left:15px;">Opcje wysyłki </td>
        
         	
     	</tr>
     	<tr class="header">
-    		<td class="board_name2">Numer</td>     	
+    		<td class="board_name2" style="width: 40px">Nr</td>     	
         	<td class="board_name2">Nazwa</td>
         	<td class="board_name2">Opis</td>
         	<td class="board_name2">Cena</td>
         	<td class="delete">Opcje</td>
+        	
         	
    		</tr>
    		{% for item in items %}
@@ -42,9 +43,10 @@
         	<td class="board_name">{{ item.name }}</td>
         	<td class="board_name">{{ item.description }}</td>
         	<td class="board_name">{{ item.price }} zł</td>
-        	<td style="float:left;margin-left: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/edytuj/' class="item_name">Edytuj</a></td>
+        	<td style="float:left;margin-left: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/edytuj/' >Edytuj</a></td>
         	<td style="float:right;margin-right: 120px;"><a class="buttondelete"  href='/manager/wysylka/{{ item.id }}/usun/' style="color: #EBEBEB;" onclick="return confirm('Usunąć element?')">Usuń</a></td>
-        
+      
+        	
    		</tr>
    		   {% endfor %}
    		   
