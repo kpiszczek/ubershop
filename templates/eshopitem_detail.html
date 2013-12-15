@@ -25,7 +25,7 @@
 	</script>
 
  	<div id='eshop_small_gallery'style="text-align:center;width:300px; max-height: 80px;position: relative;margin-top:10px;float:left;margin-left: 15px;">
-    <img class="miniaturka" style="width: 80px; max-height: 80px;position:relative;;margin-top:5px;" src="http://placehold.it/130x60" onclick='changeImage("http://placehold.it/130x60");'/>
+    <!--<img class="miniaturka" style="width: 80px; max-height: 80px;position:relative;;margin-top:5px;" src="http://placehold.it/130x60" onclick='changeImage("http://placehold.it/130x60");'/>-->
  	{% for image in item.base.images.all %}
     	    <img class="miniaturka" style="width: 80px; max-height: 80px;position: relative;margin-top:5px;" src="/mymedia/{{ image.image }}"  onclick='changeImage("/mymedia/{{ image.image }}");'/>      
 	{% endfor %}

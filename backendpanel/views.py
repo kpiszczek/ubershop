@@ -64,7 +64,7 @@ class BackendPanel:
                 i=0
                 for property in properties:
                     if property[0]:
-                        if i+1<len(properties) and i>0:
+                        if i<len(properties) and i>0:
                             json = json + ',\r\n'
                         i = i+1
                         json = json + '"' + property[1] + '":"' + property[0] +'"'
