@@ -39,6 +39,21 @@
     		
     	</table>
     	<div class="new_topic"><a href="nowy_post/">Nowy POST</a></div>
+    	<div class="pagination">
+    		<span class="step-links">
+        		{% if messages.has_previous %}
+            		<a href="?page={{ messages.previous_page_number }}">poprzednia</a>
+        		{% endif %}
+
+        		<span class="current">
+            		Strona {{ messages.number }} z {{ messages.paginator.num_pages }}.
+        		</span>
+
+        		{% if messages.has_next %}
+            		<a href="?page={{ messages.next_page_number }}">następna</a>
+        		{% endif %}
+    		</span>
+		</div>
 </div>
 {% endblock %}
 

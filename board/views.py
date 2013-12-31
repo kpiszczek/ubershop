@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 #from django.views.decorators.csrf import csrf_exempt
 
@@ -18,7 +19,17 @@ class BoardView():
     def show_board(cls, request, board_id):
         # DZIALA
         board = Board.objects.get(pk=board_id)
-        topics = Topic.objects.filter(board__pk=board_id)
+        topics_list = Topic.objects.filter(board__pk=board_id)
+        
+        paginator = Paginator(topics_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            topics = paginator.page(page)
+        except PageNotAnInteger:
+            topics = paginator.page(1)
+        except EmptyPage:
+            topics = paginator.page(paginator.num_pages)
         return render_to_response("topic_list.html", 
                                   {'board':board, 'topics': topics },
                                   context_instance=RequestContext(request))
@@ -31,11 +42,22 @@ class BoardView():
     @classmethod
     def show_topic(cls, request, board_id, topic_id):
         # DZIALA
-        messages = Message.objects.filter(topic__pk=topic_id)
+        messages_list = Message.objects.filter(topic__pk=topic_id)
         topic = Topic.objects.get(pk=topic_id)
         #topic = topic_item.title
         topic_id = topic.pk
         board=Board.objects.get(pk=board_id)
+        
+        paginator = Paginator(messages_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            messages = paginator.page(page)
+        except PageNotAnInteger:
+            messages = paginator.page(1)
+        except EmptyPage:
+            messages = paginator.page(paginator.num_pages)
+        
         return render_to_response("topic_detail.html", 
                                   {'messages':messages, 'topic': topic, 'topic_id': topic_id, 'board': board},
                                   context_instance=RequestContext(request))

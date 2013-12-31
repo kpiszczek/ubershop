@@ -46,5 +46,20 @@
     {% endfor %}
  	</ol>  
  </table>  
+ 	<div class="pagination">
+    		<span class="step-links">
+        		{% if orders.has_previous %}
+            		<a href="?page={{ orders.previous_page_number }}">poprzednia</a>
+        		{% endif %}
+
+        		<span class="current">
+            		Strona {{ orders.number }} z {{ orders.paginator.num_pages }}.
+        		</span>
+
+        		{% if orders.has_next %}
+            		<a href="?page={{ orders.next_page_number }}">następna</a>
+        		{% endif %}
+    		</span>
+		</div>
 </div>
 {% endblock %}

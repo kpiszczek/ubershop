@@ -36,5 +36,20 @@
     		{% endfor %}
     	</table>
     	<div class="new_topic"><a href="nowy_temat">Nowy temat</a></div>
+    	<div class="pagination">
+    		<span class="step-links">
+        		{% if topics.has_previous %}
+            		<a href="?page={{ topics.previous_page_number }}">poprzednia</a>
+        		{% endif %}
+
+        		<span class="current">
+            		Strona {{ topics.number }} z {{ topics.paginator.num_pages }}.
+        		</span>
+
+        		{% if topics.has_next %}
+            		<a href="?page={{ topics.next_page_number }}">następna</a>
+        		{% endif %}
+    		</span>
+		</div>
 </div>
 {% endblock %}

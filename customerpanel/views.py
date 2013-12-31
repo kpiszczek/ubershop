@@ -11,6 +11,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect, Http404
 from django.utils.decorators import method_decorator
 from django.template import RequestContext
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 from base.models import BaseItem
 from base.forms import SearchForm
@@ -35,7 +37,17 @@ class CustomerPanel:
     def order_history(cls, request):
         # DZIALA
         current_user = ShopUser.objects.get(user__pk=request.user.pk)
-        list = Order.objects.filter(placed_by__pk=current_user.pk)
+        order_list = Order.objects.filter(placed_by__pk=current_user.pk)
+        
+        paginator = Paginator(order_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            list = paginator.page(page)
+        except PageNotAnInteger:
+            list = paginator.page(1)
+        except EmptyPage:
+            list = paginator.page(paginator.num_pages)
         return render_to_response("order_history.html", {'orders': list}, context_instance=RequestContext(request))
         #raise NotImplemented
 
@@ -210,7 +222,18 @@ class CustomerPanel:
     def watched_products(cls, request):
         # DZIALA
         current_user = ShopUser.objects.get(user__pk=request.user.pk)
-        list = ProductWatcher.objects.filter(user__pk=current_user.pk)
+        product_list = ProductWatcher.objects.filter(user__pk=current_user.pk)
+        
+        paginator = Paginator(product_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            list = paginator.page(page)
+        except PageNotAnInteger:
+            list = paginator.page(1)
+        except EmptyPage:
+            list = paginator.page(paginator.num_pages)
+            
         return render_to_response("watched_products.html", {'list': list}, context_instance=RequestContext(request))
         #raise NotImplemented
 
