@@ -37,7 +37,16 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def items_list(cls, request):
-        items = EShopItem.objects.all()
+        items_list = EShopItem.objects.all()
+        paginator = Paginator(items_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            items = paginator.page(1)
+        except EmptyPage:
+            items = paginator.page(paginator.num_pages)
         return render_to_response(
             "backpanel_items_list.html",
             {'items': items},
@@ -131,7 +140,16 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def group_list(cls, request):
-        items = GroupOffer.objects.all()
+        items_list = GroupOffer.objects.all()
+        paginator = Paginator(items_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            items = paginator.page(1)
+        except EmptyPage:
+            items = paginator.page(paginator.num_pages)
         return render_to_response(
             "backpanel_group_list.html",
             {'items': items},
@@ -207,7 +225,16 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def auctions_list(cls, request):
-        items = AuctionItem.objects.all()
+        items_list = AuctionItem.objects.all()
+        paginator = Paginator(items_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            items = paginator.page(1)
+        except EmptyPage:
+            items = paginator.page(paginator.num_pages)
         return render_to_response(
             "backpanel_auctions_list.html",
             {'items': items},
@@ -226,7 +253,16 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def category_list(cls, request):
-        items = Category.objects.all()
+        items_list = Category.objects.all()
+        paginator = Paginator(items_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            items = paginator.page(1)
+        except EmptyPage:
+            items = paginator.page(paginator.num_pages)
         return render_to_response(
             "backpanel_category_list.html",
             {'items': items},
@@ -288,10 +324,8 @@ class BackendPanel:
         try:
             items = paginator.page(page)
         except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
             items = paginator.page(1)
         except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
             items = paginator.page(paginator.num_pages)
         return render_to_response(
             "backpanel_orders_list.html",
@@ -311,7 +345,16 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def shipmentmethod_list(cls, request):
-        items = ShipmentMethod.objects.all()
+        items_list = ShipmentMethod.objects.all()
+        paginator = Paginator(items_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            items = paginator.page(1)
+        except EmptyPage:
+            items = paginator.page(paginator.num_pages)
         return render_to_response(
             "backpanel_shipmentmethod_list.html",
             {'items': items},
