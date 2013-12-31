@@ -9,6 +9,8 @@ from django.template import RequestContext
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 
 from base.models import BaseItem
 from core.models import Category, ShopUser
@@ -42,11 +44,21 @@ class BaseView():
         # DZIALA
         if cls.model == BaseItem:
             raise Http404
-        items = cls.model.objects.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
+        items_list = cls.model.objects.filter(base__is_active=True).order_by("-base__created_at")[page:(page+1)*15]
         
         # sprawdzamy czy istnieje następna/poprzednia strona
-        next_page = page+1 if len(items) == 15 else None
+        next_page = page+1 if len(items_list) == 15 else None
         prev_page = page-1 if page > 0 else None
+        
+        paginator = Paginator(items_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            items = paginator.page(1)
+        except EmptyPage:
+            items = paginator.page(paginator.num_pages)
         
         return render_to_response("%s_list.html" % cls.model.__name__.lower(),
                                   {"items": items, "prev_page": prev_page, "next_page": next_page,
