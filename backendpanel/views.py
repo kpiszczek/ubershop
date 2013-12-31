@@ -3,6 +3,7 @@ from django.template import RequestContext
 from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponseRedirect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from django.core.files import File
 import urllib
@@ -280,7 +281,18 @@ class BackendPanel:
     @classmethod
     @method_decorator(staff_member_required)
     def orders_list(cls, request):
-        items = Order.objects.all()
+        items_list = Order.objects.all()
+        paginator = Paginator(items_list, 10)
+        page = request.GET.get('page')
+
+        try:
+            items = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            items = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            items = paginator.page(paginator.num_pages)
         return render_to_response(
             "backpanel_orders_list.html",
             {'items': items},
