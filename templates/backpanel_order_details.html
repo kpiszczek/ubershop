@@ -1,0 +1,60 @@
+{% extends "backpanel_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/backpanel.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='eshop_list_control_panel'>
+  <!-- TODO -->
+ </div>
+<div style="margin-top: 50px">
+	<section id='panel_info'>
+		   <table width="100%">
+		<tr class="header">				 	
+       	<td class="header" colspan="2" style="padding-left:15px;">Zamówienie nr {{ item.pk }} </td>
+       
+        	
+    	</tr>
+    	
+   		<tr class="board_name">
+   			<td class="board_name">Numer zamówienia</td>
+        	<td class="board_name">{{ item.pk }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Klient</td>
+        	<td class="board_name">{{ item.placed_by.user.first_name }} {{ item.placed_by.user.last_name }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Data złożenia</td>
+        	<td class="board_name">{{ item.date }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Status</td>
+        	<td class="board_name">{{ item.status.name }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Metoda wysyłki</td>
+        	<td class="board_name">{{ item.shipment_method.name }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Adres wysyłki</td>
+        	<td class="board_name">{{ item.placed_by.address }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Produkty</td>
+        	<td class="board_name">
+        		<ol>
+        		{% for product in item.items.all %}
+        		<li>{{product.item.name}} ilość: {{product.quantity}}</li>
+        		{% endfor %}
+        		</ol>
+        		</td>
+   		</tr>
+   		
+   	</table>
+   	 </section>
+</div>
+{% endblock %}

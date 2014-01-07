@@ -1,0 +1,89 @@
+{% extends "backpanel_base.html" %}
+
+{% block css %}
+<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/backpanel.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block content %}
+<div id='eshop_list_control_panel'>
+  <!-- TODO -->
+ </div>
+<div style="margin-top: 50px">
+	<section id='panel_info'>
+		   <table width="100%">
+		<tr class="header">				 	
+       	<td class="header" colspan="2" style="padding-left:15px;">Produkt nr {{ item.pk }}, {{ item.base.name }}</td>
+       
+        	
+    	</tr>
+    	
+   		<tr class="board_name">
+   			<td class="board_name">Numer produktu</td>
+        	<td class="board_name">{{ item.pk }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Nazwa produktu</td>
+        	<td class="board_name">{{ item.base.name }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Cena</td>
+        	<td class="board_name">{{ item.price }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Obniżona cena</td>
+        	<td class="board_name">{{ item.discount_price }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Dostępność</td>
+        	<td class="board_name">{{ item.availiability_status.name }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Ilość w magazynie</td>
+        	<td class="board_name">{{ item.current_stock }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Dodany</td>
+        	<td class="board_name">{{ item.base.created_at }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Kategoria</td>
+        	<td class="board_name"> {% for category in item.base.categories.all %}
+        		{{category.name}}
+        		{% endfor %}
+        		</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Opis</td>
+        	<td class="board_name">{{ item.base.description }}</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Zdjęcia</td>
+        	<td class="board_name">
+        	<img class="miniaturka" style="width: 80px; max-height: 80px;position: relative;margin-top:5px;" src="/mymedia/{{ item.base.thumb }}">
+        		{% for image in item.base.images.all %}
+    	    <img class="miniaturka" style="width: 80px; max-height: 80px;position: relative;margin-top:5px;" src="/mymedia/{{ image.image }}">    
+				{% endfor %}
+	</td>
+   		</tr>
+   		<tr class="board_name">
+   			<td class="board_name">Właściwości</td>
+        	<td class="board_name"> 
+        		<table>
+        		<ul> 
+            {% for row in table %} 
+            <tr class="user"> 
+                {% for value in row %} 
+                <td class='first_row'> {{ value }} </td> 
+                {% endfor %} 
+            </tr> 
+            {% endfor %} 
+            </ul> </table>
+        		</td>
+   		</tr>
+   		
+   	</table>
+   	 </section>
+</div>
+{% endblock %}

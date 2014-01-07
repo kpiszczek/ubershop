@@ -54,6 +54,20 @@ class BackendPanel:
 
     @classmethod
     @method_decorator(staff_member_required)
+    def item_detail(cls, request, id):
+        item = EShopItem.objects.get(pk=id)
+        try:
+            properties=json.loads(item.base.properties)
+            table = [[key, properties[key]] for key in properties.keys()]
+        except Exception:
+            table = []
+        return render_to_response('backpanel_item_details.html', 
+                                  {'item': item, 'table': table}, 
+                                  context_instance=RequestContext(request))
+        #raise NotImplemented
+    
+    @classmethod
+    @method_decorator(staff_member_required)
     def edit_item(cls, request):
         raise NotImplemented
 
@@ -332,6 +346,16 @@ class BackendPanel:
             {'items': items},
             context_instance=RequestContext(request))
     
+    @classmethod
+    @method_decorator(staff_member_required)
+    def order_detail(cls, request, id):
+        item = Order.objects.get(pk=id)        
+        return render_to_response(
+            "backpanel_order_details.html",
+            {'item': item},
+            context_instance=RequestContext(request))
+        #raise NotImplemented
+        
     #DZIALA
     @classmethod
     @method_decorator(staff_member_required)
