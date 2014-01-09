@@ -3,7 +3,11 @@
 	top: 22px;
 	height:auto;
 }
-
+.cart_total{
+	background-color:#DAD7D7;
+	margin-left: 10px;
+	margin-right: 10px;
+}
 #list_content{
 	position: relative;
 	top:10px;

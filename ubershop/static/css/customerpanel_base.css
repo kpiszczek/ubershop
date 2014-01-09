@@ -1,16 +1,14 @@
 .side_menu_container{text-align:center;background-color:#acacac;
 width:220px;margin-left:10px;margin-right:10px;border-radius:12px;
 box-shadow:4px 4px 10px #666}
-#side_menu{position:absolute;top:305px;padding-bottom:5px}
+#side_menu{position:absolute;top:165px;padding-bottom:5px}
 #side_menu_title{width:100%;background-color:#002f32;
 position:relative;top:0;height:50px;color:#fff;padding-top:17px;font-size:175%;
 border-radius:12px;margin-bottom:5px}
-#search_form{position:absolute;padding-top:20px;top:165px;height:100px}
+
 .side_menu_item{text-align:left;padding-left:25px;padding-bottom:3px;font-size:130%}
 .side_menu_item a{color:#002f32}
 .side_menu_item a:hover{color:#fff}
-#search{font-size:130%;color:#282828;
- }
 ul{border:0; margin-left:35%; padding:0;}
 
 #pagination-clean li{

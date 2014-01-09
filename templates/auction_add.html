@@ -3,8 +3,8 @@
 {% block title_suffix %} Dodaj aukcje {% endblock %}
 
 {% block css %}
-<link href="{{ STATIC_PREFIX }}css/auction_base.css" rel="stylesheet" type="text/css"/>
-<link href="{{ STATIC_PREFIX }}css/auction_add.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/customerpanel_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block sidebar %}
@@ -38,53 +38,63 @@
 	<div id="form_list">
   <form id='auction_form' name='auction_form' method='post' accept-charset="utf-8" enctype="multipart/form-data">
     {% csrf_token %}
+    
     <div class='auction_form_field'>
-    <span><label class='id_username'>Tytuł:</label></span>
-      <span class='id_username'>{{ form.name.errors }}</span>
+    <label class='id_username'>Tytuł:</label>
+    <span >{{ form.name }}</span>
+      <span class='error'>{{ form.name.errors }}</span>    
       
-      {{ form.name }}
     </div>
+    
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.categories.errors }}</span>
+     
       <label class='id_username'>Kategorie:</label>
-      {{ form.categories }}
+      <span>{{ form.categories }} </span>
+      <span class='error'>{{ form.categories.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.description.errors }}</span>
+      
       <label class='id_username' valign="middle">Opis:</label>
-      {{ form.description }}
+     <span>{{ form.description }}</span> 
+     <span class='error' style="margin-right: 0px">{{ form.description.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.thumb.errors }}</span>
+     
       <label class='id_username'>Obrazek:</label>
-      {{ form.thumb }}
+      <span>{{ form.thumb }}</span> 
+      <span class='error'>{{ form.thumb.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.image.errors }}</span>
+      
       <label class='id_username'>Zdjęcie:</label>
-      {{ form.image }}
+      <span> {{ form.image }}   </span>
+      <span class='error'>{{ form.image.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.start_date.errors }}</span>
+      
       <label class='id_username'>Data rozpoczęcia:</label>
-      {{ form.start_date }}
+      <span>{{ form.start_date }}</span>
+      <span class='error'>{{ form.start_date.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.planned_close_date.errors }}</span>
+      
       <label class='id_username'>Data zakończenia:</label>
-      {{ form.planned_close_date }}
+      <span>{{ form.planned_close_date }}</span>
+      <span class='error'>{{ form.planned_close_date.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.start_price.errors }}</span>
+      
       <label class='id_username'>Cena początkowa:</label>
-      {{ form.start_price }}
+     <span>{{ form.start_price }}</span> 
+      <span class='error'>{{ form.start_price.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.reserve_price.errors }}</span>
+      
       <label class='id_username'>Cena minimalna:</label>
-      {{ form.reserve_price }}
+     <span> {{ form.reserve_price }}</span>
+      <span class='error'>{{ form.reserve_price.errors }}</span>
     </div>
-    <p class='auction_form_field'>
+    <p class='auction_form_field_button'>
        <input value='Dodaj' id='add' type='submit'/>
        <p id='form_submit_info'>{{ form.info }}</p>
     </p>

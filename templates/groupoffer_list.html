@@ -29,7 +29,7 @@
                           <div id='price' class='list_option_item'>Cena:</div>
                           <div id='time' class='list_option_item'>Kupujący:</div>
                        </div>
-                       <section id='eshop_list' >
+                       <section id='eshop_list'style="min-height: 600px" >
 						  {% for item in items %}
 						  <div class='eshop_item_entry'>
 						     <span id='image' class="list_option_item"><img style="width: 30px; max-height: 30px;" src='/mymedia/{{ item.base.thumb }}'/></span>
@@ -41,21 +41,19 @@
 						  {% endfor %}
 						</section>
              </div>
-             			<div class="pagination">
-    						<span class="step-links">
-        					{% if items.has_previous %}
-            					<a href="?page={{ items.previous_page_number }}">poprzednia</a>
-        					{% endif %}
+        <div class="pagination">
+    	<ul id="pagination-clean">
+			{% if items.has_previous %}
+		<li class="next"><a href="?page={{ items.previous_page_number }}">«Poprzednia</a></li>
+			{% endif %}
+		<li class="active">Strona {{ items.number }} </li>
+		<li class="active">z {{ items.paginator.num_pages }}</li>
 
-        					<span class="current">
-            					Strona {{ items.number }} z {{ items.paginator.num_pages }}.
-        					</span>
-
-        					{% if items.has_next %}
-            					<a href="?page={{ items.next_page_number }}">następna</a>
-        					{% endif %}
-    						</span>
-						</div>
+			{% if items.has_next %}
+		<li class="next"><a href="?page={{ items.next_page_number }}">Następna »</a></li>
+			{% endif %}
+			</ul>
+		</div>
              </div>
              </div>
              <div class="clear" style="height: 50px">&nbsp;</div>

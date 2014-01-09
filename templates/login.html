@@ -3,27 +3,33 @@
 {% block title_suffix %} Zaloguj {% endblock %}
 
 {% block css %}
-<link href="{{ STATIC_PREFIX }}css/login.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
+
 {% endblock %}
 
 {% block content %}
-<div id='login_form_wrapper' style="margin-top: 50px">
-  <form id='login_form' name='login_form' action='' method='post' accept-charset="utf-8">
+<div id='auction_form_wrapper' style="margin-top: 50px">
+	<div id="list_title">Logowanie</div>
+	<div id="form_list">
+  <form id='registration_form' name='registration_form' action='' method='post' accept-charset="utf-8">
     {% csrf_token %}
-    <div class='login_name_field'>
-      <span class='form_error'>{{ form.username.errors }}</span>
-      <label for='id_username'>Login:</label>
-      {{ form.username }}
+    <div class='auction_form_field'>
+      
+      <label for='id_username' class="id_username">Login:</label>
+      <span>{{ form.username }}</span>
+      <span class='error'>{{ form.username.errors }}</span>
     </div>
-    <div class='login_password_field'>
-      <span class='form_error'>{{ form.password.errors }}</span>
-      <label for='id_password'>Hasło:</label>
-      {{ form.password }}
+    <div class='auction_form_field'>
+      
+      <label for='id_username' class="id_username">Hasło:</label>
+      <span>{{ form.password }}</span>
+      <span class='error'>{{ form.password.errors }}</span>
     </div>
-    <p id='login_input_wrapper'>
-       <input value='Zaloguj' id='login_input' type='submit'/>
-       <p id='login_submit_info'>{{ form.info }}</p>
+    <p id='auction_form_field_button'>
+       <input value='Zaloguj' id='register' type='submit'/>
+       <p id='form_submit_info'>{{ form.info }}</p>
     </p>
   </form>
+  </div>
 </div>
 {% endblock %}

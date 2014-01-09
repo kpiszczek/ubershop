@@ -16,14 +16,14 @@
 	<div id="form_list">
   <form id='form' name='form' method='post' accept-charset="utf-8">
     {% csrf_token %}
-    <div class='auction_form_field'>
-      
+    
+    <div class='auction_form_field'>    
       <label for='id_username' class='id_username'>Produkt:</label>
      <span>{{ form.base }}</span> 
       <span class="error">{{ form.base.errors }}</span>
 	</div>
-    <div class='auction_form_field'>
-     
+	
+    <div class='auction_form_field'>   
       <label for='id_username' class='id_username'>Cena:</label>
      <span>{{ form.price }} </span> 
       <span class='error'>{{ form.price.errors }}</span>

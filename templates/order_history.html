@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/customerpanel_base.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/bid_history.css" rel="stylesheet" type="text/css"/>
 
@@ -46,20 +46,18 @@
     {% endfor %}
  	</ol>  
  </table>  
- 	<div class="pagination">
-    		<span class="step-links">
-        		{% if orders.has_previous %}
-            		<a href="?page={{ orders.previous_page_number }}">poprzednia</a>
-        		{% endif %}
+ 	 <div class="pagination">
+    	<ul id="pagination-clean">
+			{% if items.has_previous %}
+		<li class="next"><a href="?page={{ items.previous_page_number }}">«Poprzednia</a></li>
+			{% endif %}
+		<li class="active">Strona {{ items.number }} </li>
+		<li class="active">z {{ items.paginator.num_pages }}</li>
 
-        		<span class="current">
-            		Strona {{ orders.number }} z {{ orders.paginator.num_pages }}.
-        		</span>
-
-        		{% if orders.has_next %}
-            		<a href="?page={{ orders.next_page_number }}">następna</a>
-        		{% endif %}
-    		</span>
+			{% if items.has_next %}
+		<li class="next"><a href="?page={{ items.next_page_number }}">Następna »</a></li>
+			{% endif %}
+			</ul>
 		</div>
 </div>
 {% endblock %}

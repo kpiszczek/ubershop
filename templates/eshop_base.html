@@ -10,7 +10,7 @@
     {% csrf_token %}
     <div id='search_form_field'>
       <span class='form_error'>{{ search_form.errors }}</span>
-      <label for='id_search'>Szukaj produktów:</label>
+      <label for='id_search' id='search'>Wyszukiwarka</label>
       {{ search_form.phrase }}
     </div>
     <p id='search_input'>

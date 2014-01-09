@@ -50,20 +50,18 @@
    		   	<td><a class="buttondelete" style="float:left;" href="/manager/sklep/nowy/">Nowy produkt</a> </td>
    		   </tr>
    	</table>
-   	<div class="pagination">
-    		<span class="step-links">
-        		{% if items.has_previous %}
-            		<a href="?page={{ items.previous_page_number }}">poprzednia</a>
-        		{% endif %}
+   	 <div class="pagination">
+    	<ul id="pagination-clean">
+			{% if items.has_previous %}
+		<li class="next"><a href="?page={{ items.previous_page_number }}">«Poprzednia</a></li>
+			{% endif %}
+		<li class="active">Strona {{ items.number }} </li>
+		<li class="active">z {{ items.paginator.num_pages }}</li>
 
-        		<span class="current">
-            		Strona {{ items.number }} z {{ items.paginator.num_pages }}.
-        		</span>
-
-        		{% if items.has_next %}
-            		<a href="?page={{ items.next_page_number }}">następna</a>
-        		{% endif %}
-    		</span>
+			{% if items.has_next %}
+		<li class="next"><a href="?page={{ items.next_page_number }}">Następna »</a></li>
+			{% endif %}
+			</ul>
 		</div>
             <!--  	
            	<div id='list_content'>

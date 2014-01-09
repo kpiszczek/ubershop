@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block css %}
-<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
-<link href="{{ STATIC_PREFIX }}css/auction_add.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/customerpanel_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/registration.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block sidebar %}
@@ -38,41 +38,50 @@
   <form id='registration_form' name='registration_form' method='post' accept-charset="utf-8">
     {% csrf_token %}
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.first_name.errors }}</span>
+      
       <label for='id_username' class='id_username'>Imię:</label>
-      {{ form.first_name }}
+      <span>{{ form.first_name }}</span>
+     <span class='error'>{{ form.first_name.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.last_name.errors }}</span>
+     
       <label for='id_username' class='id_username'>Nazwisko:</label>
-      {{ form.last_name }}
+     <span>{{ form.last_name }}</span> 
+      <span class='error'>{{ form.last_name.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.email.errors }}</span>
+      
       <label for='id_username' class='id_username'>E-mail:</label>
-      {{ form.email }}
+      <span>
+      	{{ form.email }}
+      </span>
+      <span class='error'>{{ form.email.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.password.errors }}</span>
+      
       <label for='id_username' class='id_username'>Hasło:</label>
-      {{ form.password }}
+      <span>{{ form.password }}</span>
+      <span class='error'>{{ form.password.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.organisation.errors }}</span>
+      
       <label for='id_username' class='id_username'>Firma:</label>
-      {{ form.organisation }}
+      <span>{{ form.organisation }}</span>
+      <span class='error' style="margin-right: 0px">{{ form.organisation.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.address.errors }}</span>
+      
       <label for='id_username' class='id_username'>Adres:</label>
-      {{ form.address }}
+      <span>{{ form.address }}</span>
+      <span class='error' style="margin-right: 0px">{{ form.address.errors }}</span>
     </div>
     <div class='auction_form_field'>
-      <span class='id_username'>{{ form.tax_id.errors }}</span>
+      
       <label for='id_username' class='id_username'>NIP:</label>
-      {{ form.tax_id }}
+      <span>{{ form.tax_id }}</span>
+      <span class='error'>{{ form.tax_id.errors }}</span>
     </div>
-    <p class='auction_form_field'>
+    <p class='auction_form_field_button'>
        <input value='Rejestruj' id='register' type='submit'/>
        <p id='form_submit_info'>{{ form.info }}</p>
     </p>

@@ -17,7 +17,7 @@
                           <div id='price' class='list_option_item'>Cena:</div>
                           <div id='time' class='list_option_item'>Ilość:</div>
                        </div>
-                       <div id='eshop_list' >
+                       <div id='eshop_list' style="min-height: 600px">
                           <form method="post" action="przelicz/"> {% csrf_token %}
                           {{ formset.management_form }}
                           {% for item, form in data %}
@@ -37,21 +37,26 @@
                             </div>
 						  </div>
 						  {% endfor %}
-    						  <div class="submit_wrapper" style="float: right; margin-right: 60px;">
+						  </br>
+    						  <div class="submit_wrapper" style="float: right; margin-right: 65px;">
                                 <input class="button" type="submit" value="Przelicz" />
                               </div>
 						  </form>
-						  <div id="cart_total" style="margin-left: 15px;">Łącznie: {{ total }} zł</div>					
+						  </br></br></br>
+						  <div id="cart_total" class="cart_total" style="padding-left: 70%; font-weight:bold;">Łącznie: {{ total }} zł</div>					
+						</br></br></br>
+						 <div id='order'>
+				<form  style="margin-left:;" action="/kasa/">
+					  <input class="button" type="submit" value="Zamawiam" />
+                            
+                        </form>					 	
+				</div>
 						</div>
-						</br>
+						
 						
 						
              </div>
-             <div id='order'>
-				<form  style="margin-left: 0px;" action="/kasa/">
-                            <input type="submit" value="Zamawiam">
-                        </form>					 	
-				</div>
+            
 				<div style="height: 100px">&nbsp;</div>
        </div>
 <!-- <div id="list" style="margin-top:50px">

@@ -5,22 +5,25 @@ Strona główna
 {% endblock %}
 
 {% block css %}
-<link href="{{ STATIC_PREFIX }}css/eshop_base.css" rel="stylesheet" type="text/css"/>
+<link href="{{ STATIC_PREFIX }}css/home_base.css" rel="stylesheet" type="text/css"/>
 <link href="{{ STATIC_PREFIX }}css/home.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 
-{% block content %}
+
+{% block advert %}
 <div id='advert_banner'>
-  <img src="{{ STATIC_PREFIX }}img/banner.png"/>
+  <img src="{{ STATIC_PREFIX }}img/slider.jpg"/>
 </div>
+{%endblock%}
+{% block content %}
 <section id='promotion' class="home_item">
   <div id="promotion_title" class="home_title">
     Oferty promowane
   </div>
   {% for item in promotion_items %}
   <div class='promotion_item'>
-    <a href="/sklep/{{ item.id }}"><img style="width: 300px; max-height: 258px;" src="/mymedia/{{ item.base.thumb }}"/></a>
+    <a href="/sklep/{{ item.id }}"><img style="width: 300px; max-height: 200px;" src="/mymedia/{{ item.base.thumb }}"/></a>
     <div class="promotion_item_name">
       <a href="/sklep/{{ item.id }}">{{ item.base.name }}</a>
     </div>
