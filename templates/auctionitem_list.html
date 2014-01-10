@@ -50,20 +50,21 @@
 						  {% endfor %}
 						</section>
 						</div>
+						{% if items.paginator %}
 						<div class="pagination">
-    	<ul id="pagination-clean">
-			{% if items.has_previous %}
-		<li class="next"><a href="?page={{ items.previous_page_number }}">«Poprzednia</a></li>
-			{% endif %}
-		<li class="active">Strona {{ items.number }} </li>
-		<li class="active">z {{ items.paginator.num_pages }}</li>
+    						<ul id="pagination-clean">
+								{% if items.has_previous %}
+								<li class="next"><a href="?page={{ items.previous_page_number }}">«Poprzednia</a></li>
+								{% endif %}
+								<li class="active">Strona {{ items.number }} </li>
+								<li class="active">z {{ items.paginator.num_pages }}</li>
 
-			{% if items.has_next %}
-		<li class="next"><a href="?page={{ items.next_page_number }}">Następna »</a></li>
-			{% endif %}
-			</ul>
-		</div>
-             
+								{% if items.has_next %}
+							<li class="next"><a href="?page={{ items.next_page_number }}">Następna »</a></li>
+							{% endif %}
+							</ul>
+						</div>
+             			{% endif %}
              </div>
              </div>
              <div style="height: 50px;">&nbsp;</div>

@@ -1,0 +1,77 @@
+.empty{clear:both}body{background-color:#f2f2f2;
+text-align:center;margin:0}
+a{text-decoration:none}
+a:hover{color:#002f32;text-decoration:none}
+a:visited{text-decoration:none;}
+#main{position:relative;top:0;left:0;margin:0 auto;width:960px;text-align:left;
+font-family:Verdana,Geneva,Arial,Helvetica,sans-serif;font-size:14px}
+header{top:0;position:relative;height:80px;z-index:1}
+#logo img{position:relative;top:50px;float:left;margin-left:10px;
+margin-right:10px}
+.top_button{position:relative;top:50px;height:25px;width:120px;float:right;
+background-color:#ebebeb;text-align:center;border-radius:6px;border-style:solid;
+border-width:1px;border-color:#002f32;padding-top:7px;margin-left:5px;margin-right:5px;
+box-shadow:4px 4px 10px #666}.top_button a{color:#002f32}
+.top_button a:hover{color:#fff}
+.form_error{visibility: visible;}
+#menubar_top{position:relative;padding-left:20px;padding-right:20px;width:700px;left:250px;
+height:50px;top:-15px;background-image:url("/static/img/menu_bg.png");
+border-radius:12px;box-shadow:4px 4px 10px #666}
+.menu_item_top{float:left;width:110px;padding-top:15px;text-align:center}
+#content{position:relative;left:250px;}
+#content_container{position:relative;width:700px;}
+#menubar_bottom{position:relative;padding-left:50px;padding-right:25px;
+margin-top:50px;width:940px;height:50px;background-image:url("/static/img/menu_bg.png");
+border-radius:12px;box-shadow:4px 4px 10px #666}
+footer{float:right;font-size:85%;margin-bottom:20px}
+.menu_item_bottom{float:left;width:130px;padding-top:15px;text-align:center}
+div.white a{color:white;}
+div.white a:visited{color:white;}
+ul{border:0; margin-left:35%; padding:0;}
+
+#pagination-clean li{
+border:0; margin:0; padding:0;
+font-size:13px;
+list-style:none;
+}
+#pagination-clean li, 
+#pagination-clean a{
+border:solid 1px #DEDEDE
+margin-right:2px;
+}
+#pagination-clean 
+.previous-off,
+#pagination-clean 
+.next-off {
+color:#888888
+display:block;
+float:left;
+font-weight:bold;
+padding:3px 4px;
+}
+#pagination-clean 
+.next a,
+#pagination-clean 
+.previous a {
+font-weight:bold;
+border:solid 1px #FFFFFF;
+} 
+#pagination-clean 
+.active{
+color:red
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+#pagination-clean a:link,
+#pagination-clean a:visited {
+color:#0033CC
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+#pagination-clean a:hover{
+text-decoration:none;
+}

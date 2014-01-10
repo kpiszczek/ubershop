@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
 {% get_static_prefix as STATIC_PREFIX %}
-<html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
+<html lang="pl">
 	<head>
 		<meta charset="utf-8" />
 		<title>Ubershop - {% block title_suffix %}{% endblock %}</title>
@@ -9,29 +9,52 @@
 		<meta name='keywords' content=''/>
 		{% block head %} {% endblock %}
 		<link href="{{ STATIC_PREFIX }}css/base2.css" rel="stylesheet"/>
-		{% block css %}
-		
-		 {% endblock %}
+		{% block css %} {% endblock %}
 	</head>
 	<body>
+		<!-- AddThis Smart Layers BEGIN -->
+<!-- Go to http://www.addthis.com/get/smart-layers to customize -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527920254d4d7335"></script>
+<script type="text/javascript">
+  addthis.layers({
+    'theme' : 'transparent',
+    'share' : {
+      'position' : 'left',
+      'numPreferredServices' : 4
+    }, 
+    'follow' : {
+      'services' : [
+        {'service': 'facebook', 'id': 'shopuber'},
+        {'service': 'twitter', 'id': 'ewe1020'},
+        {'service': 'google_follow', 'id': 'u/0/b/109532592401732224770/109532592401732224770'}
+      ]
+    },  
+    
+  });
+</script>
+<!-- AddThis Smart Layers END -->
 		<div id='main' class='first'>
 			<div id='container'>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-527920254d4d7335"></script>
+
 			  <div id='logo'><img src="{{ STATIC_PREFIX }}img/logo1.png"/></div>
-		       <header id="header">			  
-				  <div id='banner'> </div>	  
-				  {% if user.username %}
+		       <header id="header" >			  
+				  <div id='banner'> </div>
+				  <div id='cart_small' class="top_button"><a href="/koszyk/">Koszyk</a></div>	  
+				  
+				{% if user.username %}
+        		
         		<div id='logout' class="top_button"><a href="/accounts/logout/">Wyloguj</a></div>
         		{% else %}
+        		<div id='register' class="top_button"><a href="/rejestracja/">Rejestracja</a></div>
         		<div id='login' class="top_button"><a href="/accounts/login/">Logowanie</a></div>
         		{% endif %}
+				  
 				  <div class="empty">&nbsp;</div>
 				  <nav>
     				<div id='menubar_top' class="white">
-    					<div class='menu_item_top' style="width:200px;">
-                        <a href="/manager/">Panel administracyjny</a>
-                      </div>
-      		          <!--<div class='menu_item_top'>
-                        <a href="/home/">Home</a>
+      		          <div class='menu_item_top'>
+                         <a href="/home/" style="a color:white;">Home</a>
                       </div>
                       <div class='menu_item_top'>
                         <a href="/aukcje/nowe">Aukcje</a>
@@ -43,22 +66,24 @@
                         <a href="/grupowe/nowe">Oferty grupowe</a>
                       </div>
                       <div class='menu_item_top'>
-                        <a href="/panel_klienta/">Moje konto</a>
+                        <a href="/accounts/profile/">Moje konto</a>
                       </div>
                       <div class='menu_item_top'>
-                        <a href="/forum/">Forum</a>-->
+                        <a href="/forum/">Forum</a>
                       </div>
        			   </div>
     			 </nav>
+    			 {% block advert %}
+    			 &nbsp;
+    			 {% endblock %}
 				</header>
 				<div class='empty'>&nbsp;</div>
-				<div id='content' style="position:relative; left:0px;">					
-		      <div id='content_container'style="width: 1024px; margin-top: 50px">
+				<div id='content'>					
+		     <div id='content_container'> 
 		        {% block content %} 
 		        &nbsp;
 		        {% endblock %}
-		        
-		      </div>
+		    </div> 
 				</div>
 				<div id='sidebar'>
 					<div id='sidebar_container'>
@@ -70,8 +95,8 @@
 				<div class='empty'>&nbsp;</div>
 				<nav>
     				<div id='menubar_bottom' class="white">
-    				  <!--<div class='menu_item_bottom'>
-    				    <a href="/home/">Home</a>
+    				  <div class='menu_item_bottom'>
+    				  	   <a href="/home/" style="a color:white;">Home</a>
     				  </div>
     				  <div class='menu_item_bottom'>
                         <a href="/aukcje/nowe">Aukcje</a>
@@ -83,14 +108,14 @@
                         <a href="/grupowe/nowe">Oferty grupowe</a>
                       </div>
                       <div class='menu_item_bottom'>
-                        <a href="/panel_klienta/">Moje konto</a>
+                        <a href="/accounts/profile/">Moje konto</a>
                       </div>
                       <div class='menu_item_bottom'>
                         <a href="/forum/">Forum</a>
                       </div>
                       <div class='menu_item_bottom'>
                         <a href="/home/kontakt/">Kontakt</a>
-                      </div>-->
+                      </div>
     				</div>
     		    </nav>
 				<div class="empty">&nbsp;</div>

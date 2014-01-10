@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base2.html" %}
 
 {% block css %}
 <link href="{{ STATIC_PREFIX }}css/customerpanel_base.css" rel="stylesheet" type="text/css"/>
@@ -52,14 +52,14 @@
    </table>
   <div class="pagination">
     	<ul id="pagination-clean">
-			{% if items.has_previous %}
-		<li class="next"><a href="?page={{ items.previous_page_number }}">«Poprzednia</a></li>
+			{% if list.has_previous %}
+		<li class="next"><a href="?page={{ list.previous_page_number }}">«Poprzednia</a></li>
 			{% endif %}
-		<li class="active">Strona {{ items.number }} </li>
-		<li class="active">z {{ items.paginator.num_pages }}</li>
+		<li class="active">Strona {{ list.number }} </li>
+		<li class="active">z {{ list.paginator.num_pages }}</li>
 
-			{% if items.has_next %}
-		<li class="next"><a href="?page={{ items.next_page_number }}">Następna »</a></li>
+			{% if list.has_next %}
+		<li class="next"><a href="?page={{ list.next_page_number }}">Następna »</a></li>
 			{% endif %}
 			</ul>
 		</div>
